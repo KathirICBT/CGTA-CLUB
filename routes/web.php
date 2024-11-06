@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
-
-
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\CompanyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/members', MemberController::class);
+Route::apiResource('packages', PackageController::class);
+Route::apiResource('companies', CompanyController::class);
+
 
