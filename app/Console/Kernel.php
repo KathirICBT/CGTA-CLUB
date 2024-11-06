@@ -12,8 +12,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Schedule the birthday notification command to run daily at a specific time
+        $schedule->command('birthday:notify')->dailyAt('00:00'); // Adjust the time as needed
+
+        // $schedule->command('birthday:notify')->everyTwoSeconds(); // For testing purpose - discard before production
     }
+    protected $commands = [
+        \App\Console\Commands\BirthdayNotificationCommand::class,
+    ];
 
     /**
      * Register the commands for the application.

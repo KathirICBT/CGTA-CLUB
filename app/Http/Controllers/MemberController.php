@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Member;
-
+use Illuminate\Support\Facades\Storage;
 
 class MemberController extends Controller
 {
@@ -122,7 +122,7 @@ class MemberController extends Controller
                 'phone' => 'sometimes|required|string|max:20',
                 'date_of_birth' => 'sometimes|required|date',
                 'join_date' => 'sometimes|required|date',
-                'photo' => 'nullable|image|max:5000',
+                'photo' => 'nullable|string|max:5000',
                 'bio' => 'nullable|string',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
