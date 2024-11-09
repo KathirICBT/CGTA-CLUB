@@ -15,8 +15,8 @@ class BirthdayNotificationCommand extends Command
 {
 
     protected $signature = 'birthday:notify';
-
     protected $description = 'Send birthday notifications to members and announcements to others';
+
 
     public function handle()
     {

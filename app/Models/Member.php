@@ -24,4 +24,10 @@ class Member extends Model
         'status' => 'waiting',
     ];
 
+    // Relationship: A member belongs to many notifications
+    public function notifications()
+    {
+        return $this->hasMany(Notifications::class, 'memberId');
+    }
+
 }

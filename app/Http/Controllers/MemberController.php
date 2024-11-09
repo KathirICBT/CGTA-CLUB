@@ -32,8 +32,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        // return response()->json(['message' => 'Store method is triggered'], 200);
-
+        error_log('store memember method triggered');
         try {
             error_log('Validate Data to update: ' . json_encode($request->all()));
 
