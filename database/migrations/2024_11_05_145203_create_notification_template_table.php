@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notification_template', function (Blueprint $table) {
+        Schema::create('notification_templates', function (Blueprint $table) {
             $table->id();
             $table->string('type');
             $table->text('templateText');
