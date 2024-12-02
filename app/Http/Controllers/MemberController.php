@@ -45,7 +45,11 @@ class MemberController extends Controller
                 'join_date' => 'required|date',
                 'photo' => 'nullable|image|max:5000', // Updated rule for URL
                 'bio' => 'nullable|string',
+                'membership_level' => 'required|string|max:50', // New attribute
+                'password' => 'required|string|min:8', // New attribute
+                'renewal_date' => 'nullable|date', // New attribute
             ]);
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Log the validation errors or return them in the response for debugging
             return response()->json(['errors' => $e->errors()], 422);
@@ -57,6 +61,8 @@ class MemberController extends Controller
             $photoPath = $request->file('photo')->store('photos', 'public');
         }
 
+        
+
         $member = Member::create([
             'first_name' => $request ->first_name,
             'last_name' => $request ->last_name, 
@@ -67,6 +73,9 @@ class MemberController extends Controller
             'photo' =>  $photoPath,
             'bio' => $request->bio,
             'status' => 'active',
+            'membership_level' => $request->membership_level,
+            'password' => bcrypt($request->password), 
+            'renewal_date' => $request->renewal_date,
         ]);
 
          // Include the full URL for the photo in the response if it was uploaded
@@ -123,6 +132,9 @@ class MemberController extends Controller
                 'join_date' => 'sometimes|required|date',
                 'photo' => 'nullable|string|max:5000',
                 'bio' => 'nullable|string',
+                'membership_level' => 'required|string|max:50', // New attribute
+                'password' => 'string|min:8', // New attribute
+                'renewal_date' => 'nullable|date', // New attribute
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Log the validation errors or return them in the response for debugging
@@ -163,7 +175,7 @@ class MemberController extends Controller
         }
 
         // Prepare the data to be updated
-        $dataToUpdate = $request->only(['first_name', 'last_name', 'email', 'phone', 'date_of_birth', 'join_date', 'bio']);
+        $dataToUpdate = $request->only(['first_name', 'last_name', 'email', 'phone', 'date_of_birth', 'join_date', 'bio', 'membership_level', 'password', 'renewal_date']);
         error_log('Data to update: ' . json_encode($dataToUpdate));
 
         // Update the member details

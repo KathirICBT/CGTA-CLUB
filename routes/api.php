@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NotificationTemplateController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\EventController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('members', MemberController::class);
+Route::apiResource('events', EventController::class);
 
 Route::apiResource('notifiTemplate', NotificationTemplateController::class);
 
