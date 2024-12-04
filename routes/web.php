@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Settings;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 
@@ -19,5 +21,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/members', MemberController::class);
+//Route::middleware(['auth'])->group(function () {
+//    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+//    Route::get('/settings', Settings::class)->name('settings');
+//});
+
+Route::get('/dashboard', function () {
+    return view('/livewire/pages/dashboard');
+})->name('dashboard');
+
+Route::get('/settings', function () {
+    return view('/livewire/pages/settings');
+})->name('settings');
+
+//Route::get('/dashboard', Dashboard::class)->name('dashboard');
+//Route::get('/settings', Settings::class)->name('settings');
+
+//Route::resource('/members', MemberController::class);
 
