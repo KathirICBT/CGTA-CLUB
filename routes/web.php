@@ -18,8 +18,8 @@ use App\Http\Controllers\MemberController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('/livewire/layout-component');
+})->name('layout-component');
 
 //Route::middleware(['auth'])->group(function () {
 //    Route::get('/dashboard', Dashboard::class)->name('dashboard');
@@ -36,6 +36,4 @@ Route::get('/settings', function () {
 
 //Route::get('/dashboard', Dashboard::class)->name('dashboard');
 //Route::get('/settings', Settings::class)->name('settings');
-
-//Route::resource('/members', MemberController::class);
 
