@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NotificationTemplateController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('members', MemberController::class);
+Route::apiResource('events', EventController::class);
+
+Route::apiResource('notifiTemplate', NotificationTemplateController::class);
+
+Route::apiResource('notification', NotificationController::class);
