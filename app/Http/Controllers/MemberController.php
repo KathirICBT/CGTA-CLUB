@@ -19,10 +19,10 @@ class MemberController extends Controller
 
     }
 
-    public static function allMembers()
-    {
-        return Member::all(); // Return view with members
-    }
+//    public static function allMembers()
+//    {
+//        return Member::all(); // Return view with members
+//    }
 
     /**
      * Show the form for creating a new resource.
