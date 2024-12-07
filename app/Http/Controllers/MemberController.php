@@ -19,6 +19,11 @@ class MemberController extends Controller
 
     }
 
+    public static function allMembers()
+    {
+        return Member::all(); // Return view with members
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -61,11 +66,11 @@ class MemberController extends Controller
             $photoPath = $request->file('photo')->store('photos', 'public');
         }
 
-        
+
 
         $member = Member::create([
             'first_name' => $request ->first_name,
-            'last_name' => $request ->last_name, 
+            'last_name' => $request ->last_name,
             'email' => $request->email,
             'phone' => $request->phone,
             'date_of_birth' => $request->date_of_birth,
@@ -74,7 +79,7 @@ class MemberController extends Controller
             'bio' => $request->bio,
             'status' => 'active',
             'membership_level' => $request->membership_level,
-            'password' => bcrypt($request->password), 
+            'password' => bcrypt($request->password),
             'renewal_date' => $request->renewal_date,
         ]);
 
@@ -166,9 +171,9 @@ class MemberController extends Controller
             }
 
              // Store the new photo and get its path
-            $photoPath = $request->file('photo')->store('photos', 'public');    
+            $photoPath = $request->file('photo')->store('photos', 'public');
             $member->photo = $photoPath;
-        } else { 
+        } else {
             error_log('No photo file was uploaded.');
             // If no new photo is uploaded, retain the existing photo path
             $photoPath = $member->photo;
