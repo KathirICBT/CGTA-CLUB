@@ -47,8 +47,16 @@ class Member extends Component
 
         try {
             // Fetch members directly from the database using Eloquent
-            $this->members = MemberController::index();
-//            $this->members = Member::all();
+            $controller = new MemberController();
+            $response = $controller->index();
+            // Convert the stdClass object to an array
+            $this->members = json_decode(json_encode($response->getData()), true);
+
+
+
+//           $this->members = MemberController::index();
+//           $this->members = Member::all();
+
             dump($this->members);
             error_log('members successfully fetched from database ');
         } catch (\Exception $e) {
