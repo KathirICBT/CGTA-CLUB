@@ -7,6 +7,9 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PackageServiceController;
+use App\Http\Controllers\NotificationTemplateController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +31,8 @@ Route::apiResource('packages', PackageController::class);
 Route::apiResource('companies', CompanyController::class);
 Route::apiresource('services', ServiceController::class);
 Route::apiResource('package-services', PackageServiceController::class);
+Route::apiResource('events', EventController::class);
+
+Route::apiResource('notifiTemplate', NotificationTemplateController::class);
+
+Route::apiResource('notification', NotificationController::class);

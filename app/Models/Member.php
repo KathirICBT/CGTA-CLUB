@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable; 
 
-class member extends Model
+class Member extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     public $timestamps = false;
 
@@ -21,6 +22,15 @@ class member extends Model
         'photo',
         'bio',
         'status' => 'waiting',
+        'membership_level', // New attribute
+        'password', // New attribute
+        'renewal_date', // New attribute
     ];
+
+    // Relationship: A member belongs to many notifications
+    public function notifications()
+    {
+        return $this->hasMany(Notifications::class, 'memberId');
+    }
 
 }
