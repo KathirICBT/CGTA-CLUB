@@ -15,6 +15,11 @@ class Member extends Component
         $this->showForm = true; // Open the popup
     }
 
+    public function closeForm()
+    {
+        $this->showForm = false;  // Close the form
+    }
+
     public $headers = [
 //        'ID',
         'Photo',

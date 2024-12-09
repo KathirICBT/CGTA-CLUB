@@ -4,10 +4,6 @@
 
 <div class="isolate bg-white px-6 py-5 sm:py-5 lg:px-8 md:w-full rounded-lg mx-3">
     <form wire:submit.prevent="submitForm" method="POST" class="mx-auto mt-8 sm:mt-8 md:w-full overflow-auto h-[45em]">
-        <button wire:click="closeForm"
-                class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">
-            ✖
-        </button>
         <label for="first_name" class="block text-lg font-semibold leading-6 text-gray-900">
             Member's Information
         <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 mt-5">
