@@ -1,11 +1,9 @@
 <?php
 
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Member\Member;
 use App\Livewire\Pages\Settings;
-use App\Livewire\Pages\Member;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController;
-
 
 
 //Route::middleware(['auth'])->group(function () {
