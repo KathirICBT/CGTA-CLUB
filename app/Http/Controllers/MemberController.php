@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Member;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class MemberController extends Controller
 {
@@ -39,33 +40,57 @@ class MemberController extends Controller
     {
         error_log('store memember method triggered');
         try {
-            error_log('Validate Data to update: ' . json_encode($request->all()));
-
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:members',
                 'phone' => 'required|string|max:20',
                 'date_of_birth' => 'required|date',
                 'join_date' => 'required|date',
-                'photo' => 'nullable|image|max:5000', // Updated rule for URL
+                'photo' => [
+                    'nullable',
+                    function ($attribute, $value, $fail) use ($request) {
+                        if (!$request->hasFile('photo') && !is_string($value)) {
+                            $fail("The $attribute must be a valid image file or a string representing the photo URL.");
+                        }
+                    }
+                ],
                 'bio' => 'nullable|string',
-                'membership_level' => 'required|string|max:50', // New attribute
-                'password' => 'required|string|min:8', // New attribute
-                'renewal_date' => 'nullable|date', // New attribute
+                'membership_level' => 'required|string',
+                'status' => 'required|string',
+                'password' => 'required|string|min:8',
+                'renewal_date' => 'nullable|date',
             ]);
+
+            if ($validator->fails()) {
+                error_log('Validation failed: ' . json_encode($validator->errors()));
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+
+
+            error_log('Validation passed and data after validation: ' . json_encode($request->all()));
+
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             // Log the validation errors or return them in the response for debugging
+            error_log('errors' . $e->errors());
             return response()->json(['errors' => $e->errors()], 422);
         }
+
+        error_log('entering photopath');
 
         // Handle photo upload if provided
         $photoPath = null;
         if ($request->hasFile('photo')) {
+            // Save the uploaded file and get the path
             $photoPath = $request->file('photo')->store('photos', 'public');
+        } elseif (is_string($request->photo)) {
+            // Use the provided URL as the photo path
+            $photoPath = $request->photo;
         }
 
+        error_log('photopath blocked the process');
 
 
         $member = Member::create([
@@ -77,14 +102,14 @@ class MemberController extends Controller
             'join_date' => $request->join_date,
             'photo' =>  $photoPath,
             'bio' => $request->bio,
-            'status' => 'active',
+            'status' => $request->status,
             'membership_level' => $request->membership_level,
             'password' => bcrypt($request->password),
             'renewal_date' => $request->renewal_date,
         ]);
 
-         // Include the full URL for the photo in the response if it was uploaded
-        $member->photo_url = $photoPath ? url('storage/' . $photoPath) : null;
+        // Include the full URL for the photo in the response
+        $member->photo_url = $photoPath && !str_contains($photoPath, 'http') ? url('storage/' . $photoPath) : $photoPath;
 
         return response()->json($member, 201);
     }
@@ -112,89 +137,89 @@ class MemberController extends Controller
     public function update(Request $request, string $id)
     {
         error_log('Update method is triggered.');
-        error_log('Request method: ' . $request->method()); // Log the HTTP method
-        error_log('Request URI: ' . $request->getRequestUri()); // Log the requested URI
-        error_log('Request ID: ' . $id); // Log the received ID
+        error_log('Request ID: ' . $id);
 
-        // Check if the request contains data
+        $isUpdate = isset($id);
+
         if ($request->method() === 'PUT' && $request->isJson() && empty($request->all())) {
             error_log('No request data received.');
             return response()->json(['error' => 'No data received in the request'], 400);
         }
 
-        error_log('Incoming request data: ' . json_encode($request->all())); // Log incoming request data
+        error_log('Incoming request data: ' . json_encode($request->all()));
 
-        try {
-            error_log('Validate Data to update: ' . json_encode($request->all()));
-            error_log('Validate Data to update: ' . json_encode($id));
+        // Validation Rules
+        $rules = [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:members,email,' . $id,
+            'phone' => 'required|string|max:20',
+            'date_of_birth' => 'required|date',
+            'join_date' => 'required|date',
+            'photo' => [
+                'nullable',
+                function ($attribute, $value, $fail) use ($request) {
+                    if (!$request->hasFile('photo') && !is_string($value)) {
+                        $fail("The $attribute must be a valid image file or a string representing the photo URL.");
+                    }
+                }
+            ],
+            'bio' => 'nullable|string',
+            'membership_level' => 'required|string',
+            'status' => 'required|string',
+            'renewal_date' => 'nullable|date',
+        ];
 
-            $request->validate([
-                'first_name' => 'sometimes|required|string|max:255',
-                'last_name' => 'sometimes|required|string|max:255',
-                'email' => 'sometimes|required|string|email|max:255|unique:members,email,' . $id,
-                'phone' => 'sometimes|required|string|max:20',
-                'date_of_birth' => 'sometimes|required|date',
-                'join_date' => 'sometimes|required|date',
-                'photo' => 'nullable|string|max:5000',
-                'bio' => 'nullable|string',
-                'membership_level' => 'required|string|max:50', // New attribute
-                'password' => 'string|min:8', // New attribute
-                'renewal_date' => 'nullable|date', // New attribute
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Log the validation errors or return them in the response for debugging
-            return response()->json(['errors' => $e->errors()], 422);
+        // Conditionally add password validation for update
+        if (!$isUpdate || $request->filled('password')) {
+            $rules['password'] = 'required|string|min:8';  // Only apply this rule if it's a new password or the update includes a password
         }
 
-        error_log('Validate Data to update: ' . json_encode($request->all()));
+        $validator = Validator::make($request->all(), $rules);
 
+        if ($validator->fails()) {
+            error_log('Validation failed: ' . json_encode($validator->errors()));
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
-        // $member = Member::findOrFail($id); // Find the member to update
         try {
-            // Try to find the member by ID
+            // Retrieve the member or return a 404 response
             $member = Member::findOrFail($id);
-            error_log('member ID found ');
+            error_log('Member ID found: ' . $id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            error_log('Member id not found');
-            // If the member with the given ID does not exist, return a 404 response
+            error_log('Member ID not found: ' . $id);
             return response()->json(['error' => 'Member not found'], 404);
         }
 
-
-        // Handle photo upload if provided
+        // Handle photo upload or retain existing photo
+        $photoPath = $member->photo; // Default to existing photo
         if ($request->hasFile('photo')) {
-            error_log('photo file was uploaded.');
-
-            // Optionally, delete the old photo if it exists
-            if ($member->photo) {
-                Storage::disk('public')->delete($member->photo);
+            error_log('Photo file uploaded.');
+            if ($photoPath) {
+                Storage::disk('public')->delete($photoPath); // Delete old photo
             }
-
-             // Store the new photo and get its path
-            $photoPath = $request->file('photo')->store('photos', 'public');
-            $member->photo = $photoPath;
-        } else {
-            error_log('No photo file was uploaded.');
-            // If no new photo is uploaded, retain the existing photo path
-            $photoPath = $member->photo;
+            $photoPath = $request->file('photo')->store('photos', 'public'); // Store new photo
         }
 
-        // Prepare the data to be updated
-        $dataToUpdate = $request->only(['first_name', 'last_name', 'email', 'phone', 'date_of_birth', 'join_date', 'bio', 'membership_level', 'password', 'renewal_date']);
-        error_log('Data to update: ' . json_encode($dataToUpdate));
+        // Update member fields
+        $dataToUpdate = $request->only([
+            'first_name', 'last_name', 'email', 'phone',
+            'date_of_birth', 'join_date', 'bio',
+            'membership_level', 'renewal_date'
+        ]);
+        if ($request->filled('password')) {
+            $dataToUpdate['password'] = bcrypt($dataToUpdate['password']); // Hash password if provided
+        }
+        $dataToUpdate['photo'] = $photoPath;
 
-        // Update the member details
         $member->update($dataToUpdate);
 
-        // If the photo was changed, save the new photo path
-        if (isset($photoPath)) {
-            $member->photo = $photoPath; // This line is redundant after update; can be omitted
-        }
+        // Include photo URL in the response
+        $member->photo_url = $photoPath && !str_contains($photoPath, 'http') ? url('storage/' . $photoPath) : $photoPath;
 
-        return response()->json($member); // Return the updated member
+        error_log('Member updated successfully: ' . $member->id);
 
-        // return response('update triggered');
-
+        return response()->json($member, 200);
     }
 
     /**
