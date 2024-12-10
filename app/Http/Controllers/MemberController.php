@@ -78,8 +78,6 @@ class MemberController extends Controller
             return response()->json(['errors' => $e->errors()], 422);
         }
 
-        error_log('entering photopath');
-
         // Handle photo upload if provided
         $photoPath = null;
         if ($request->hasFile('photo')) {
@@ -159,7 +157,18 @@ class MemberController extends Controller
             'photo' => [
                 'nullable',
                 function ($attribute, $value, $fail) use ($request) {
-                    if (!$request->hasFile('photo') && !is_string($value)) {
+                    error_log('Photo field received: ' . json_encode($value));
+//                    if (!$request->hasFile('photo') && !is_string($value)) {
+//                        $fail("The $attribute must be a valid image file or a string representing the photo URL.");
+//                    }
+                    if ($request->hasFile('photo')) {
+                        error_log('Photo is a file.');
+                        $file = $request->file('photo');
+                        error_log('Photo file name: ' . $file->getClientOriginalName());
+                        error_log('Photo file size: ' . $file->getSize());
+                    } elseif (is_string($value)) {
+                        error_log('Photo is a string URL: ' . $value);
+                    } else {
                         $fail("The $attribute must be a valid image file or a string representing the photo URL.");
                     }
                 }
@@ -191,14 +200,31 @@ class MemberController extends Controller
             return response()->json(['error' => 'Member not found'], 404);
         }
 
+        // Function to delete the old photo if it exists
+        $deleteOldPhoto = function ($path) {
+            if ($path && Storage::disk('public')->exists($path)) {
+                Storage::disk('public')->delete($path); // Delete the old photo
+            }
+        };
+
         // Handle photo upload or retain existing photo
         $photoPath = $member->photo; // Default to existing photo
         if ($request->hasFile('photo')) {
             error_log('Photo file uploaded.');
-            if ($photoPath) {
-                Storage::disk('public')->delete($photoPath); // Delete old photo
-            }
+
+            // Delete old photo
+            $deleteOldPhoto($photoPath);
+
             $photoPath = $request->file('photo')->store('photos', 'public'); // Store new photo
+        } elseif (is_string($request->photo)) {
+            error_log('Photo is a string URL.');
+
+            // Delete old photo
+            $deleteOldPhoto($photoPath);
+
+            $photoPath = $request->photo;
+        } else {
+            error_log('No valid photo provided. Retaining existing photo.');
         }
 
         // Update member fields
@@ -227,9 +253,16 @@ class MemberController extends Controller
      */
     public function destroy(string $id)
     {
-        $member = Member::findOrFail($id); // Find the member to delete
-        $member->delete(); // Delete the member
-
-        return response()->json(null, 204); // Return a 204 No Content response
+        try {
+            $member = Member::findOrFail($id); // Find the member to delete
+            // Delete the associated photo if it exists
+            if ($member->photo && Storage::disk('public')->exists($member->photo)) {
+                Storage::disk('public')->delete($member->photo);
+            }
+            $member->delete(); // Delete the member
+            return response()->json(null, 204); // Return a 204 No Content response
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete member'], 500);
+        }
     }
 }

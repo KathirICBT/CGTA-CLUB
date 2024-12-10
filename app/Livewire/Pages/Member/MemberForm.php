@@ -96,11 +96,13 @@ class MemberForm extends Component
                 $controller->update($request, $this->memberId);
                 error_log('Member updated successfully!');
                 session()->flash('success', 'Member updated successfully!');
+                return redirect()->route('member');
             } else {
                 // If member_id is not set, perform creation
                 $controller->store($request);
                 error_log('Member created successfully!');
                 session()->flash('success', 'Member created successfully!');
+                return redirect()->route('member');
             }
 
             $this->reset(); // Reset form fields
