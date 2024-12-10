@@ -144,16 +144,18 @@
                     @error('renewal_date') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
             </div>
-            <div>
-                <label for="password" class="block text-sm font-semibold leading-6 text-gray-900">
-                    Password
-                </label>
-                <div class="mt-2.5">
-                    <input type="text" id="password" wire:model="password"
-                           class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                    @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            @if (!$memberId) <!-- Show password field only when creating a new member -->
+                <div>
+                    <label for="password" class="block text-sm font-semibold leading-6 text-gray-900">
+                        Password
+                    </label>
+                    <div class="mt-2.5">
+                        <input type="text" id="password" wire:model="password"
+                               class="block w-full border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
 
         <!-- Submit Button -->

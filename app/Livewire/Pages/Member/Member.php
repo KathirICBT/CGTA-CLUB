@@ -3,6 +3,8 @@
 namespace App\Livewire\Pages\Member;
 
 use App\Http\Controllers\MemberController;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Member extends Component
@@ -18,6 +20,7 @@ class Member extends Component
     public function closeForm()
     {
         $this->showForm = false;  // Close the form
+        return redirect()->route('member');
     }
 
     public $headers = [
@@ -114,6 +117,7 @@ class Member extends Component
             // Handle success response
             if ($response->getStatusCode() == 204) {
                 session()->flash('success', 'Member deleted successfully!');
+                return redirect()->route('member');
             } else {
                 session()->flash('error', 'Failed to delete member.');
             }
