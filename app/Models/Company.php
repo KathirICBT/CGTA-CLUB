@@ -11,7 +11,7 @@ class Company extends Model
     protected $fillable = [
         'member_id', 'package_id', 'companyName', 'email', 'phonenumber',
         'address', 'joinDate', 'services', 'bio', 'logoImg', 'status',
-        'region', 'city'
+        'region_id', 'city'
     ];
 
     public function package()
@@ -21,5 +21,9 @@ class Company extends Model
     public function member()
     {
         return $this->belongsTo(Member::class, 'member_id');
+    }
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
     }
 }

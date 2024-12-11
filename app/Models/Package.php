@@ -10,7 +10,7 @@ class Package extends Model
     use HasFactory;
 
     protected $fillable = [
-        'package_name', 'package_price', 'tax', 'description', 'duration'
+        'package_name', 'package_price', 'tax', 'description', 'duration', 'max_membercount'
     ];
 
 }

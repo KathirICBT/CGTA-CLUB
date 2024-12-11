@@ -3,10 +3,14 @@
 use App\Livewire\Pages\Dashboard;
 use App\Livewire\Pages\Settings;
 use App\Livewire\Pages\Member;
+use App\Livewire\Package;
+use App\Livewire\Company;
+use App\Livewire\Region;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
-use App\Http\Controllers\CompanyController;
+use App\Livewire\Service;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +28,7 @@ use App\Http\Controllers\CompanyController;
 
 // Route::resource('/members', MemberController::class);
 Route::apiResource('packages', PackageController::class);
-Route::apiResource('companies', CompanyController::class);
+// Route::apiResource('companies', CompanyController::class);
 
 
 
@@ -49,4 +53,11 @@ Route::apiResource('companies', CompanyController::class);
 Route::get('/', Dashboard::class)->name('dashboard');
 Route::get('/member', Member::class)->name('member');
 Route::get('/settings', Settings::class)->name('settings');
+// Route::get('/company', Company::class)->name('company');
 
+
+
+Route::get('/company', Company::class)->name('company');
+Route::get('/services', Service::class)->name('services');
+Route::get('/regions', Region::class)->name('regions');
+Route::get('/packages', Package::class)->name('packages');

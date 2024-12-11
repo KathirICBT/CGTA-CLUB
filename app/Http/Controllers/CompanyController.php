@@ -11,7 +11,8 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::with(['package', 'member'])->get(); // Retrieve companies with related package and member
-        return response()->json($companies);
+        return view('companies.index', compact('companies'));
+        // return response()->json($companies);
     }
 
     // Store a newly created company in storage
@@ -72,21 +73,21 @@ class CompanyController extends Controller
         }
 
         // Create a new company with the validated data
-        $company = Company::create([
-            'member_id' => $request->member_id,
-            'package_id' => $request->package_id,
-            'companyName' => $request->companyName,
-            'email' => $request->email,
-            'phonenumber' => $request->phonenumber,
-            'address' => $request->address,
-            'joinDate' => $request->joinDate,
-            'services' => $request->services,
-            'bio' => $request->bio,
-            'logoImg' => $logoImgPath, // Save the path in the database
-            'status' => $request->status,
-            'region' => $request->region,
-            'city' => $request->city,
-        ]);
+        // $company = Company::create([
+        //     'member_id' => $request->member_id,
+        //     'package_id' => $request->package_id,
+        //     'companyName' => $request->companyName,
+        //     'email' => $request->email,
+        //     'phonenumber' => $request->phonenumber,
+        //     'address' => $request->address,
+        //     'joinDate' => $request->joinDate,
+        //     'services' => $request->services,
+        //     'bio' => $request->bio,
+        //     'logoImg' => $logoImgPath, // Save the path in the database
+        //     'status' => $request->status,
+        //     'region' => $request->region,
+        //     'city' => $request->city,
+        // ]);
 
         // Include the full URL for the logo image in the response if it was uploaded
         $company->logoImg_url = $logoImgPath ? url('storage/' . $logoImgPath) : null;
