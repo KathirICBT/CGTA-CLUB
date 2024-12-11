@@ -31,10 +31,10 @@ class Member extends Component
         'Email',
         'Phone',
         'Date of Birth',
-        'join_date',
-        'status',
-        'membership_level',
-        'renewal_date',
+        'Joined Date',
+        'Status',
+        'Membership Type',
+        'Renewal Date',
         'Action'
     ];
 

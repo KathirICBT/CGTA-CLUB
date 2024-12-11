@@ -32,7 +32,8 @@ class MemberForm extends Component
     public $membershipOptions = ['Exclusive', 'Exclusive VIP', 'Exclusive VIP - 369G']; // Array of options
 
     public $memberId;
-    private bool $showForm = false;
+    public bool $showPassword = false;
+
     // Listen for the event
 
     public function mount($memberId = null)
@@ -43,6 +44,11 @@ class MemberForm extends Component
             $this->memberId = $memberId;
             $this->show($memberId);
         }
+    }
+
+    public function toggleShowPassword()
+    {
+        $this->showPassword = !$this->showPassword;
     }
 
 //    #[On('editMember')]
@@ -69,8 +75,19 @@ class MemberForm extends Component
     public function submitForm()
     {
         try {
-            // Include the photo as part of the data
-//            $data = $this->all();
+
+            $this->validate([
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'required|email|max:255|unique:members,email,' . $this->memberId,
+                'phone' => 'required|string|max:20',
+                'date_of_birth' => 'required|date',
+                'join_date' => 'required|date',
+                'status' => 'required|string',
+                'membership_level' => 'required|string',
+                'password' => 'required|string|min:6', // adjust as needed
+            ]);
+
             $data = [
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
@@ -95,17 +112,22 @@ class MemberForm extends Component
                 // If member_id is set, perform update
                 $controller->update($request, $this->memberId);
                 error_log('Member updated successfully!');
-                session()->flash('success', 'Member updated successfully!');
+                session()->flash('toasts', [
+                    ...session('toast', []), // Preserve existing toasts
+                    ['type' => 'success', 'message' => 'Member updated successfully!'], // New toast
+                ]);
                 return redirect()->route('member');
             } else {
                 // If member_id is not set, perform creation
                 $controller->store($request);
                 error_log('Member created successfully!');
-                session()->flash('success', 'Member created successfully!');
+                session()->flash('toast', [
+                    ...session('toast', []), // Preserve existing toasts
+                    ['type' => 'success', 'message' => 'Member created successfully!'], // New toast
+                ]);
                 return redirect()->route('member');
             }
 
-            $this->reset(); // Reset form fields
         } catch (\Exception $e) {
             session()->flash('error', 'Failed to create member: ' . $e->getMessage());
             error_log('Failed to create member: ' . $e->getMessage());

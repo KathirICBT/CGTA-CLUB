@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable; 
+use Illuminate\Notifications\Notifiable;
 
 class Member extends Model
 {
@@ -21,7 +21,7 @@ class Member extends Model
         'join_date',
         'photo',
         'bio',
-        'status' => 'waiting',
+        'status',
         'membership_level', // New attribute
         'password', // New attribute
         'renewal_date', // New attribute

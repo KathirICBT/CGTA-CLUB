@@ -39,7 +39,7 @@ class EventController extends Controller
                 'location' => 'nullable|string|max:255',
                 'user_limit' => 'nullable|integer|min:0',
             ]);
-            
+
             $event = Event::create($validatedData);
             return response()->json($event, 201);
 
@@ -51,8 +51,7 @@ class EventController extends Controller
             error_log('Error creating event: ' . $e->getMessage());
             return response()->json(['message' => 'Something went wrong', 'error' => $e->getMessage()], 500);
         }
-    
-        
+
     }
 
 

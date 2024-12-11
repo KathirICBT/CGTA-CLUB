@@ -2,86 +2,92 @@
 {{--    --}}{{-- The Master doesn't talk, he acts. --}}
 {{--</div>--}}
 
-   <div class="px-4 sm:px-6 lg:px-4 shadow-md ">
-       <div class="md:flex md:items-center md:justify-end bg-white  md:p-4 -mx-4 sm:-mx-6 md:-mx-8">
+   <div class="px-4 sm:px-6 lg:px-4 shadow-md m-5">
+       <div class="md:flex md:items-center md:justify-end bg-white  md:p-4 -mx-4 sm:-mx-6 md:-mx-8 border shadow-md rounded-md ">
            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                <button
                    wire:click="openForm"
                    type="button"
-                   class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                   class="block rounded-md bg-sky-400 px-3 py-2 text-center text-md font-semibold text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
                    Add Member
                </button>
            </div>
        </div>
 
-       <div class="mt-3 flow-root border border-black">
-           <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 md:-mx-8">
-               <div class="inline-block min-w-full py-2 align-middle  bg-white shadow-md ">
-{{--                   {!! print_r($members, true) !!}--}}
-{{--                   <pre>--}}
-{{--                        {!! json_encode($members, JSON_PRETTY_PRINT) !!}--}}
-{{--                   </pre>--}}
-                   <!-- Popup Modal -->
-                   @if ($showForm)
-                       <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 ">
-                           <div class="bg-white rounded-lg shadow-lg w-2/3 p-6 relative my-5">
-                               <!-- Include Member Form -->
-                               <button wire:click="closeForm"
-                                       class="absolute top-1 right-3 text-gray-600 hover:text-gray-900">
-                                   <i class="fas fa-times text-xl"></i> <!-- Font Awesome Close Icon -->
-                               </button>
-                               <livewire:pages.member.member-form :memberId="$memberId"/>
-                           </div>
+       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 md:-mx-8 border shadow-lg rounded-lg mt-3 flow-root bg-gray-100">
+           <div class="inline-block min-w-full p-2 align-middle  bg-white ">
+               {{--                   {!! print_r($members, true) !!}--}}
+               {{--                   <pre>--}}
+               {{--                        {!! json_encode($members, JSON_PRETTY_PRINT) !!}--}}
+               {{--                   </pre>--}}
+               <!-- Popup Modal -->
+               @if ($showForm)
+                   <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 ">
+                       <div class="bg-white rounded-lg shadow-lg w-2/3 px-5 pt-6 relative my-5">
+                           <!-- Include Member Form -->
+                           <button wire:click="closeForm"
+                                   class="absolute top-1 right-3 text-black hover:text-emerald-900">
+                               <i class="fas fa-times text-xl"></i> <!-- Font Awesome Close Icon -->
+                           </button>
+                           <livewire:pages.member.member-form :memberId="$memberId"/>
                        </div>
-                   @endif
-                   <table class="min-w-full divide-y divide-gray-300">
-                       <thead>
-                       <tr>
-                           @foreach ($headers as $header)
-                               <th class="py-3.5 pr-4 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">
-                                   <div class="text-center pr-3">{{ $header }}</div>
-                               </th>
-                           @endforeach
+                   </div>
+               @endif
+               <table class="min-w-full divide-y divide-gray-300">
+                   <thead>
+                   <tr class="bg-gray-100 border shadow-md rounded-lg">
+                       @foreach ($headers as $header)
+                           <th class="py-3.5 pr-4 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8 ">
+                               <div class="text-center pr-3">{{ $header }}</div>
+                           </th>
+                       @endforeach
+                   </tr>
+                   </thead>
+                   <tbody class="divide-y divide-gray-200 bg-white ">
+                   @foreach ($members as $member)
+                       <tr class="">
+                           {{--                                   <td class="whitespace-nowrap text-center py-4 pl-2 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-4">{{ $member['id'] }}</td>--}}
+                           <td class="whitespace-nowrap text-center py-4 pl-2 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                               @if ($member['photo_url'])
+                                   <img src="{{ $member['photo_url'] }}" alt="Photo" class="w-16 h-16 object-cover rounded-full smLml-3">
+                               @else
+                                   <span class="text-gray-500 italic">No Photo</span>
+                               @endif
+                           </td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['first_name'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['last_name'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['email'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['phone'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['date_of_birth'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['join_date'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">
+                               <div class="border
+                                px-4 py-2 rounded-3xl
+                                       {{ $member['status'] === 'Active' ? 'text-emerald-900 bg-emerald-200' : '' }}
+                                       {{ $member['status'] === 'Inactive' ? 'text-red-900 bg-red-200' : '' }}
+                                       {{ $member['status'] === 'Waiting' ? 'text-yellow-900 bg-yellow-200' : '' }}">
+                                   {{ $member['status'] }}
+                               </div>
+                           </td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['membership_level'] }}</td>
+                           <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['renewal_date'] }}</td>
+                           <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
+                               <div class="flex justify-center items-center space-x-3">
+                                   <a href="#" class="text-emerald-900 hover:bg-emerald-300 text-lg r flex justify-center items-center p-2 rounded-lg bg-emerald-200" wire:click="editMember({{ $member['id'] }})">
+                                       <i class="fas fa-edit pl-1 py-0.5"></i>
+                                   </a>
+                                   <a href="#" class="text-rose-900 text-lg hover:bg-rose-300  flex justify-center items-center p-2 rounded-lg bg-rose-200" wire:click="deleteMember({{ $member['id'] }})">
+                                       <i class="fas fa-trash-alt px-1"></i>
+                                   </a>
+                                   <button class="text-sky-900 text-lg hover:bg-sky-300  flex justify-center items-center p-2 rounded-lg bg-sky-200">
+                                       <i class="fas fa-info-circle p-0.5"></i>
+                                   </button>
+                               </div>
+                           </td>
                        </tr>
-                       </thead>
-                       <tbody class="divide-y divide-gray-200 bg-white">
-                           @foreach ($members as $member)
-                               <tr>
-{{--                                   <td class="whitespace-nowrap text-center py-4 pl-2 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-4">{{ $member['id'] }}</td>--}}
-                                   <td class="whitespace-nowrap text-center py-4 pl-2 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                       @if ($member['photo_url'])
-                                           <img src="{{ $member['photo_url'] }}" alt="Photo" class="w-16 h-16 object-cover rounded-full smLml-3">
-                                       @else
-                                           <span class="text-gray-500 italic">No Photo</span>
-                                       @endif
-                                   </td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['first_name'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['last_name'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['email'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['phone'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['date_of_birth'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['join_date'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['status'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['membership_level'] }}</td>
-                                   <td class="whitespace-nowrap text-center py-4 text-sm text-gray-500">{{ $member['renewal_date'] }}</td>
-                                   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                       <div class="flex justify-center items-center space-x-3">
-                                           <a href="#" class="text-indigo-600 hover:text-indigo-900" wire:click="editMember({{ $member['id'] }})">
-                                               <i class="fas fa-edit"></i>
-                                           </a>
-                                           <a href="#" class="text-indigo-600 hover:text-indigo-900" wire:click="deleteMember({{ $member['id'] }})">
-                                               <i class="fas fa-trash-alt"></i>
-                                           </a>
-                                           <button>
-                                               <i class="fas fa-info-circle text-blue-500"></i>
-                                           </button>
-                                       </div>
-                                   </td>
-                               </tr>
-                           @endforeach
-                       </tbody>
-                   </table>
-               </div>
+                   @endforeach
+                   </tbody>
+               </table>
            </div>
        </div>
    </div>
