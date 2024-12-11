@@ -255,7 +255,6 @@ class MemberController extends Controller
     {
         try {
             $member = Member::findOrFail($id); // Find the member to delete
-            // Delete the associated photo if it exists
             if ($member->photo && Storage::disk('public')->exists($member->photo)) {
                 Storage::disk('public')->delete($member->photo);
             }
