@@ -23,8 +23,8 @@
 {{--                   </pre>--}}
                    <!-- Popup Modal -->
                    @if ($showForm)
-                       <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 ">
-                           <div class="bg-white rounded-lg shadow-lg w-2/3 p-6 relative my-5">
+                       {{-- <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 ">
+                           <div class="bg-white rounded-lg shadow-lg w-4/5 p-6 relative my-5">
                                <!-- Include Member Form -->
                                <button wire:click="closeForm"
                                        class="absolute top-1 right-3 text-gray-600 hover:text-gray-900">
@@ -32,7 +32,26 @@
                                </button>
                                <livewire:pages.member.member-form :memberId="$memberId"/>
                            </div>
-                       </div>
+                       </div> --}}
+                        {{-- <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 ">
+                            <div class="bg-white rounded-lg shadow-lg p-6 relative my-5" style="width: 90%;">
+                                <!-- Include Member Form -->
+                                <button wire:click="closeForm"
+                                        class="absolute top-1 right-3 text-gray-600 hover:text-gray-900">
+                                    <i class="fas fa-times text-xl"></i> <!-- Font Awesome Close Icon -->
+                                </button>
+                                <livewire:pages.member.member-form :memberId="$memberId"/>
+                            </div>
+                        </div>                     --}}
+                        <div class="absolute inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 ">
+                            <div class="bg-white rounded-lg shadow-lg w-full max-w-[80%] p-6 relative my-5">
+                                <!-- Include Member Form -->
+                                <button wire:click="closeForm" class="absolute top-1 right-3 text-gray-600 hover:text-gray-900">
+                                    <i class="fas fa-times text-xl"></i> <!-- Font Awesome Close Icon -->
+                                </button>
+                                <livewire:pages.member.member-form :memberId="$memberId"/>
+                            </div>
+                        </div>
                    @endif
                    <table class="min-w-full divide-y divide-gray-300">
                        <thead>
