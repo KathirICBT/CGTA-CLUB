@@ -21,3 +21,19 @@
 .scrollbar-custom::-webkit-scrollbar-track {
     background: #f1f5f9; /* Light gray background for the track */
 }
+
+@keyframes customBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animated-cgta {
+    display: inline-block;
+    animation: customBounce 1.5s infinite;
+}
+
+
