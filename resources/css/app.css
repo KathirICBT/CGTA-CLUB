@@ -3,6 +3,10 @@
 @tailwind utilities;
 /*@import '@fortawesome/fontawesome-free/css/all.css';*/
 
+*{
+    box-sizing: border-box;
+}
+
 .scrollbar-custom {
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #38bdf8 #ffffff; /* Thumb (blue) and track (gray) colors */

@@ -13,44 +13,44 @@
         <!-- Sidebar -->
         <div
             :class="isCollapsed ? 'w-20' : 'w-72'"
-            class="lg:fixed lg:inset-y-0 lg:z-50 flex flex-col transition-all duration-300 bg-gray-100 shadow-md ">
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto px-2 pb-4">
+            class="lg:fixed lg:inset-y-0 lg:z-50 flex flex-col transition-all duration-300 bg-gray-900">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto pb-4">
                 <div class="flex h-16 shrink-0 items-center">
-                    <img class="h-8 w-auto" src="/logo.png" alt="Your Company">
+                    <img class="h-8 w-auto" src="https://example.com/assets/img.png" alt="Your Company">
                 </div>
-                <nav class="flex flex-1 flex-col shadow-md rounded-lg p-3 bg-white">
+                <nav class="flex flex-1 flex-col rounded-lg p-3 bg-transparent">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
                         <li>
-                            <ul role="list" class="-mx-2 space-y-3 py-4 ">
+                            <ul role="list" class="-mx-2 space-y-3 py-4 px-4">
                                 <li class="mt-auto">
                                     <a href="{{ route('dashboard') }}"
-                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                       class="group flex items-center gap-x-3  p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-blue-700 hover:text-white">
                                         <i class="fas fa-tachometer-alt h-6 w-6 text-gray-400 group-hover:text-white pt-1 pl-1 "
-                                           :class="isCollapsed ? 'pl-2.5' : ''"></i>
+                                           :class="isCollapsed ? 'flex justify-center items-center pr-1 pb-1' : ''"></i>
                                         <span :class="isCollapsed ? 'hidden' : 'block'">Dashboard</span>
                                     </a>
                                 </li>
                                 <li class="mt-auto">
                                     <a href="{{ route('member') }}"
-                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                       class="group flex items-center gap-x-3  p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-blue-700 hover:text-white">
                                         <i class="fas fa-calendar-alt h-6 w-6 text-gray-400 group-hover:text-white pl-1 pt-1 "
-                                           :class="isCollapsed ? 'pl-3' : ''"></i>
+                                           :class="isCollapsed ? 'pr-3' : ''"></i>
                                         <span :class="isCollapsed ? 'hidden' : 'block'">Events</span>
                                     </a>
                                 </li>
                                 <li class="mt-auto">
                                     <a href="{{ route('member') }}"
-                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                       class="group flex items-center gap-x-3  p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-blue-700 hover:text-white">
                                         <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
-                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                           :class="isCollapsed ? '' : ''"></i>
                                         <span :class="isCollapsed ? 'hidden' : 'block'">Member</span>
                                     </a>
                                 </li>
                                 <li class="mt-auto">
                                     <a href="{{ route('settings') }}"
-                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                       class="group flex items-center gap-x-3 p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-blue-700 hover:text-white">
                                         <i class="fas fa-cogs h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
-                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                           :class="isCollapsed ? '' : ''"></i>
                                         <span :class="isCollapsed ? 'hidden' : 'block'">Settings</span>
                                     </a>
                                 </li>
@@ -115,8 +115,8 @@
                     </div>
                 </div>
             </div>
-            <main class="py-10">
-                <div class="px-4 sm:px-6 lg:px-8">
+            <main class="">
+                <div class="overflow-hidden">
                     {{ $slot }}
                 </div>
             </main>

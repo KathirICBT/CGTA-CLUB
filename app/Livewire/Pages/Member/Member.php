@@ -11,16 +11,35 @@ class Member extends Component
 {
     public $members = [];
     public $showForm = false;
+    public $isTableView = true; // Default is table view
+
     public $memberId;
     public function openForm()
     {
         $this->showForm = true; // Open the popup
     }
-
+    public function toggleView($view)
+    {
+        $this->isTableView = $view === 'table'; // Toggle between 'table' and 'card'
+    }
     public function closeForm()
     {
         $this->showForm = false;  // Close the form
         return redirect()->route('member');
+    }
+
+    public function copyToClipboard($type)
+    {
+        if ($type === 'email') {
+            session()->flash('success', 'Email copied to clipboard!');
+        } elseif ($type === 'phone') {
+            session()->flash('success', 'Phone number copied to clipboard!');
+        } else {
+            session()->flash('error', 'Invalid copy request!');
+        }
+
+        // Dispatch notification to show success or error messages
+        $this->dispatch('notify', ['message' => session('success') ?: session('error')]);
     }
 
     public $headers = [
