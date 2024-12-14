@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
         @vite('resources/css/app.css')
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         @livewireStyles
         <title>{{ $title ?? 'Page Title' }}</title>
     </head>
@@ -15,8 +18,8 @@
             :class="isCollapsed ? 'w-20' : 'w-72'"
             class="lg:fixed lg:inset-y-0 lg:z-50 flex flex-col transition-all duration-300 bg-gray-900">
             <div class="flex grow flex-col gap-y-5 overflow-y-auto pb-4">
-                <div class="flex h-16 shrink-0 items-center">
-                    <img class="h-8 w-auto" src="https://example.com/assets/img.png" alt="Your Company">
+                <div class="flex pt-10 justify-center h-16 shrink-0 items-center">
+                    <img class="h-20 w-auto" src="/storage/assets/img.png" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col rounded-lg p-3 bg-transparent">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">

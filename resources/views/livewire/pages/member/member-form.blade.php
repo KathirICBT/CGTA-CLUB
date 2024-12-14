@@ -61,7 +61,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="text" id="last_name" wire:model="last_name" placeholder="Your Last Name"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('last_name') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="text" id="email" wire:model="email" placeholder="Your Email"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('email') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="text" id="phone" wire:model="phone" placeholder="Your Phone Number"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('phone') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="date" id="date_of_birth" wire:model="date_of_birth" placeholder="Your Date of Birth"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('date_of_birth') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -101,7 +101,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="text" id="bio" wire:model="bio" placeholder="Describe Yourself"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('bio') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -116,7 +116,7 @@
                 </label>
                 <div class="mt-1">
                     <select id="status" wire:model="status"
-                            class="block w-full border-0 px-3.5 py-3 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset bg-white ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6">
+                            class="block w-full border-0 px-3.5 py-3 rounded-lg shadow-sm ring-1 ring-inset bg-white ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6">
                         <option value="" disabled>Select Status</option>
                         @foreach ($statusOptions as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
@@ -131,7 +131,7 @@
                 </label>
                 <div class="mt-1">
                     <select id="membership_level" wire:model="membership_level"
-                            class="block w-full border-0 px-3.5 py-3 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset bg-white ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6">
+                            class="block w-full border-0 px-3.5 py-3 rounded-lg shadow-sm ring-1 ring-inset bg-white ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6">
                         <option value="" disabled>Select Membership Level</option>
                         @foreach ($membershipOptions as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
@@ -146,7 +146,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="date" id="join_date" wire:model="join_date" placeholder="Your Joined Date"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('join_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -157,7 +157,7 @@
                 </label>
                 <div class="mt-1">
                     <input type="date" id="renewal_date" wire:model="renewal_date" placeholder="Your Renewal Date"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('renewal_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
@@ -169,7 +169,7 @@
                     <div class="mt-1">
                         <div class="relative">
                             <input type="{{ $showPassword ? 'text' : 'password' }}" id="password" wire:model="password" placeholder="Your Password"
-                                   class="block w-full border-0 px-3.5 py-2 rounded-lg text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
+                                   class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                             <button type="button" wire:click="toggleShowPassword" class="absolute inset-y-0 right-0 px-3 py-2">
                                 <i class="fas {{ $showPassword ? 'fa-eye-slash' : 'fa-eye' }} text-gray-500"></i>
                             </button>

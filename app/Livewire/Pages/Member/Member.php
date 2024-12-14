@@ -114,16 +114,25 @@ class Member extends Component
 //
 //    }
 
-    public function editMember($memberId)
+    public function editMember($memberId, $action)
     {
         error_log('editMember is triggered');
         error_log('editMember memberId is : ' . $memberId);
 
-        // Set the memberId when the edit button is clicked
-        $this->memberId = $memberId;
+        if ($action === 'form') {
+            // Redirect to member-form
+            $url = route('member-form', ['memberId' => $memberId]);
+        } elseif ($action === 'view') {
+            // Redirect to member-view
+            $url = route('member-view', ['memberId' => $memberId]);
+        } else {
+            // Default fallback or error if needed
+            $url = route('member-list'); // or some default route
+        }
 
-        // Open the form by setting showForm to true
-        $this->showForm = true;
+        error_log('Redirecting to: ' . $url);
+
+        return redirect($url);
     }
 
     public function deleteMember($memberId)

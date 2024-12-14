@@ -38,11 +38,14 @@ class MemberForm extends Component
 
     public function mount($memberId = null)
     {
-        error_log('received memberId from MemberForm mount(): ' . $memberId);
-        // If memberId is passed, you can handle it (e.g., fetch the member data)
-        if ($memberId) {
-            $this->memberId = $memberId;
-            $this->show($memberId);
+        // Manually access the query parameter
+        $this->memberId = request()->query('memberId');
+
+        // Log or handle the memberId as needed
+        error_log('received memberId from query: ' . $this->memberId);
+
+        if ($this->memberId) {
+            $this->show($this->memberId);
         }
     }
 
@@ -85,7 +88,7 @@ class MemberForm extends Component
                 'join_date' => 'required|date',
                 'status' => 'required|string',
                 'membership_level' => 'required|string',
-                'password' => 'required|string|min:6', // adjust as needed
+                'password' => $this->memberId ? 'nullable|string|min:6' : 'required|string|min:6',
             ]);
 
             $data = [
