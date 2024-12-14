@@ -2,7 +2,7 @@
 {{--    --}}{{-- Close your eyes. Count to one. That is how long forever feels. --}}
 {{--</div>--}}
 
-<div class="isolate bg-gray-100 px-6 py-5 sm:py-5 lg:px-8 md:w-full mx-3 overflow-x-hidden">
+<div class="isolate bg-gray-100 h-screen px-6 py-5 sm:py-5 lg:px-8 md:w-full mx-3 overflow-x-hidden">
     <nav class="flex items-center text-gray-600 text-md mb-4">
         <ol class="flex items-center space-x-2">
 

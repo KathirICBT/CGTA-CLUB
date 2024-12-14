@@ -2,7 +2,7 @@
 {{--    --}}{{-- The Master doesn't talk, he acts. --}}
 {{--</div>--}}
 
-<div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-auto">
+<div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-auto h-screen">
     <div class="md:flex md:items-center md:justify-between bg-white md:p-4 px-5 rounded-xl border">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
             <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
