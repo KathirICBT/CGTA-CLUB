@@ -113,7 +113,7 @@
                         <div class="space-y-4 xl:space-y-6">
                             <div class="relative mx-auto h-36 w-36 rounded-full ring-2 ring-gray-400 p-0.5 flex justify-center items-center bg-white shadow-lg">
                                 <img
-                                    class="rounded-full h-32 w-32"
+                                    class="rounded-full h-32 w-32 object-cover"
                                     src="{{ $member['photo_url'] }}"
                                     alt="author avatar">
 
@@ -127,25 +127,25 @@
                                         class="h-3 w-3 bg-white rounded-full ring-1 ring-white">
                                     </div>
                                 </div>
-
-
                             </div>
+
                             <div class="space-y-2">
                                 <div class="flex justify-center items-center flex-col space-y-7 text-lg font-medium leading-6">
                                     <div class="">
                                         <h3 class="text-gray-800 text-lg ">{{ $member['first_name'] }} {{ $member['last_name'] }}</h3>
                                         <p class="text-gray-800 text-lg">Joined Since: {{ \Carbon\Carbon::parse($member['join_date'])->format('M j, Y') }}</p>
-                                    </div>
-                                    <div class="flex justify-center mt-5 space-x-5">
-                                        <!-- Twitter Icon -->
-                                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-500 w-8 h-8 border border-gray-600 hover:border-gray-900 rounded-full p-4 flex justify-center items-center">
-                                            <span class="sr-only">Twitter</span>
-                                            <i class="fas fa-phone-alt text-gray-500 hover:text-gray-800 pt-1"></i>
-                                        </a>
-                                        <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-500 w-8 h-8 border border-gray-600 hover:border-gray-900 rounded-full p-4 flex justify-center items-center">
-                                            <span class="sr-only">Twitter</span>
-                                            <i class="fas fa-envelope text-gray-500 hover:text-gray-800 pt-1"></i>
-                                        </a>
+                                        <div class="flex flex-col border border-black justify-start items-center space-x-6 mt-3 text-left">
+                                            <!-- Phone Icon -->
+                                            <a href="tel:{{ $member['phone'] }}" class="text-gray-500 hover:text-teal-500 flex items-center space-x-2">
+                                                <i class="fas fa-phone-alt text-lg"></i>
+                                                <span class="text-sm text-gray-800">{{ $member['phone'] }}</span>
+                                            </a>
+                                            <!-- Email Icon -->
+                                            <a href="mailto:{{ $member['email'] }}" class="text-gray-500 hover:text-teal-500 flex items-center space-x-2">
+                                                <i class="fas fa-envelope text-lg"></i>
+                                                <span class="text-sm text-gray-800">{{ $member['email'] }}</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
