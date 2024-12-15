@@ -83,7 +83,11 @@ class Package extends Component
         PackageModel::findOrFail($id)->delete();
         session()->flash('message', 'Package deleted successfully.');
     }
-
+    public function cancelEdit()
+    {
+        $this->resetFields();
+    }
+    
     public function render()
     {
         $this->packages = PackageModel::all();

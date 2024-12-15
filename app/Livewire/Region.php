@@ -77,4 +77,15 @@ class Region extends Component
     {
         return view('livewire.region');
     }
+
+   
+    
+
+    // Method to reset the form and switch to Add mode
+    public function cancelEdit()
+    {
+        $this->reset(['region']);
+        $this->isUpdate = false;
+    }
+
 }

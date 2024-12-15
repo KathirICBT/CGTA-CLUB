@@ -82,6 +82,12 @@ class Service extends Component
         $this->loadServices();
     }
 
+    public function cancelEdit()
+    {
+        $this->reset(['service', 'description']);
+        $this->isUpdate = false;
+    }
+
     public function render()
     {
         return view('livewire.service');

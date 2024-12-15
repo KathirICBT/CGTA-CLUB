@@ -19,6 +19,8 @@ class Company extends Component
     public $members, $packages, $regions;
     public $isUpdate = false;
 
+    public $selectedCompany;
+
     protected $rules = [
         'member_id' => 'required',
         'package_id' => 'required',
@@ -67,32 +69,32 @@ class Company extends Component
         $this->isUpdate = false;
     }
 
-    public function store()
-    {
-        $this->validate();
+    // public function store()
+    // {
+    //     $this->validate();
 
-        $logoPath = $this->logoImg ? $this->logoImg->store('logos', 'public') : null;
+    //     $logoPath = $this->logoImg ? $this->logoImg->store('logos', 'public') : null;
 
-        CompanyModel::create([
-            'member_id' => $this->member_id,
-            'package_id' => $this->package_id,
-            'companyName' => $this->companyName,
-            'email' => $this->email,
-            'phonenumber' => $this->phonenumber,
-            'address' => $this->address,
-            'joinDate' => $this->joinDate,
-            'services' => $this->services,
-            'bio' => $this->bio,
-            'logoImg' => $logoPath,
-            'status' => $this->status,
-            'region_id' => $this->region_id,
-            'city' => $this->city,
-        ]);
+    //     CompanyModel::create([
+    //         'member_id' => $this->member_id,
+    //         'package_id' => $this->package_id,
+    //         'companyName' => $this->companyName,
+    //         'email' => $this->email,
+    //         'phonenumber' => $this->phonenumber,
+    //         'address' => $this->address,
+    //         'joinDate' => $this->joinDate,
+    //         'services' => $this->services,
+    //         'bio' => $this->bio,
+    //         'logoImg' => $logoPath,
+    //         'status' => $this->status,
+    //         'region_id' => $this->region_id,
+    //         'city' => $this->city,
+    //     ]);
 
-        session()->flash('message', 'Company created successfully.');
-        $this->resetForm();
-        $this->loadCompanies();
-    }
+    //     session()->flash('message', 'Company created successfully.');
+    //     $this->resetForm();
+    //     $this->loadCompanies();
+    // }
 
     public function edit($id)
     {
@@ -150,8 +152,40 @@ class Company extends Component
         $this->loadCompanies();
     }
 
+    // public function render()
+    // {
+    //     return view('livewire.company');
+    // }
+    public $isFormVisible = false; // This flag determines which view to show.
+
+    // Handle showing the form for adding a company
+    public function showForm()
+    {
+        $this->isFormVisible = true;
+    }
+
+    // Handle showing the list of companies
+    public function showList()
+    {
+        $this->isFormVisible = false;
+    }
+
+
+    // Method to show the company details in a modal
+    public function showDetails($companyId)
+    {
+        $this->selectedCompany = CompanyModel::with(['member', 'package', 'region'])->find($companyId);
+    }
+
+    // Method to close the modal
+    public function closeDetails()
+    {
+        $this->selectedCompany = null;
+    }
     public function render()
     {
-        return view('livewire.company');
+        return view('livewire.company', [
+            'companies' => Company::all(), // or your custom query
+        ]);
     }
 }

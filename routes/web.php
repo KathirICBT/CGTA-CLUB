@@ -5,7 +5,7 @@ use App\Livewire\Pages\Member\Member;
 use App\Livewire\Pages\Member\MemberForm;
 use App\Livewire\Pages\Member\MemberView;
 use App\Livewire\Pages\Settings;
-
+use App\Livewire\PackageService;
 use App\Livewire\Package;
 use App\Livewire\Company;
 use App\Livewire\Region;
@@ -67,3 +67,6 @@ Route::get('/company', Company::class)->name('company');
 Route::get('/services', Service::class)->name('services');
 Route::get('/regions', Region::class)->name('regions');
 Route::get('/packages', Package::class)->name('packages');
+
+
+Route::get('/package-service', PackageService::class)->name('package-service');

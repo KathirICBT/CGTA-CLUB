@@ -83,6 +83,14 @@
                                     </a>
                                 </li>
                                 <li class="mt-auto">
+                                    <a href="{{ route('package-service') }}"
+                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
+                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                        <span :class="isCollapsed ? 'hidden' : 'block'">Package Service</span>
+                                    </a>
+                                </li>
+                                <li class="mt-auto">
                                     <a href="{{ route('settings') }}"
                                        class="group flex items-center gap-x-3 p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-blue-700 hover:text-white">
                                         <i class="fas fa-cogs h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
