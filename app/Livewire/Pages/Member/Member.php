@@ -11,16 +11,35 @@ class Member extends Component
 {
     public $members = [];
     public $showForm = false;
+    public $isTableView = true; // Default is table view
+
     public $memberId;
     public function openForm()
     {
         $this->showForm = true; // Open the popup
     }
-
+    public function toggleView($view)
+    {
+        $this->isTableView = $view === 'table'; // Toggle between 'table' and 'card'
+    }
     public function closeForm()
     {
         $this->showForm = false;  // Close the form
         return redirect()->route('member');
+    }
+
+    public function copyToClipboard($type)
+    {
+        if ($type === 'email') {
+            session()->flash('success', 'Email copied to clipboard!');
+        } elseif ($type === 'phone') {
+            session()->flash('success', 'Phone number copied to clipboard!');
+        } else {
+            session()->flash('error', 'Invalid copy request!');
+        }
+
+        // Dispatch notification to show success or error messages
+        $this->dispatch('notify', ['message' => session('success') ?: session('error')]);
     }
 
     public $headers = [
@@ -95,16 +114,25 @@ class Member extends Component
 //
 //    }
 
-    public function editMember($memberId)
+    public function editMember($memberId, $action)
     {
         error_log('editMember is triggered');
         error_log('editMember memberId is : ' . $memberId);
 
-        // Set the memberId when the edit button is clicked
-        $this->memberId = $memberId;
+        if ($action === 'form') {
+            // Redirect to member-form
+            $url = route('member-form', ['memberId' => $memberId]);
+        } elseif ($action === 'view') {
+            // Redirect to member-view
+            $url = route('member-view', ['memberId' => $memberId]);
+        } else {
+            // Default fallback or error if needed
+            $url = route('member-list'); // or some default route
+        }
 
-        // Open the form by setting showForm to true
-        $this->showForm = true;
+        error_log('Redirecting to: ' . $url);
+
+        return redirect($url);
     }
 
     public function deleteMember($memberId)
