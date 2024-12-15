@@ -1,8 +1,9 @@
 <?php
 
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Member\Member;
 use App\Livewire\Pages\Settings;
-use App\Livewire\Pages\Member;
+
 use App\Livewire\Package;
 use App\Livewire\Company;
 use App\Livewire\Region;
@@ -29,6 +30,7 @@ use App\Livewire\Service;
 // Route::resource('/members', MemberController::class);
 Route::apiResource('packages', PackageController::class);
 // Route::apiResource('companies', CompanyController::class);
+
 
 
 

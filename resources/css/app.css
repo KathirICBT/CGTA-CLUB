@@ -1,4 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '@fortawesome/fontawesome-free/css/all.css';
+/*@import '@fortawesome/fontawesome-free/css/all.css';*/
+
+.scrollbar-custom {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #38bdf8 #ffffff; /* Thumb (blue) and track (gray) colors */
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+    width: 8px; /* Width for vertical scrollbars */
+    height: 8px; /* Height for horizontal scrollbars */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: #64cdf3; /* Sky blue */
+    border-radius: 4px; /* Rounded corners for the thumb */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: #f1f5f9; /* Light gray background for the track */
+}
