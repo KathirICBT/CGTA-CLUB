@@ -3,6 +3,9 @@
 {{--</div>--}}
 
 <div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-auto h-screen">
+    <div class="absolute top-0 right-0">
+        <livewire:components.notification.notification :banner="$banner" :bannerStyle="$bannerStyle" wire:key="notification-{{ now() }}" />
+    </div>
     <div class="md:flex md:items-center md:justify-between bg-white md:p-4 px-5 rounded-xl border">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
             <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
@@ -43,6 +46,7 @@
         <!-- Card Component -->
         @if($isTableView)
             <div class="min-w-full bg-white">
+                <livewire:components.user-deletion.user-deletion />
                 <table class="w-full divide-y divide-gray-300">
                     <thead>
                     <tr class="bg-gray-50">
@@ -154,7 +158,7 @@
                                         <!-- Email Icon -->
                                         <button
                                             class="text-teal-500 hover:text-teal-700 flex items-center space-x-2"
-                                            onclick="copyToClipboard('{{ $member['email'] }}')">
+                                            wire:click="copyToClipboard('email')">
                                             <i class="fas fa-envelope text-lg sm:text-xl"></i>
                                             <span class="text-sm sm:text-base lg:text-lg text-gray-800">{{ $member['email'] }}</span>
                                         </button>
@@ -201,14 +205,16 @@
 </div>
 
 <script>
-    function copyToClipboard(data) {
-        navigator.clipboard.writeText(data).then(() => {
-            alert("Copied to clipboard: " + data);
-        }).catch(err => {
-            console.error("Could not copy text: ", err);
-        });
-    }
+    // Listen for the event to reset the notification after 3 seconds
+    Livewire.on('reset-notification', ({ delay }) => {
+        setTimeout(() => {
+            // Use Livewire to reset the notification state after the delay
+        @this.set('banner', null);
+        @this.set('bannerStyle', null);
+        }, delay * 1000); // Convert seconds to milliseconds
+    });
 </script>
+
 
 
 
