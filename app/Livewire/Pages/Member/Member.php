@@ -14,6 +14,21 @@ class Member extends Component
     public $isTableView = true; // Default is table view
 
     public $memberId;
+
+    public $headers = [
+//        'ID',
+        'Photo',
+        'First Name',
+        'Last Name',
+        'Email',
+        'Phone',
+        'Date of Birth',
+        'Joined Date',
+        'Status',
+        'Membership Type',
+        'Renewal Date',
+        'Action'
+    ];
     public function openForm()
     {
         $this->showForm = true; // Open the popup
@@ -42,29 +57,19 @@ class Member extends Component
         $this->dispatch('notify', ['message' => session('success') ?: session('error')]);
     }
 
-    public $headers = [
-//        'ID',
-        'Photo',
-        'First Name',
-        'Last Name',
-        'Email',
-        'Phone',
-        'Date of Birth',
-        'Joined Date',
-        'Status',
-        'Membership Type',
-        'Renewal Date',
-        'Action'
-    ];
 
     public function mount()
     {
         error_log('mount is triggered');
+
+        // Loop through each member and combine first_name and last_name into full_name
+
         try {
             // Fetch members directly from the database using Eloquent
             $controller = new MemberController();
             $response = $controller->index();
             // Convert the stdClass object to an array
+
             $this->members = collect(json_decode(json_encode($response->getData()), true))->map(function ($member) {
                 // Ensure each member has a full photo URL
                 $member['photo_url'] = $member['photo'] ? (str_contains($member['photo'], 'http') ? $member['photo'] : url('storage/' . $member['photo'])) : null;
@@ -78,7 +83,19 @@ class Member extends Component
         }
     }
 
-
+    public function processMembersForCard(): void
+    {
+        // Define the custom field order
+        $customOrder = [
+            'full_name',
+            'status',
+            'join_date',
+            'renewal_date',
+            'photo_url',
+            'email',
+            'phone',
+        ];
+    }
 
 //    public $members = [
 //        [
@@ -97,22 +114,6 @@ class Member extends Component
 //        ],
 //    ];
 
-//    public function editMember($memberId)
-//    {
-//        $this->showForm = true; // Open the popup
-//        if ($this->showForm) {
-//            error_log('editMember is triggered');
-//            error_log('editMember memberId is : ' . $memberId);
-//
-//            // Dispatch the event to MemberForm component
-//            $this->dispatch('editMember', ['id' => $memberId]);
-//            error_log('editMember event dispatched with memberId: ' . $memberId);
-//
-//        } else {
-//            error_log('MemberForm is not visible, cannot dispatch event');
-//        }
-//
-//    }
 
     public function editMember($memberId, $action)
     {
@@ -134,6 +135,7 @@ class Member extends Component
 
         return redirect($url);
     }
+
 
     public function deleteMember($memberId)
     {

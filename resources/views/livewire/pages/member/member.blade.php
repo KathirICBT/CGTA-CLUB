@@ -167,16 +167,19 @@
                         <div class="flex flex-col justify-center space-y-2 lg:space-y-4 mt-5 absolute -top-4 right-0 mr-3 sm:mr-6">
                             <!-- Edit Button -->
                             <button
+                                wire:click="editMember({{ $member['id'] }}, 'form')"
                                 class="text-amber-900 hover:bg-amber-300 text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 flex justify-center items-center rounded-full bg-amber-200">
                                 <i class="fas fa-edit text-gray-500"></i>
                             </button>
                             <!-- Delete Button -->
                             <button
+                                wire:click="deleteMember({{ $member['id'] }})"
                                 class="text-rose-900 hover:bg-rose-300 text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 flex justify-center items-center rounded-full bg-rose-200">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                             <!-- Info Button -->
                             <button
+                                wire:click="editMember({{ $member['id'] }}, 'view')"
                                 class="text-sky-900 hover:bg-sky-300 text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 flex justify-center items-center rounded-full bg-sky-200">
                                 <i class="fas fa-info-circle"></i>
                             </button>

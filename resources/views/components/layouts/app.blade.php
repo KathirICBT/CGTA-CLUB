@@ -42,7 +42,7 @@
                                     </a>
                                 </li>
                                 <li class="mt-auto">
-                                    <a href="{{ route('member') }}"
+                                        <a href="{{ route('member') }}"
                                        class="group flex items-center gap-x-3  p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-blue-700 hover:text-white">
                                         <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
                                            :class="isCollapsed ? '' : ''"></i>

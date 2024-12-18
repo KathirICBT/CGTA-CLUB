@@ -14,6 +14,7 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
+        'event-category',
         'start_date',
         'start_time',
         'end_date',
@@ -25,7 +26,7 @@ class Event extends Model
         'event_url',
         'location',
         'user_limit',
-        'paid_free', 
+        'paid_free',
         'user_limit_per_registrants'
     ];
 }
