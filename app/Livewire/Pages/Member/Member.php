@@ -40,6 +40,8 @@ class Member extends Component
     public function toggleView($view)
     {
         $this->isTableView = $view === 'table'; // Toggle between 'table' and 'card'
+        $this->banner = null;
+        $this->bannerStyle = null;
     }
     public function closeForm()
     {
@@ -54,16 +56,17 @@ class Member extends Component
             // Set the notification message and style
             $this->banner = 'Email copied to clipboard!';
             $this->bannerStyle = 'success'; // You can use 'danger', 'warning', etc.
-            error_log("Banner: " . $this->banner);
-            error_log("Banner Style: " . $this->bannerStyle);
+
         } elseif ($type === 'phone') {
             session()->flash('success', 'Phone number copied to clipboard!');
+            $this->banner = 'Phone number copied to clipboard!';
+            $this->bannerStyle = 'success';
         } else {
             session()->flash('error', 'Invalid copy request!');
         }
 
 //        // Dispatch notification to show success or error messages
-//        $this->dispatch('notify', ['message' => session('success') ?: session('error')]);
+        $this->dispatch('notify', ['message' => session('success') ?: session('error')]);
 
     }
 

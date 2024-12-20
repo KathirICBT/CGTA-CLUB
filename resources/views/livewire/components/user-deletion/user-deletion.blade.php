@@ -18,28 +18,28 @@
             <!-- Modal Title -->
             <div class="px-6 py-4 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-900">
-                    {{ __('Delete Account') }}
+                    {{ __('Delete Entity') }}
                 </h3>
             </div>
 
             <!-- Modal Content -->
             <div class="px-6 py-4">
                 <p class="text-sm text-gray-700">
-                    {{ __('Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                    {{ __('Are you sure you want to delete this?') }}
                 </p>
-                <div class="mt-4">
-                    <input
-                        type="password"
-                        placeholder="{{ __('Password') }}"
-                        autocomplete="current-password"
-                        wire:model="password"
-                        wire:keydown.enter="deleteUser"
-                        class="border border-gray-300 rounded-md shadow-sm w-full py-2 px-3 focus:ring focus:ring-red-300"
-                    />
-                    @error('password')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+{{--                <div class="mt-4">--}}
+{{--                    <input--}}
+{{--                        type="password"--}}
+{{--                        placeholder="{{ __('Password') }}"--}}
+{{--                        autocomplete="current-password"--}}
+{{--                        wire:model="password"--}}
+{{--                        wire:keydown.enter="deleteUser"--}}
+{{--                        class="border border-gray-300 rounded-md shadow-sm w-full py-2 px-3 focus:ring focus:ring-red-300"--}}
+{{--                    />--}}
+{{--                    @error('password')--}}
+{{--                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
             </div>
 
             <!-- Modal Footer -->
@@ -53,7 +53,7 @@
                     wire:click="deleteUser"
                     wire:loading.attr="disabled"
                     class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                    {{ __('Delete Account') }}
+                    {{ __('Delete Entity') }}
                 </button>
             </div>
         </div>

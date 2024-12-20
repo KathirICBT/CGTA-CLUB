@@ -187,29 +187,5 @@
                 {{ $memberId ? 'Update' : 'Create' }}
             </button>
         </div>
-
-        <!-- Success Message -->
-        <div id="notification-container" class="fixed top-14 right-0 p-6 z-50 rounded-lg">
-            @if (session()->has('success'))
-                <div
-                    class="bg-green-500 text-white p-3 rounded-lg mb-4 animate-fade-in-out"
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-init="setTimeout(() => show = false, 3000)"
-                >
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session()->has('error'))
-                <div
-                    class="bg-red-500 text-white p-3 rounded-lg mb-4 animate-fade-in-out"
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-init="setTimeout(() => show = false, 3000)"
-                >
-                    {{ session('error') }}
-                </div>
-            @endif
-        </div>
     </form>
 </div>
