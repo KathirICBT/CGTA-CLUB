@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         @vite('resources/css/app.css')
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,6 +48,46 @@
                                         <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
                                            :class="isCollapsed ? '' : ''"></i>
                                         <span :class="isCollapsed ? 'hidden' : 'block'">Member</span>
+                                    </a>
+                                </li>
+                                <li class="mt-auto">
+                                    <a href="{{ route('company') }}"
+                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
+                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                        <span :class="isCollapsed ? 'hidden' : 'block'">Company</span>
+                                    </a>
+                                </li>
+                                <li class="mt-auto">
+                                    <a href="{{ route('services') }}"
+                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
+                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                        <span :class="isCollapsed ? 'hidden' : 'block'">Services</span>
+                                    </a>
+                                </li>
+                                <li class="mt-auto">
+                                    <a href="{{ route('regions') }}"
+                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
+                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                        <span :class="isCollapsed ? 'hidden' : 'block'">Regions</span>
+                                    </a>
+                                </li>
+                                <li class="mt-auto">
+                                    <a href="{{ route('packages') }}"
+                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
+                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                        <span :class="isCollapsed ? 'hidden' : 'block'">Packages</span>
+                                    </a>
+                                </li>
+                                <li class="mt-auto">
+                                    <a href="{{ route('package-service') }}"
+                                       class="group flex items-center gap-x-3 rounded-lg p-2 text-lg font-semibold leading-6 text-gray-400 hover:bg-sky-400 hover:text-white">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white  pt-1 "
+                                           :class="isCollapsed ? 'pl-2' : ''"></i>
+                                        <span :class="isCollapsed ? 'hidden' : 'block'">Package Service</span>
                                     </a>
                                 </li>
                                 <li class="mt-auto">

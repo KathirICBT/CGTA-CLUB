@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PackageServiceController;
 use App\Http\Controllers\NotificationTemplateController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EventController;
@@ -23,6 +27,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('members', MemberController::class);
+Route::apiResource('packages', PackageController::class);
+Route::apiResource('companies', CompanyController::class);
+Route::apiresource('services', ServiceController::class);
+Route::apiResource('package-services', PackageServiceController::class);
 Route::apiResource('events', EventController::class);
 
 Route::apiResource('notifiTemplate', NotificationTemplateController::class);
