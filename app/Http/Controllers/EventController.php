@@ -61,7 +61,7 @@ class EventController extends Controller
         if ($event) {
             return response()->json($event, 200);
         }
-        return response()->json(['message' => 'Event not found'], 404);
+        return response()->json(['message' => 'Events not found'], 404);
     }
 
     /**
@@ -71,7 +71,7 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         if (!$event) {
-            return response()->json(['message' => 'Event not found'], 404);
+            return response()->json(['message' => 'Events not found'], 404);
         }
 
         $validatedData = $request->validate([
@@ -103,9 +103,9 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         if (!$event) {
-            return response()->json(['message' => 'Event not found'], 404);
+            return response()->json(['message' => 'Events not found'], 404);
         }
         $event->delete();
-        return response()->json(['message' => 'Event deleted successfully'], 200);
+        return response()->json(['message' => 'Events deleted successfully'], 200);
     }
 }

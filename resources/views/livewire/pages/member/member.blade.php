@@ -3,6 +3,7 @@
 {{--</div>--}}
 
 <div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-auto h-screen">
+    <livewire:components.notification.notification :banner="$banner" :bannerStyle="$bannerStyle" wire:key="notification-{{ now() }}" />
     <div class="md:flex md:items-center md:justify-between bg-white md:p-4 px-5 rounded-xl border">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
             <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
@@ -45,6 +46,7 @@
         <!-- Card Component -->
         @if($isTableView)
             <div class="min-w-full bg-white">
+{{--                <livewire:components.user-deletion.user-deletion />--}}
                 <table class="w-full divide-y divide-gray-300">
                     <thead>
                     <tr class="bg-gray-50">
@@ -219,7 +221,7 @@
                                         <!-- Phone Icon -->
                                         <button
                                             class="text-teal-500 hover:text-teal-700 flex items-center space-x-2"
-                                            onclick="copyToClipboard('{{ $member['phone'] }}')">
+                                            wire:click="copyToClipboard('phone')">
                                             <i class="fas fa-phone-alt text-lg sm:text-xl"></i>
                                             <span class="text-sm sm:text-base lg:text-lg text-gray-800">{{ $member['phone'] }}</span>
                                         </button>
@@ -227,7 +229,7 @@
                                         <!-- Email Icon -->
                                         <button
                                             class="text-teal-500 hover:text-teal-700 flex items-center space-x-2"
-                                            onclick="copyToClipboard('{{ $member['email'] }}')">
+                                            wire:click="copyToClipboard('email')">
                                             <i class="fas fa-envelope text-lg sm:text-xl"></i>
                                             <span class="text-sm sm:text-base lg:text-lg text-gray-800">{{ $member['email'] }}</span>
                                         </button>
@@ -240,16 +242,19 @@
                         <div class="flex flex-col justify-center space-y-2 lg:space-y-4 mt-5 absolute -top-4 right-0 mr-3 sm:mr-6">
                             <!-- Edit Button -->
                             <button
+                                wire:click="editMember({{ $member['id'] }}, 'form')"
                                 class="text-amber-900 hover:bg-amber-300 text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 flex justify-center items-center rounded-full bg-amber-200">
                                 <i class="fas fa-edit text-gray-500"></i>
                             </button>
                             <!-- Delete Button -->
                             <button
+                                wire:click="deleteMember({{ $member['id'] }})"
                                 class="text-rose-900 hover:bg-rose-300 text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 flex justify-center items-center rounded-full bg-rose-200">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                             <!-- Info Button -->
                             <button
+                                wire:click="editMember({{ $member['id'] }}, 'view')"
                                 class="text-sky-900 hover:bg-sky-300 text-base sm:text-lg w-8 h-8 sm:w-10 sm:h-10 flex justify-center items-center rounded-full bg-sky-200">
                                 <i class="fas fa-info-circle"></i>
                             </button>
@@ -325,26 +330,19 @@
 
         @endif
     </div>
-    <!-- Notification Container -->
-    <div id="notification-container" class="fixed top-0 right-0 p-6 z-50 rounded-lg">
-        <!-- Notification -->
-        @if (session()->has('notification'))
-            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg">
-                <span x-text="{{ session('notification') }}"></span>
-            </div>
-        @endif
-    </div>
 </div>
 
 <script>
-    function copyToClipboard(data) {
-        navigator.clipboard.writeText(data).then(() => {
-            alert("Copied to clipboard: " + data);
-        }).catch(err => {
-            console.error("Could not copy text: ", err);
-        });
-    }
+    // Listen for the event to reset the notification after 3 seconds
+    Livewire.on('reset-notification', ({ delay }) => {
+        setTimeout(() => {
+            // Use Livewire to reset the notification state after the delay
+        @this.set('banner', null);
+        @this.set('bannerStyle', null);
+        }, delay * 1000); // Convert seconds to milliseconds
+    });
 </script>
+
 
 
 

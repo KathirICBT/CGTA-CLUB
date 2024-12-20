@@ -2,8 +2,7 @@
 {{--    --}}{{-- The whole world belongs to you. --}}
 {{--</div>--}}
 
-
-<div class="border bg-gray-200 h-screen overflow-auto">
+<div class="border bg-gray-200 min-h-screen">
     <!-- Profile Section -->
     <div class="w-full mx-auto p-6 ">
         <nav class="flex items-center text-gray-600 text-md mb-4">
@@ -127,11 +126,6 @@
             <!-- Work Card -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-lg font-bold">Work</h2>
-{{--                <p><span class="font-semibold">Job Title:</span> Internal Communications Manager</p>--}}
-{{--                <p><span class="font-semibold">Company:</span> Hailio Inc.</p>--}}
-{{--                <p><span class="font-semibold">Department:</span> Communications</p>--}}
-{{--                <p><span class="font-semibold">Current Location:</span> New York City, New York</p>--}}
-{{--                <p><span class="font-semibold">Office:</span> Remote</p>--}}
             </div>
         </div>
     </div>

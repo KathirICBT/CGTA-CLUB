@@ -2,7 +2,7 @@
 {{--    --}}{{-- Close your eyes. Count to one. That is how long forever feels. --}}
 {{--</div>--}}
 
-<div class="isolate bg-gray-100 h-screen px-6 py-5 sm:py-5 lg:px-8 md:w-full mx-3 overflow-x-hidden">
+<div class="isolate bg-gray-100 min-h-screen px-6 py-5 sm:py-5 lg:px-8 md:w-full mx-3 overflow-x-hidden scrollbar-custom">
     <nav class="flex items-center text-gray-600 text-md mb-4">
         <ol class="flex items-center space-x-2">
 
@@ -186,30 +186,6 @@
                     class="bg-sky-400 text-black py-2 px-7 rounded-md shadow-sm hover:bg-sky-600 focus:ring-2 focus:ring-inset focus:ring-sky-700">
                 {{ $memberId ? 'Update' : 'Create' }}
             </button>
-        </div>
-
-        <!-- Success Message -->
-        <div id="notification-container" class="fixed top-14 right-0 p-6 z-50 rounded-lg">
-            @if (session()->has('success'))
-                <div
-                    class="bg-green-500 text-white p-3 rounded-lg mb-4 animate-fade-in-out"
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-init="setTimeout(() => show = false, 3000)"
-                >
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session()->has('error'))
-                <div
-                    class="bg-red-500 text-white p-3 rounded-lg mb-4 animate-fade-in-out"
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-init="setTimeout(() => show = false, 3000)"
-                >
-                    {{ session('error') }}
-                </div>
-            @endif
         </div>
     </form>
 </div>
