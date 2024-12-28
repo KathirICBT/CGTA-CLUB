@@ -54,6 +54,11 @@
         />
         {{-- CALLING BUTTON COMPONENT ============= --}}
 
+        <div class="flex justify-start items-start 
+        flex-wrap w-full mt-20 gap-16">
+            <livewire:user-panel.component.statistics />
+        </div>
+
     </div>
     </section>
 </div>
