@@ -40,6 +40,21 @@ class Region extends Component
         RegionModel::create(['region' => $this->region]);
 
         session()->flash('message', 'Region added successfully.');
+
+
+        // NOTIFICATION =============================================================================
+
+        $alertData = [
+            'title' => 'Region!',
+            'message' => 'Region added successfully. <br><small>' . now()->calendar() . '</small>',
+            'type' => 'success', // Example type, can be dynamic
+        ];
+
+        $this->dispatch('alert', $alertData); // Correct way to dispatch events in Livewire 3
+
+        // ==========================================================================================
+
+
         $this->resetForm();
         $this->loadRegions();
     }
@@ -60,6 +75,20 @@ class Region extends Component
         $region->update(['region' => $this->region]);
 
         session()->flash('message', 'Region updated successfully.');
+
+        // NOTIFICATION =============================================================================
+
+         $alertData = [
+            'title' => 'Region!',
+            'message' => 'Region updated successfully. <br><small>' . now()->calendar() . '</small>',
+            'type' => 'success', // Example type, can be dynamic
+        ];
+
+        $this->dispatch('alert', $alertData); // Correct way to dispatch events in Livewire 3
+
+        // ==========================================================================================
+
+
         $this->resetForm();
         $this->loadRegions();
     }
@@ -69,6 +98,21 @@ class Region extends Component
         RegionModel::findOrFail($id)->delete();
 
         session()->flash('message', 'Region deleted successfully.');
+
+        // NOTIFICATION =============================================================================
+
+        $alertData = [
+            'title' => 'Region!',
+            'message' => 'Region deleted successfully. <br><small>' . now()->calendar() . '</small>',
+            'type' => 'success', // Example type, can be dynamic
+        ];
+
+        $this->dispatch('alert', $alertData); // Correct way to dispatch events in Livewire 3
+
+        // ==========================================================================================
+
+
+
         $this->loadRegions();
     }
 

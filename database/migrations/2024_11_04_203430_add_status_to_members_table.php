@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('members', function (Blueprint $table) {
             $table->id()->first();
-            $table->string('status')->default('waiting'); // Default status can be 'active' or any value you choose
+            $table->string('status')->default('Waiting'); // Default status can be 'active' or any value you choose
         });
     }
 

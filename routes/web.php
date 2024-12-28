@@ -11,6 +11,8 @@ use App\Livewire\PackageService;
 use App\Livewire\Package;
 use App\Livewire\Company;
 use App\Livewire\Region;
+use App\Livewire\UserPanel\UserComponent;
+use App\Livewire\UserPanel\LandingPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
@@ -76,3 +78,13 @@ Route::get('/packages', Package::class)->name('packages');
 
 
 Route::get('/package-service', PackageService::class)->name('package-service');
+
+
+
+// USER PANEL START ===============================================================================================
+
+Route::get('/user-panel', UserComponent::class)->name('user-panel');
+Route::get('/landing-page', LandingPage::class)->name('landing-page');
+
+
+// USER PANEL END =================================================================================================

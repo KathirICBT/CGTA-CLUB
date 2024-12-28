@@ -47,6 +47,20 @@ class Service extends Component
         ]);
 
         session()->flash('message', 'Service created successfully.');
+
+        // NOTIFICATION =============================================================================
+
+        $alertData = [
+            'title' => 'Package Services!',
+            'message' => 'Service created successfully. <br><small>' . now()->calendar() . '</small>',
+            'type' => 'success', // Example type, can be dynamic
+        ];
+
+        $this->dispatch('alert', $alertData); // Correct way to dispatch events in Livewire 3
+
+        // ==========================================================================================
+
+
         $this->resetForm();
         $this->loadServices();
     }
@@ -71,6 +85,22 @@ class Service extends Component
         ]);
 
         session()->flash('message', 'Service updated successfully.');
+
+
+        // NOTIFICATION =============================================================================
+
+        $alertData = [
+            'title' => 'Package Services!',
+            'message' => 'Service updated successfully. <br><small>' . now()->calendar() . '</small>',
+            'type' => 'success', // Example type, can be dynamic
+        ];
+
+        $this->dispatch('alert', $alertData); // Correct way to dispatch events in Livewire 3
+
+        // ==========================================================================================
+
+
+
         $this->resetForm();
         $this->loadServices();
     }
@@ -79,6 +109,20 @@ class Service extends Component
     {
         ServiceModel::findOrFail($id)->delete();
         session()->flash('message', 'Service deleted successfully.');
+
+         // NOTIFICATION =============================================================================
+
+         $alertData = [
+            'title' => 'Package Services!',
+            'message' => 'Service deleted successfully. <br><small>' . now()->calendar() . '</small>',
+            'type' => 'success', // Example type, can be dynamic
+        ];
+
+        $this->dispatch('alert', $alertData); // Correct way to dispatch events in Livewire 3
+
+        // ==========================================================================================
+
+
         $this->loadServices();
     }
 

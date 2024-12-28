@@ -26,4 +26,5 @@ class Notification extends Component
     {
         return view('livewire.components.notification.notification');
     }
+    
 }

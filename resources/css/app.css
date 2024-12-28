@@ -1,14 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 *{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: "Libre Franklin", sans-serif;
+    scroll-behavior: smooth;
 }
 
 .scrollbar-custom {
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: #38bdf8 #ffffff; /* Thumb (blue) and track (gray) colors */
 }
+
+.hidden {
+  display: none;
+}
+
+@layer base {
+    [x-cloak] { display: none !important; }
+}
+
+@layer components {
+    .alert { @apply w-60 sm:w-96 md:w-full max-w-[400px] px-5 py-6 text-base border-l-8 rounded opacity-100 pointer-events-auto fixed top-2.5 right-2.5 z-[1000] overflow-hidden; }
+
+    .alert.alert-primary { @apply text-blue-600 bg-blue-200 border-blue-400; }
+    .alert.alert-success { @apply text-green-600 bg-green-200 border-green-400; }
+    .alert.alert-danger { @apply text-red-600 bg-red-200 border-red-400; }
+    .alert.alert-warning { @apply text-amber-600 bg-amber-200 border-amber-500; }
+
+    .alert .alert-wrapper { @apply text-sm leading-snug; }
+    .alert .alert-close { @apply px-[18px] py-5 text-base cursor-pointer absolute top-6 right-0 transform -translate-y-1/2; }
+
+    .btn { @apply m-4 px-3 py-1 text-lg rounded; }
+    .btn.btn-primary { @apply text-white bg-blue-600; }
+
+
+    .max-container {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+    
+    /* .input {
+        @apply sm:flex-1 max-sm:w-full text-base leading-normal text-slate-gray pl-5 max-sm:p-5 outline-none sm:border-none border max-sm:border-slate-gray max-sm:rounded-full;
+    } */
+
+}
+
+@layer utilities {
+    .padding {
+      @apply sm:px-16 px-8 sm:py-24 py-12;
+    }
+  
+    .padding-x {
+      @apply sm:px-16 px-8;
+    }
+  
+    .padding-y {
+      @apply sm:py-24 py-12;
+    }
+  
+    .padding-l {
+      @apply sm:pl-16 pl-8;
+    }
+  
+    .padding-r {
+      @apply sm:pr-16 pr-8;
+    }
+  
+    .padding-t {
+      @apply sm:pt-24 pt-12;
+    }
+  
+    .padding-b {
+      @apply sm:pb-24 pb-12;
+    }
+  
+    .info-text {
+      @apply font-montserrat text-slate-gray text-lg leading-7;
+    }
+  }
+
 
