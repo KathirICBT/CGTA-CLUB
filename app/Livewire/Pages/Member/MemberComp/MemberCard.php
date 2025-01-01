@@ -3,18 +3,14 @@
 namespace App\Livewire\Pages\Member\MemberComp;
 
 use Illuminate\Support\Facades\Redirect;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
-class MemberTableComponent extends Component
+class MemberCard extends Component
 {
     // Property to hold data (usually passed from parent)
     public $datas = [];
 
-    // Property to hold table headers, can be defined based on data
-    public array $headers = [];
 
-    #[On('edit')]
     public function editMember($id)
     {
         // Log the ID and form type for testing
@@ -24,7 +20,6 @@ class MemberTableComponent extends Component
         return Redirect::route('member-form', ['id' => $id]);
     }
 
-//    #[On('deleteMember')]
     public function deleteMember($id): void
     {
         // Log the ID for testing
@@ -35,20 +30,21 @@ class MemberTableComponent extends Component
     }
 
     // If you want to handle sorting or other actions, you can add methods or properties for those too.
-    public function mount($datas, $headers = []): void
+    public function mount($datas): void
     {
+        error_log('mount method in MemberCard is triggered');
+
         // Initialize data and headers
         $this->datas = $datas;
-        $this->headers = $headers;
 
         // Log the data along with its type
         foreach ($this->datas as $key => $data) {
             error_log("Key: $key, Type: " . gettype($data) . ", Value: " . print_r($data, true));
         }
-    }
 
+    }
     public function render()
     {
-        return view('livewire.pages.member.member-comp.member-table-component');
+        return view('livewire.pages.member.member-comp.member-card');
     }
 }

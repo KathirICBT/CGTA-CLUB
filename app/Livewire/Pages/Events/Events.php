@@ -4,11 +4,14 @@ namespace App\Livewire\Pages\Events;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Events extends Component
 {
     public $events = [];
+    public $filteredEvents = [];
+
     public $isTableView = true; // Default is table view
 
     public $eventId;
@@ -59,6 +62,25 @@ class Events extends Component
                 return $event;
             });
 
+            // Create a new filtered array with only preferred fields
+            $this->filteredEvents = $this->events->map(function ($event) {
+                return [
+                    'photo_url' => $event['photo_url'], // Include photo URL
+                    'id' => $event['id'], // Include ID
+//                    'full_name' => $event['first_name'] . ' ' . $event['last_name'], // Combine first and last name
+                    'title' => $event['title'], // Include email
+                    'eventCategory' => $event['eventCategory'], // Include email
+                    'start_date' => $event['start_date'], // Include email
+                    'start_time' => $event['start_time'], // Include email
+                    'visibility' => $event['visibility'], // Include email
+                    'release_date' => $event['release_date'], // Include email
+                    'closing_date' => $event['closing_date'], // Include email
+                    'paid_free' => $event['paid_free'], // Include status
+                    'user_limit' => $event['user_limit'], // Include status
+                    'user_limit_per_registrants' => $event['user_limit_per_registrants'], // Include status
+                ];
+            });
+
 
             // Log the events as a JSON string to make sure the data is being retrieved correctly
             error_log('Retrieved Events: ' . json_encode($this->events));
@@ -98,6 +120,7 @@ class Events extends Component
         return redirect($url);
     }
 
+    #[On('delete')]
     public function deleteEvent($eventId)
     {
         try {

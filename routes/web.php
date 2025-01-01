@@ -60,7 +60,7 @@ Route::apiResource('packages', PackageController::class);
 
 Route::get('/', Dashboard::class)->name('dashboard');
 Route::get('/member', Member::class)->name('member');
-Route::get('/member/member-form', MemberForm::class)->name('member-form');
+Route::get('/member/member-form/{id?}', MemberForm::class)->name('member-form');
 Route::get('/member/member-view/{memberId}', MemberView::class)->name('member-view');
 
 Route::get('/events', Events::class)->name('events');

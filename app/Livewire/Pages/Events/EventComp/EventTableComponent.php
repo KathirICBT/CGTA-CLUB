@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Pages\Member\MemberComp;
+namespace App\Livewire\Pages\Events\EventComp;
 
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class MemberTableComponent extends Component
+class EventTableComponent extends Component
 {
     // Property to hold data (usually passed from parent)
     public $datas = [];
@@ -14,17 +14,17 @@ class MemberTableComponent extends Component
     // Property to hold table headers, can be defined based on data
     public array $headers = [];
 
-    #[On('edit')]
-    public function editMember($id)
+    #[On('editMember')]
+    public function edit($id)
     {
         // Log the ID and form type for testing
-        error_log("Dispatching member-edit with ID: $id");
+        error_log("Dispatching event-edit with ID: $id");
 
         // Redirect to the MemberForm route with the ID as a parameter
-        return Redirect::route('member-form', ['id' => $id]);
+        return Redirect::route('event-form', ['id' => $id]);
     }
 
-//    #[On('deleteMember')]
+    #[On('deleteMember')]
     public function deleteMember($id): void
     {
         // Log the ID for testing
@@ -34,7 +34,6 @@ class MemberTableComponent extends Component
         $this->dispatch('member-delete', id: $id);
     }
 
-    // If you want to handle sorting or other actions, you can add methods or properties for those too.
     public function mount($datas, $headers = []): void
     {
         // Initialize data and headers
@@ -49,6 +48,6 @@ class MemberTableComponent extends Component
 
     public function render()
     {
-        return view('livewire.pages.member.member-comp.member-table-component');
+        return view('livewire.pages.events.event-comp.event-table-component');
     }
 }

@@ -4,12 +4,15 @@ namespace App\Livewire\Pages\Member;
 
 use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Member extends Component
 {
     public $members = [];
+    public $filteredMembers = [];
     public $showForm = false;
     public $isTableView = true; // Default is table view
 
@@ -47,6 +50,21 @@ class Member extends Component
     {
         $this->showForm = false;  // Close the form
         return redirect()->route('member');
+    }
+
+
+    public function handleEdit($id)
+    {
+        // Log the event for testing
+        error_log("Editing member with ID: $id");
+
+    }
+
+
+    public function handleDelete($id)
+    {
+        // Log the event for testing
+        error_log("Deleting member with ID: $id");
     }
 
     public function copyToClipboard($type)
@@ -88,6 +106,26 @@ class Member extends Component
                 $member['photo_url'] = $member['photo'] ? (str_contains($member['photo'], 'http') ? $member['photo'] : url('storage/' . $member['photo'])) : null;
                 return $member;
             });
+
+            // Create a new filtered array with only preferred fields
+            $this->filteredMembers = $this->members->map(function ($member) {
+                return [
+                    'photo_url' => $member['photo_url'], // Include photo URL
+                    'id' => $member['id'], // Include ID
+//                    'full_name' => $member['first_name'] . ' ' . $member['last_name'], // Combine first and last name
+                    'first_name' => $member['first_name'], // Include email
+                    'last_name' => $member['last_name'], // Include email
+                    'email' => $member['email'], // Include email
+                    'phone' => $member['phone'], // Include email
+                    'date_of_birth' => $member['date_of_birth'], // Include email
+                    'joinedDate' => $member['join_date'], // Include email
+                    'status' => $member['status'], // Include status
+                    'membership_level' => $member['membership_level'], // Include status
+                    'renewal_date' => $member['renewal_date'], // Include status
+                ];
+            });
+
+
 //            dump($this->members);
             error_log('members successfully fetched from database ');
         } catch (\Exception $e) {
@@ -95,24 +133,6 @@ class Member extends Component
             error_log('Error fetching members: ' . $e->getMessage());
         }
     }
-
-
-//    public $members = [
-//        [
-//            "id" => 1,
-//            "first_name" => "John",
-//            "last_name" => "Doe",
-//            "email" => "johndoe@example.com",
-//            "phone" => "1234567890",
-//            "date_of_birth" => "1990-01-01",
-//            "join_date" => "2024-01-01",
-//            "photo" => null,
-//            "bio" => "A passionate developer and community leader.",
-//            "status" => "waiting",
-//            "membership_level" => "Premium",
-//            "renewal_date" => "2024-12-31",
-//        ],
-//    ];
 
 
     public function editMember($memberId, $action)
@@ -136,13 +156,13 @@ class Member extends Component
         return redirect($url);
     }
 
-
-    public function deleteMember($memberId)
+    #[On('delete')]
+    public function deleteMember($id)
     {
         try {
             // Call the destroy method of MemberController
             $controller = new MemberController();
-            $response = $controller->destroy($memberId);
+            $response = $controller->destroy($id);
 
             // Handle success response
             if ($response->getStatusCode() == 204) {
@@ -161,7 +181,6 @@ class Member extends Component
     {
         return view('livewire.pages.member.member', [
             'headers' => $this->headers,
-//            'members' => $this->members,
         ]);
     }
 

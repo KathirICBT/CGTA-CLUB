@@ -36,16 +36,14 @@ class MemberForm extends Component
 
     // Listen for the event
 
-    public function mount($memberId = null)
+
+    public function mount($id = null)
     {
-        // Manually access the query parameter
-        $this->memberId = request()->query('memberId');
-
         // Log or handle the memberId as needed
-        error_log('received memberId from query: ' . $this->memberId);
-
-        if ($this->memberId) {
-            $this->show($this->memberId);
+        error_log('received memberId from query: ' . $id);
+        $this->memberId = $id;
+        if ($id) {
+            $this->show($id);
         }
     }
 
@@ -139,15 +137,15 @@ class MemberForm extends Component
     }
 
 
-    public function show($memberId)
+    public function show($id)
     {
         error_log('mount is triggered from MemberForm.php');
-        error_log('received memberId from MemberForm show(): ' . $memberId);
+        error_log('received memberId from MemberForm show(): ' . $id);
 
         try {
             // Fetch members directly from the database using Eloquent
             $controller = new MemberController();
-            $response = $controller->show($memberId);
+            $response = $controller->show($id);
             // Parse the response to populate fields
             $member = json_decode(json_encode($response->getData()), true);
 
