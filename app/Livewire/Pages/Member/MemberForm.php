@@ -21,11 +21,9 @@ class MemberForm extends Component
     public string $bio;
     public $join_date;
     public string $status = '';
-    public string $membership_level = '';
     public string $password;
     public $photo;
     public $photoUrl;
-    public $renewal_date;
 
 
     public $statusOptions = ['Active', 'Inactive', 'Waiting']; // Array of options
@@ -85,7 +83,6 @@ class MemberForm extends Component
                 'date_of_birth' => 'required|date',
                 'join_date' => 'required|date',
                 'status' => 'required|string',
-                'membership_level' => 'required|string',
                 'password' => $this->memberId ? 'nullable|string|min:6' : 'required|string|min:6',
             ]);
 
@@ -98,9 +95,7 @@ class MemberForm extends Component
                 'bio' => $this->bio,
                 'join_date' => $this->join_date,
                 'status' => $this->status,
-                'membership_level' => $this->membership_level,
                 'password' => $this->password,
-                'renewal_date' => $this->renewal_date,
                 'photo' => $this->photo ? $this->photo->store('photos', 'public') : null,
             ];
             // Convert $data to a Request object
@@ -158,10 +153,8 @@ class MemberForm extends Component
             $this->bio = $member['bio'] ?? '';
             $this->join_date = $member['join_date'] ?? null;
             $this->status = $member['status'] ?? '';
-            $this->membership_level = $member['membership_level'] ?? '';
             $this->password = ''; // Do not prepopulate passwords for security reasons
             $this->photoUrl = $member['photo'] ? asset('storage/' . $member['photo']) : null;
-            $this->renewal_date = $member['renewal_date'] ?? null;
             error_log('photo file or url: ' . $member['photo'] ?? '' );
             error_log('members successfully fetched from database ');
         } catch (\Exception $e) {

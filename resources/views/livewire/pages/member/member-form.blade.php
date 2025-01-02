@@ -126,21 +126,6 @@
                 </div>
             </div>
             <div>
-                <label for="membership_level" class="block text-md leading-6 text-gray-500 font-semibold" >
-                    Membership Level
-                </label>
-                <div class="mt-1">
-                    <select id="membership_level" wire:model="membership_level"
-                            class="block w-full border-0 px-3.5 py-3 rounded-lg shadow-sm ring-1 ring-inset bg-white ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6">
-                        <option value="" disabled>Select Membership Level</option>
-                        @foreach ($membershipOptions as $option)
-                            <option value="{{ $option }}">{{ $option }}</option>
-                        @endforeach
-                    </select>
-                    @error('membership_level') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
-            <div>
                 <label for="join_date" class="block text-md font-semibold leading-6 text-gray-500">
                     Joined Date
                 </label>
@@ -148,17 +133,6 @@
                     <input type="date" id="join_date" wire:model="join_date" placeholder="Your Joined Date"
                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
                     @error('join_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
-
-            <div>
-                <label for="renewal_date" class="block text-md font-semibold leading-6 text-gray-500">
-                    Renewal Date
-                </label>
-                <div class="mt-1">
-                    <input type="date" id="renewal_date" wire:model="renewal_date" placeholder="Your Renewal Date"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg  shadow-sm ring-1 ring-inset ring-gray-300  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-md sm:leading-6" />
-                    @error('renewal_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
             @if (!$memberId) <!-- Show password field only when creating a new member -->

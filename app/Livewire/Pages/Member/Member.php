@@ -32,8 +32,6 @@ class Member extends Component
         'Date of Birth',
         'Joined Date',
         'Status',
-        'Membership Type',
-        'Renewal Date',
         'Action'
     ];
     public function openForm()
@@ -120,8 +118,6 @@ class Member extends Component
                     'date_of_birth' => $member['date_of_birth'], // Include email
                     'joinedDate' => $member['join_date'], // Include email
                     'status' => $member['status'], // Include status
-                    'membership_level' => $member['membership_level'], // Include status
-                    'renewal_date' => $member['renewal_date'], // Include status
                 ];
             });
 

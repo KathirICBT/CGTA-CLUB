@@ -49,20 +49,20 @@
     <div class="mt-3 overflow-x-auto w-full border rounded-xl ">
         <!-- Card Component -->
         @if($isTableView)
-{{--            <div class="overflow-x-auto bg-white">--}}
-{{--                <livewire:pages.member.member-comp.member-table-component--}}
-{{--                    :datas="$filteredEvents"--}}
-{{--                    :headers="$headers"--}}
-{{--                    routeName="event-form"--}}
-{{--                />--}}
-{{--            </div>--}}
             <div class="overflow-x-auto bg-white">
-                <livewire:pages.events.event-comp.event-table-component
+                <livewire:pages.member.member-comp.member-table-component
                     :datas="$filteredEvents"
                     :headers="$headers"
                     routeName="event-form"
                 />
             </div>
+{{--            <div class="overflow-x-auto bg-white">--}}
+{{--                <livewire:pages.events.event-comp.event-table-component--}}
+{{--                    :datas="$filteredEvents"--}}
+{{--                    :headers="$headers"--}}
+{{--                    routeName="event-form"--}}
+{{--                />--}}
+{{--            </div>--}}
         @endif
 
         <!-- Card Component -->

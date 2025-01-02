@@ -40,24 +40,12 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h1 class="text-2xl text-black font-bold">
-                        {{ $first_name }} {{ $last_name }} |
-{{--                        <span class="text-md font-normal border border-black px-2 py-0.5 rounded-2xl--}}
-{{--                            {{ $status === 'Active' ? 'text-emerald-900 bg-emerald-200' : '' }}--}}
-{{--                            {{ $status === 'Inactive' ? 'text-red-900 bg-red-200' : '' }}--}}
-{{--                            {{ $status === 'Waiting' ? 'text-yellow-900 bg-yellow-200' : '' }}">--}}
-{{--                            {{ $status }}--}}
-{{--                        </span>--}}
-                    </h1>
-                    <p class="text-gray-600 text-lg">{{ $membership_level }}</p>
-                </div>
             </div>
             <!-- Tabs -->
             <div class="mt-6 flex justify-center items-center ">
                 <ul class="flex border-b">
                     <li class="-mb-px mr-1">
-                        <a href="#" class="bg-white inline-block py-2 px-4 text-teal-500 font-semibold border-b-2 border-teal-500">Activity</a>
+                        <a href="#" class="bg-white inline-block py-2 px-4 text-teal-500 font-semibold boActivityrder-b-2 border-teal-500">Activity</a>
                     </li>
                     <li class="mr-1">
                         <a href="#" class="bg-white inline-block py-2 px-4 text-gray-600 hover:text-teal-500">Information</a>
@@ -106,12 +94,6 @@
                         <label class="font-semibold text-gray-700">Joined Date:</label>
                         <dd class="text-black font-semibold">
                             {{$join_date}}
-                        </dd>
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="font-semibold text-gray-700">Renewal Date:</label>
-                        <dd class="text-black font-semibold">
-                            {{$renewal_date}}
                         </dd>
                     </div>
                     <div class="flex flex-col">
