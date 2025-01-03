@@ -56,10 +56,8 @@ class MemberController extends Controller
                     }
                 ],
                 'bio' => 'nullable|string',
-                'membership_level' => 'required|string',
                 'status' => 'required|string',
                 'password' => 'required|string|min:8',
-                'renewal_date' => 'nullable|date',
             ]);
 
             if ($validator->fails()) {
@@ -101,9 +99,7 @@ class MemberController extends Controller
             'photo' =>  $photoPath,
             'bio' => $request->bio,
             'status' => $request->status,
-            'membership_level' => $request->membership_level,
             'password' => bcrypt($request->password),
-            'renewal_date' => $request->renewal_date,
         ]);
 
         // Include the full URL for the photo in the response
@@ -174,9 +170,7 @@ class MemberController extends Controller
                 }
             ],
             'bio' => 'nullable|string',
-            'membership_level' => 'required|string',
             'status' => 'required|string',
-            'renewal_date' => 'nullable|date',
         ];
 
         // Conditionally add password validation for update
@@ -230,8 +224,8 @@ class MemberController extends Controller
         // Update member fields
         $dataToUpdate = $request->only([
             'first_name', 'last_name', 'email', 'phone',
-            'date_of_birth', 'join_date', 'bio',
-            'membership_level', 'renewal_date'
+            'date_of_birth', 'join_date', 'bio', 'status'
+
         ]);
         if ($request->filled('password')) {
             $dataToUpdate['password'] = bcrypt($dataToUpdate['password']); // Hash password if provided
