@@ -15,6 +15,27 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
+  
+    <!-- In your head section -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+<!-- Before closing body tag -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
+
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     @livewireStyles    
@@ -22,9 +43,12 @@
 
 </head>
 
-<body>    
-    <main class="relative">        
-        {{ $slot }}        
-    </main>
+<body> 
+    <div class="overflow-x-hidden">   
+        <main class="relative">        
+            {{ $slot }}        
+        </main>
+    </div>    
+
 </body>
 </html>

@@ -13,37 +13,6 @@
     @endforeach
 </div> --}}
 
-
-{{-- <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 w-full">
-    @foreach ($stats as $stat)
-        <div class="flex flex-col justify-center items-center text-center">
-            <!-- Icon -->
-            <i class="{{ $stat['icon'] }} text-blue-500 text-4xl mb-4"></i>
-
-            <!-- Value -->
-            <p class="text-2xl font-bold text-gray-700">{{ $stat['value'] }}</p>
-
-            <!-- Label -->
-            <p class="text-sm text-gray-500 uppercase">{{ $stat['label'] }}</p>
-        </div>
-    @endforeach
-</div> --}}
-
-{{-- <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
-    @foreach ($stats as $stat)
-        <div class="flex flex-col justify-center items-center text-center">
-            <!-- Icon -->
-            <i class="{{ $stat['icon'] }} text-blue-500 text-2xl mb-2"></i>
-
-            <!-- Value -->
-            <p class="text-3xl font-bold text-gray-700">{{ $stat['value'] }}</p>
-
-            <!-- Label -->
-            <p class="text-sm text-gray-500 uppercase">{{ $stat['label'] }}</p>
-        </div>
-    @endforeach
-</div> --}}
-
 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
     @foreach ($stats as $stat)
         <div class="flex flex-col justify-start items-start text-left relative">

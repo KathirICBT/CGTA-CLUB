@@ -26,6 +26,8 @@ export default {
         animation:{
             'alert-show': 'showAlert 1s ease forwards',
             'alert-hide': 'hideAlert 1s ease forwards',
+            // banner ani ==================================
+            'fade-slide-up': 'fadeSlideUp 1.5s ease-out forwards',
         },
         keyframes:{
             showAlert: {
@@ -39,6 +41,11 @@ export default {
                 '40%': { transform: 'translateX(0%)' },
                 '80%': { transform: 'translateX(-10%)' },
                 '100%': { transform: 'translateX(100%)' },
+            },
+            // banner ani =========================================
+            fadeSlideUp: {
+              '0%': { opacity: 0, transform: 'translateY(50px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
             },
         },
         colors: {

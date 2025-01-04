@@ -38,6 +38,11 @@ class Navigation extends Component
                 'subLinks' => [],
             ],
             [
+                'name' => 'Events',
+                'url' => url('/events'),
+                'subLinks' => [],
+            ],
+            [
                 'name' => 'Gallery',
                 'url' => url('/gallery'),
                 'subLinks' => [],
