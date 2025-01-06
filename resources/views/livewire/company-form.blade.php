@@ -1,4 +1,4 @@
-<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-6" wire:submit.prevent="{{ $isUpdate ? 'update' : 'store' }}">
+<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-6" wire:submit.prevent="saveCompany">
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2">Member</label>
         <select wire:model="member_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">

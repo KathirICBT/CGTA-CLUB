@@ -13,19 +13,20 @@
     <div class="mb-6">
         <ul class="flex border-b">
             <li class="mr-6">
-                <button class="text-blue-500 font-semibold py-2 px-4 hover:text-blue-700"
+                <button class="{{ !$isFormVisible ? 'text-blue-500' : 'text-gray-500' }} font-semibold py-2 px-4"
                         wire:click="showList">
                     Companies List
                 </button>
             </li>
             <li>
-                <button class="text-blue-500 font-semibold py-2 px-4 hover:text-blue-700"
+                <button class="{{ $isFormVisible ? 'text-blue-500' : 'text-gray-500' }} font-semibold py-2 px-4"
                         wire:click="showForm">
                     Add Company
                 </button>
             </li>
         </ul>
     </div>
+    
 
     <!-- Conditional Rendering -->
     @if ($isFormVisible)
@@ -52,10 +53,11 @@
                             <td class="p-3">{{ $company->member->first_name ?? 'N/A' }}</td>
                             <td class="p-3">
                                 <!-- Edit Button -->
-                                <button wire:click="edit({{ $company->id }})"
+                                <button wire:click="showForm({{ $company->id }})"
                                         class="text-yellow-500 hover:text-yellow-700 mx-1">
                                     ✏️
                                 </button>
+                            
                                 <!-- Delete Button -->
                                 <button wire:click="delete({{ $company->id }})"
                                         class="text-red-500 hover:text-red-700 mx-1">
