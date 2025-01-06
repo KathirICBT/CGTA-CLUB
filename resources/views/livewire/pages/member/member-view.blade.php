@@ -23,7 +23,7 @@
         </nav>
         <!-- Cover Photo Section -->
         <div class="relative border">
-            <img src="/storage/assets/img2.png" alt="Cover Photo" class="w-full h-96 object-cover rounded-lg">
+            <img src="/storage/app/public/assets/img.png" alt="Cover Photo" class="w-full h-96 object-cover rounded-lg">
 {{--            <button class="absolute top-2 right-2 px-4 py-2 bg-gray-800 text-white text-sm rounded">Edit Cover</button>--}}
         </div>
         <div class="rounded-lg shadow-md p-3 -mt-24 bg-white">

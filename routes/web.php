@@ -64,7 +64,7 @@ Route::get('/member/member-form/{id?}', MemberForm::class)->name('member-form');
 Route::get('/member/member-view/{memberId}', MemberView::class)->name('member-view');
 
 Route::get('/events', Events::class)->name('events');
-Route::get('/events/event-form', EventForm::class)->name('event-form');
+Route::get('/events/event-form/{id?}', EventForm::class)->name('event-form');
 
 Route::get('/settings', Settings::class)->name('settings');
 // Route::get('/company', Company::class)->name('company');

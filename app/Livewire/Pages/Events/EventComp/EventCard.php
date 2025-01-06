@@ -3,25 +3,19 @@
 namespace App\Livewire\Pages\Events\EventComp;
 
 use Illuminate\Support\Facades\Redirect;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
-class EventTableComponent extends Component
+class EventCard extends Component
 {
-    // Property to hold data (usually passed from parent)
     public $events = [];
 
-    // Property to hold table headers, can be defined based on data
-    public array $headers = [];
-
-    #[On('edit')]
-    public function edit($id)
+    public function editMember($id)
     {
         // Log the ID and form type for testing
-        error_log("Dispatching event-edit with ID: $id");
+        error_log("Dispatching member-edit with ID: $id");
 
         // Redirect to the MemberForm route with the ID as a parameter
-        return Redirect::route('event-form', ['id' => $id]);
+        return Redirect::route('member-form', ['id' => $id]);
     }
 
     public function deleteMember($id): void
@@ -33,12 +27,12 @@ class EventTableComponent extends Component
         $this->dispatch('member-delete', id: $id);
     }
 
-    public function mount($events, $headers = []): void
+    // If you want to handle sorting or other actions, you can add methods or properties for those too.
+    public function mount($events = null): void
     {
-        // Initialize data and headers
-        $this->datas = $events;
-        $this->headers = $headers;
+        error_log('mount method in MemberCard is triggered');
 
+        // Initialize data and headers
         $this->events = collect($events)->map(function ($event) {
             $event['photo_url'] = isset($event['photo']) && $event['photo']
                 ? (str_contains($event['photo'], 'http') ? $event['photo'] : url('storage/' . $event['photo']))
@@ -47,13 +41,14 @@ class EventTableComponent extends Component
         });
 
         // Log the data along with its type
-        foreach ($this->datas as $key => $data) {
-            error_log("Key: $key, Type: " . gettype($data) . ", Value: " . print_r($data, true));
+        foreach ($this->events as $key => $event) {
+            error_log("Key: $key, Type: " . gettype($event) . ", Value: " . print_r($event, true));
         }
+
     }
 
     public function render()
     {
-        return view('livewire.pages.events.event-comp.event-table-component');
+        return view('livewire.pages.events.event-comp.event-card');
     }
 }

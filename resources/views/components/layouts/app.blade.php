@@ -179,13 +179,13 @@
         <div class="main-content flex-grow transition-all duration-300">
             <!-- Topbar -->
             <div
-                class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">                
+                class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
 
                 <!-- CONNECTING GTA Branding -->
-                <div class="text-xl font-bold text-gray-700 tracking-wide flex flex-col items-start">                   
+                <div class="text-xl font-bold text-gray-700 tracking-wide flex flex-col items-start">
                     <span>Connecting GTA</span>
                     <small class="text-sm font-normal text-gray-500">Join the Network</small>
-                </div>                
+                </div>
 
                 <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"></div>
 
@@ -239,7 +239,7 @@
 </html>
  --}}
 
-{{-- 
+{{--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -378,7 +378,7 @@
 </html> --}}
 
 
-{{-- 
+{{--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -543,7 +543,7 @@
         <div class="group lg:fixed lg:inset-y-0 lg:z-50 flex flex-col bg-gray-900 transition-all duration-300 ease-in-out" :class="{ 'w-64': isCollapsed, 'w-20': !isCollapsed }" @mouseover="isCollapsed = true" @mouseleave="isCollapsed = false">
             <div class="flex flex-col grow gap-y-5 overflow-y-auto pb-4">
                 <div class="flex justify-center pt-10 h-16 shrink-0 items-center">
-                    <img class="h-20 w-auto" src="/storage/assets/img.png" alt="Your Company">
+                    <img class="h-20 w-auto" src="/storage/app/public/assets/img.png" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col p-3">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -653,7 +653,7 @@
                 </div>
             </div>
             <main>
-                <div class="overflow-hidden">
+                <div class="overflow-auto">
                     {{ $slot }}
                 </div>
             </main>

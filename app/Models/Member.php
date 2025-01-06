@@ -23,9 +23,8 @@ class Member extends Model
         'photo',
         'bio',
         'status',
-        'membership_level', // New attribute
-        'password', // New attribute
-        'renewal_date', // New attribute
+        'password',
+        'leader',
     ];
 
     // Cast the 'status' attribute to the MemberStatus enum

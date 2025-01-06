@@ -9,7 +9,7 @@ use Livewire\Component;
 class MemberTableComponent extends Component
 {
     // Property to hold data (usually passed from parent)
-    public $datas = [];
+    public $members = [];
 
     // Property to hold table headers, can be defined based on data
     public array $headers = [];
@@ -35,15 +35,15 @@ class MemberTableComponent extends Component
     }
 
     // If you want to handle sorting or other actions, you can add methods or properties for those too.
-    public function mount($datas, $headers = []): void
+    public function mount($members, $headers = []): void
     {
         // Initialize data and headers
-        $this->datas = $datas;
+        $this->members = $members;
         $this->headers = $headers;
 
         // Log the data along with its type
-        foreach ($this->datas as $key => $data) {
-            error_log("Key: $key, Type: " . gettype($data) . ", Value: " . print_r($data, true));
+        foreach ($this->members as $key => $member) {
+            error_log("Key: $key, Type: " . gettype($member) . ", Value: " . print_r($member, true));
         }
     }
 

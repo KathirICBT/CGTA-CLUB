@@ -38,16 +38,17 @@ class EventForm extends Component
     // Validation rules
 
 
-    public function mount($eventId = null)
+    public function mount($id = null)
     {
         // Manually access the query parameter
-        $this->eventId = request()->query('eventId');
+
 
         // Log or handle the memberId as needed
-        error_log('received eventId from query: ' . $this->eventId);
+        error_log('received eventId from event table: ' . $id);
 
-        if ($this->eventId) {
-            $this->show($this->eventId);
+        $this->eventId = $id;
+        if ($id) {
+            $this->show($id);
         }
     }
 
