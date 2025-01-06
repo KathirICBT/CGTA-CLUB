@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Events\Events;
+use App\Livewire\Pages\Events\EventForm;
 use App\Livewire\Pages\Member\Member;
 use App\Livewire\Pages\Member\MemberForm;
 use App\Livewire\Pages\Member\MemberView;
@@ -9,6 +11,8 @@ use App\Livewire\PackageService;
 use App\Livewire\Package;
 use App\Livewire\Company;
 use App\Livewire\Region;
+use App\Livewire\UserPanel\UserComponent;
+use App\Livewire\UserPanel\LandingPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PackageController;
@@ -56,8 +60,12 @@ Route::apiResource('packages', PackageController::class);
 
 Route::get('/', Dashboard::class)->name('dashboard');
 Route::get('/member', Member::class)->name('member');
-Route::get('/member/member-form', MemberForm::class)->name('member-form');
+Route::get('/member/member-form/{id?}', MemberForm::class)->name('member-form');
 Route::get('/member/member-view/{memberId}', MemberView::class)->name('member-view');
+
+Route::get('/events', Events::class)->name('events');
+Route::get('/events/event-form', EventForm::class)->name('event-form');
+
 Route::get('/settings', Settings::class)->name('settings');
 // Route::get('/company', Company::class)->name('company');
 
@@ -70,3 +78,13 @@ Route::get('/packages', Package::class)->name('packages');
 
 
 Route::get('/package-service', PackageService::class)->name('package-service');
+
+
+
+// USER PANEL START ===============================================================================================
+
+Route::get('/user-panel', UserComponent::class)->name('user-panel');
+Route::get('/landing-page', LandingPage::class)->name('landing-page');
+
+
+// USER PANEL END =================================================================================================

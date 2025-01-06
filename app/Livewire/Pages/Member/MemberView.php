@@ -16,12 +16,9 @@ class MemberView extends Component
     public string $bio;
     public $join_date;
     public string $status = '';
-    public string $membership_level = '';
     public string $password;
     public $photo;
     public $photoUrl;
-    public $renewal_date;
-
     public function mount($memberId = null)
     {
         error_log('mount is triggered from MemberView.php');
@@ -54,10 +51,8 @@ class MemberView extends Component
             $this->bio = $member['bio'] ?? '';
             $this->join_date = $member['join_date'] ?? null;
             $this->status = $member['status'] ?? '';
-            $this->membership_level = $member['membership_level'] ?? '';
             $this->password = ''; // Do not prepopulate passwords for security reasons
             $this->photoUrl = $member['photo'] ? asset('storage/' . $member['photo']) : null;
-            $this->renewal_date = $member['renewal_date'] ?? null;
 
             error_log('photo file or url: ' . $member['photo'] ?? '' );
             error_log('members successfully fetched from database ');

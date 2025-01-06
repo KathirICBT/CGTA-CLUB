@@ -2,8 +2,7 @@
 {{--    --}}{{-- The whole world belongs to you. --}}
 {{--</div>--}}
 
-
-<div class="border bg-gray-200 h-screen overflow-auto">
+<div class="border bg-gray-200 min-h-screen">
     <!-- Profile Section -->
     <div class="w-full mx-auto p-6 ">
         <nav class="flex items-center text-gray-600 text-md mb-4">
@@ -41,24 +40,12 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h1 class="text-2xl text-black font-bold">
-                        {{ $first_name }} {{ $last_name }} |
-{{--                        <span class="text-md font-normal border border-black px-2 py-0.5 rounded-2xl--}}
-{{--                            {{ $status === 'Active' ? 'text-emerald-900 bg-emerald-200' : '' }}--}}
-{{--                            {{ $status === 'Inactive' ? 'text-red-900 bg-red-200' : '' }}--}}
-{{--                            {{ $status === 'Waiting' ? 'text-yellow-900 bg-yellow-200' : '' }}">--}}
-{{--                            {{ $status }}--}}
-{{--                        </span>--}}
-                    </h1>
-                    <p class="text-gray-600 text-lg">{{ $membership_level }}</p>
-                </div>
             </div>
             <!-- Tabs -->
             <div class="mt-6 flex justify-center items-center ">
                 <ul class="flex border-b">
                     <li class="-mb-px mr-1">
-                        <a href="#" class="bg-white inline-block py-2 px-4 text-teal-500 font-semibold border-b-2 border-teal-500">Activity</a>
+                        <a href="#" class="bg-white inline-block py-2 px-4 text-teal-500 font-semibold boActivityrder-b-2 border-teal-500">Activity</a>
                     </li>
                     <li class="mr-1">
                         <a href="#" class="bg-white inline-block py-2 px-4 text-gray-600 hover:text-teal-500">Information</a>
@@ -110,12 +97,6 @@
                         </dd>
                     </div>
                     <div class="flex flex-col">
-                        <label class="font-semibold text-gray-700">Renewal Date:</label>
-                        <dd class="text-black font-semibold">
-                            {{$renewal_date}}
-                        </dd>
-                    </div>
-                    <div class="flex flex-col">
                         <label class="font-semibold text-gray-700">Company Website:</label>
                         <dd class="text-black font-semibold">
                             <a href="#" class="text-teal-500">https://www.hailio.com</a>
@@ -127,11 +108,6 @@
             <!-- Work Card -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-lg font-bold">Work</h2>
-{{--                <p><span class="font-semibold">Job Title:</span> Internal Communications Manager</p>--}}
-{{--                <p><span class="font-semibold">Company:</span> Hailio Inc.</p>--}}
-{{--                <p><span class="font-semibold">Department:</span> Communications</p>--}}
-{{--                <p><span class="font-semibold">Current Location:</span> New York City, New York</p>--}}
-{{--                <p><span class="font-semibold">Office:</span> Remote</p>--}}
             </div>
         </div>
     </div>

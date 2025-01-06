@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EventVisibility;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,7 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
+        'eventCategory',
         'start_date',
         'start_time',
         'end_date',
@@ -25,7 +27,13 @@ class Event extends Model
         'event_url',
         'location',
         'user_limit',
-        'paid_free', 
-        'user_limit_per_registrants'
+        'paid_free',
+        'user_limit_per_registrants',
+        'photo',
+    ];
+
+    // Cast the 'visibility' attribute to the EventVisibility enum
+    protected $casts = [
+        'visibility' => EventVisibility::class,
     ];
 }
