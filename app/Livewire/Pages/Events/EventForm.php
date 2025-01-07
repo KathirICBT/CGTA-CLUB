@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Events;
 use App\Enums\EventVisibility;
 use App\Models\Event;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -114,16 +115,16 @@ class EventForm extends Component
 
                 $this->banner = 'Event updated successfully!';
                 $this->bannerStyle = 'success'; // You can use 'danger', 'warning', etc.
-//                session()->flash('message', 'Event updated successfully!');
+
+                return Redirect::route('events');
+
             } else {
                 // Create operation
                 Event::create($data);
                 session()->flash('message', 'Event created successfully!');
-            }
+                return Redirect::route('events');
 
-            // Success message
-            session()->flash('message', 'Event created successfully!');
-//            return redirect()->route('events'); // Redirect after successful event creation
+            }
 
         } catch (\Exception $e) {
             // Handle any errors during the event creation process

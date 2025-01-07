@@ -3,28 +3,21 @@
 namespace App\Livewire\Pages\Events\EventComp;
 
 use Illuminate\Support\Facades\Redirect;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class EventCard extends Component
 {
     public $events = [];
 
-    public function editMember($id)
+    #[On('edit')]
+    public function editEdit($id)
     {
         // Log the ID and form type for testing
-        error_log("Dispatching member-edit with ID: $id");
+        error_log("Dispatching event-edit with ID: $id");
 
         // Redirect to the MemberForm route with the ID as a parameter
-        return Redirect::route('member-form', ['id' => $id]);
-    }
-
-    public function deleteMember($id): void
-    {
-        // Log the ID for testing
-        error_log("Dispatching member-delete with ID: $id");
-
-        // Dispatch an event with the member's ID
-        $this->dispatch('member-delete', id: $id);
+        return Redirect::route('event-form', ['id' => $id]);
     }
 
     // If you want to handle sorting or other actions, you can add methods or properties for those too.

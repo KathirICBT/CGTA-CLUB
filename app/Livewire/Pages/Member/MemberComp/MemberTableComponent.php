@@ -24,15 +24,6 @@ class MemberTableComponent extends Component
         return Redirect::route('member-form', ['id' => $id]);
     }
 
-//    #[On('deleteMember')]
-    public function deleteMember($id): void
-    {
-        // Log the ID for testing
-        error_log("Dispatching member-delete with ID: $id");
-
-        // Dispatch an event with the member's ID
-        $this->dispatch('member-delete', id: $id);
-    }
 
     // If you want to handle sorting or other actions, you can add methods or properties for those too.
     public function mount($members, $headers = []): void
