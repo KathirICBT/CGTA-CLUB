@@ -19,7 +19,7 @@ class Events extends Component
     public $banner;
     public $bannerStyle;
     public $headers = [
-        'Image',
+//        'Image',
         'Title',
 //        'description',
         'Category',
@@ -33,8 +33,8 @@ class Events extends Component
         'Closing Date',
 //        'event_url',
 //        'location',
-        'User Limit',
         'Paid / Free',
+        'User Limit',
         'Registrants Guests',
         'Actiion'
     ];
@@ -50,37 +50,15 @@ class Events extends Component
 
         try {
             // Fetch all events from the database
-            $this->events =  Event::all();
-
             // Log the type of $events to see if it's a Collection or array
             error_log('Type of $events: ' . gettype($this->events));
 
-            // Loop through each event and combine photo field into photo_url
-            $this->events = $this->events->map(function ($event) {
-                // Ensure each event has a full photo URL
-                $event->photo_url = $event->photo ? (str_contains($event->photo, 'http') ? $event->photo : url('storage/' . $event->photo)) : null;
+            $this->events = Event::all()->map(function ($event) {
+                $event['photo_url'] = isset($event['photo']) && $event['photo']
+                    ? (str_contains($event['photo'], 'http') ? $event['photo'] : url('storage/' . $event['photo']))
+                    : null;
                 return $event;
             });
-
-            // Create a new filtered array with only preferred fields
-            $this->filteredEvents = $this->events->map(function ($event) {
-                return [
-                    'photo_url' => $event['photo_url'], // Include photo URL
-                    'id' => $event['id'], // Include ID
-//                    'full_name' => $event['first_name'] . ' ' . $event['last_name'], // Combine first and last name
-                    'title' => $event['title'], // Include email
-                    'eventCategory' => $event['eventCategory'], // Include email
-                    'start_date' => $event['start_date'], // Include email
-                    'start_time' => $event['start_time'], // Include email
-                    'visibility' => $event['visibility'], // Include email
-                    'release_date' => $event['release_date'], // Include email
-                    'closing_date' => $event['closing_date'], // Include email
-                    'paid_free' => $event['paid_free'], // Include status
-                    'user_limit' => $event['user_limit'], // Include status
-                    'user_limit_per_registrants' => $event['user_limit_per_registrants'], // Include status
-                ];
-            });
-
 
             // Log the events as a JSON string to make sure the data is being retrieved correctly
             error_log('Retrieved Events: ' . json_encode($this->events));

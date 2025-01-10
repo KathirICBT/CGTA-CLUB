@@ -24,6 +24,7 @@ class MemberForm extends Component
     public string $password;
     public $photo;
     public $photoUrl;
+    public bool $leader = false; // New attribute for leader
 
 
     public $statusOptions = ['Active', 'Inactive', 'Waiting']; // Array of options
@@ -83,6 +84,7 @@ class MemberForm extends Component
                 'date_of_birth' => 'required|date',
                 'join_date' => 'required|date',
                 'status' => 'required|string',
+                'leader' => 'boolean',
                 'password' => $this->memberId ? 'nullable|string|min:6' : 'required|string|min:6',
             ]);
 
@@ -96,6 +98,7 @@ class MemberForm extends Component
                 'join_date' => $this->join_date,
                 'status' => $this->status,
                 'password' => $this->password,
+                'leader' => $this->leader,
                 'photo' => $this->photo ? $this->photo->store('photos', 'public') : null,
             ];
             // Convert $data to a Request object
@@ -131,7 +134,7 @@ class MemberForm extends Component
         }
     }
 
-
+    #[On('edit')]
     public function show($id)
     {
         error_log('mount is triggered from MemberForm.php');
@@ -153,6 +156,7 @@ class MemberForm extends Component
             $this->bio = $member['bio'] ?? '';
             $this->join_date = $member['join_date'] ?? null;
             $this->status = $member['status'] ?? '';
+            $this->leader = $member['leader'] ?? '';
             $this->password = ''; // Do not prepopulate passwords for security reasons
             $this->photoUrl = $member['photo'] ? asset('storage/' . $member['photo']) : null;
             error_log('photo file or url: ' . $member['photo'] ?? '' );

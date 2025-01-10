@@ -135,6 +135,15 @@
                     @error('join_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
+            <div class="mt-4 flex items-center">
+                <input type="checkbox" id="leader" wire:model="leader"
+                       class="h-5 w-5 text-sky-600 border-gray-300 rounded focus:ring-2 focus:ring-sky-500" />
+                <label for="leader" class="ml-3 block text-md font-semibold leading-6 text-gray-500">
+                    Grant Board of Directors Privilege
+                </label>
+            </div>
+            <!-- Leader Checkbox -->
+
             @if (!$memberId) <!-- Show password field only when creating a new member -->
                 <div>
                     <label for="password" class="block text-md font-semibold leading-6 text-gray-500">

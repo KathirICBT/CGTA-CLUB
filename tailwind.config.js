@@ -22,6 +22,7 @@ export default {
             poppins:['Poppins', 'sans-serif'],
             palanquin: ['Palanquin', 'sans-serif'],
             montserrat: ['Montserrat', 'sans-serif'],
+            mono: ['Roboto Mono', 'monospace'],
         },
         animation:{
             'alert-show': 'showAlert 1s ease forwards',

@@ -57,6 +57,7 @@ class MemberController extends Controller
                 ],
                 'bio' => 'nullable|string',
                 'status' => 'required|string',
+                'leader' => 'boolean',
                 'password' => 'required|string|min:8',
             ]);
 
@@ -99,6 +100,7 @@ class MemberController extends Controller
             'photo' =>  $photoPath,
             'bio' => $request->bio,
             'status' => $request->status,
+            'leader' => $request->leader,
             'password' => bcrypt($request->password),
         ]);
 
@@ -171,6 +173,7 @@ class MemberController extends Controller
             ],
             'bio' => 'nullable|string',
             'status' => 'required|string',
+            'leader' => 'boolean',
         ];
 
         // Conditionally add password validation for update
@@ -224,7 +227,7 @@ class MemberController extends Controller
         // Update member fields
         $dataToUpdate = $request->only([
             'first_name', 'last_name', 'email', 'phone',
-            'date_of_birth', 'join_date', 'bio', 'status'
+            'date_of_birth', 'join_date', 'bio', 'status', 'leader'
 
         ]);
         if ($request->filled('password')) {

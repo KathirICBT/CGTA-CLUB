@@ -105,22 +105,6 @@ class Member extends Component
                 return $member;
             });
 
-            // Create a new filtered array with only preferred fields
-            $this->filteredMembers = $this->members->map(function ($member) {
-                return [
-                    'photo_url' => $member['photo_url'], // Include photo URL
-                    'id' => $member['id'], // Include ID
-//                    'full_name' => $member['first_name'] . ' ' . $member['last_name'], // Combine first and last name
-                    'first_name' => $member['first_name'], // Include email
-                    'last_name' => $member['last_name'], // Include email
-                    'email' => $member['email'], // Include email
-                    'phone' => $member['phone'], // Include email
-                    'date_of_birth' => $member['date_of_birth'], // Include email
-                    'joinedDate' => $member['join_date'], // Include email
-                    'status' => $member['status'], // Include status
-                ];
-            });
-
 
 //            dump($this->members);
             error_log('members successfully fetched from database ');

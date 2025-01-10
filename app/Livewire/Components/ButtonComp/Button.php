@@ -10,13 +10,15 @@ class Button extends Component
     public bool $icon = false; // Whether to show an icon
     public ?string $text = null; // Optional button text
     public $id;
+    public ?string $href = null;  // Optional link for the button
 
-    public function mount($type, $icon = null, $text = null, $id = null)
+    public function mount($type, $icon = null, $text = null, $id = null, $href = null)
     {
         $this->type = $type;
         $this->icon = $icon;
         $this->text = $text;
         $this->id = $id;
+        $this->href = $href; // Initialize href
 
         // Debugging: Log the received ID
         error_log('Button ID: ' . $this->id);
