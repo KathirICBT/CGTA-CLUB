@@ -9,7 +9,8 @@ use App\Livewire\Pages\Member\MemberView;
 use App\Livewire\Pages\Settings;
 use App\Livewire\PackageService;
 use App\Livewire\Package;
-use App\Livewire\Company;
+use App\Livewire\Pages\Company\Company;
+use App\Livewire\Pages\Company\CompanyForm;
 use App\Livewire\Region;
 use App\Livewire\UserPanel\UserComponent;
 use App\Livewire\UserPanel\LandingPage;
@@ -72,6 +73,15 @@ Route::get('/settings', Settings::class)->name('settings');
 
 
 Route::get('/company', Company::class)->name('company');
+Route::get('/company/company-form', CompanyForm::class)->name('company-form.create');
+// Route::get('/company/company-form/{companyId}', [CompanyForm::class, 'edit'])->name('company-form.edit');
+// Define a route with a companyId parameter
+// Route::get('/company/{companyId}', Company::class)->name('company.delete');
+
+
+Route::get('/company/company-form/{companyId}',CompanyForm::class)->name('company-form.edit');
+
+
 Route::get('/services', Service::class)->name('services');
 Route::get('/regions', Region::class)->name('regions');
 Route::get('/packages', Package::class)->name('packages');

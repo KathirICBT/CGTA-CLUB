@@ -19,12 +19,12 @@ class Button extends Component
         $this->id = $id;
 
         // Debugging: Log the received ID
-        error_log('Button ID: ' . $this->id);
+        // error_log('Button ID: ' . $this->id);
     }
 
     public function emitAction()
     {
-        error_log('emitAction is triggered: ');
+        // error_log('emitAction is triggered: ');
         error_log("ID being emitted: $this->id");
 
         // Emit the action based on the button type
