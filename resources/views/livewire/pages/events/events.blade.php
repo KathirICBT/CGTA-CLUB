@@ -60,12 +60,9 @@
 
         <!-- Card Component -->
         @if(!$isTableView)
-            <div key="card-view">
-                <livewire:pages.events.event-comp.event-card
-                    :events="$events"
-                />
-            </div>
-
+            <livewire:pages.events.event-comp.event-card
+                :events="$events"
+            />
         @endif
 
     </div>

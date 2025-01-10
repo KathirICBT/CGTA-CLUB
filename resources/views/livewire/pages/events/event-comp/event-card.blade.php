@@ -1,9 +1,9 @@
 {{--<div>--}}
 {{--    --}}{{-- Close your eyes. Count to one. That is how long forever feels. --}}
 {{--</div>--}}
-<div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 mt-4 ">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-4 ">
     @foreach ($events as $event)
-        <div class=" mx-auto bg-white shadow-md overflow-hidden ">
+        <div class="bg-white shadow-md overflow-hidden ">
             <div class="relative">
                 <!-- Image Section -->
                 <div class="relative">
