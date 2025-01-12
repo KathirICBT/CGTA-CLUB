@@ -52,6 +52,7 @@
 
                 <!-- Venue -->
                 <p class="text-sm text-gray-600 mb-4">{{ $event['description'] }}</p>
+                <p class="text-lg text-gray-600 mb-4">Allowed: {{ $event['visibility'] }}</p>
 
                 <!-- Tags -->
                 <div class="flex space-x-2 text-xs text-gray-500">

@@ -78,8 +78,13 @@
                     Event Category
                 </label>
                 <div class="mt-1">
-                    <input type="text" id="eventCategory" wire:model="eventCategory" placeholder="Category"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                    <select id="eventCategory" wire:model="eventCategory"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6">
+                        <option value="">Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                        @endforeach
+                    </select>
                     @error('eventCategory') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>

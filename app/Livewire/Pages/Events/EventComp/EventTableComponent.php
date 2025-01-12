@@ -24,14 +24,6 @@ class EventTableComponent extends Component
         return Redirect::route('event-form', ['id' => $id]);
     }
 
-    public function deleteMember($id): void
-    {
-        // Log the ID for testing
-        error_log("Dispatching member-delete with ID: $id");
-
-        // Dispatch an event with the member's ID
-        $this->dispatch('member-delete', id: $id);
-    }
 
     public function mount($events, $headers = []): void
     {

@@ -576,6 +576,12 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('event-category') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-list h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Event Category</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ route('member') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
                                         <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
                                         <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Member</span>

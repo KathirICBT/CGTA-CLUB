@@ -1,8 +1,11 @@
 <?php
 
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\Events\EventCategoryComp\EventCategoryFormComponent;
 use App\Livewire\Pages\Events\Events;
+use App\Livewire\Pages\Events\EventCategories;
 use App\Livewire\Pages\Events\EventForm;
+use App\Livewire\Pages\Events\EventView;
 use App\Livewire\Pages\Member\Member;
 use App\Livewire\Pages\Member\MemberForm;
 use App\Livewire\Pages\Member\MemberView;
@@ -65,6 +68,11 @@ Route::get('/member/member-view/{memberId}', MemberView::class)->name('member-vi
 
 Route::get('/events', Events::class)->name('events');
 Route::get('/events/event-form/{id?}', EventForm::class)->name('event-form');
+Route::get('/event/event-view/{eventId}', EventView::class)->name('event-view');
+
+Route::get('/eventCategory/{id?}', EventCategories::class)->name('event-category');
+Route::get('/eventCategoryForm', EventCategoryFormComponent::class)->name('event-categoryForm');
+
 
 Route::get('/settings', Settings::class)->name('settings');
 // Route::get('/company', Company::class)->name('company');

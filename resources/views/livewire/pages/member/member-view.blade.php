@@ -45,10 +45,10 @@
             <div class="mt-6 flex justify-center items-center ">
                 <ul class="flex border-b">
                     <li class="-mb-px mr-1">
-                        <a href="#" class="bg-white inline-block py-2 px-4 text-teal-500 font-semibold boActivityrder-b-2 border-teal-500">Activity</a>
+                        <a href="#" class="bg-white inline-block py-2 px-4 text-teal-500 font-semibold boActivityrder-b-2 border-teal-500">Information</a>
                     </li>
                     <li class="mr-1">
-                        <a href="#" class="bg-white inline-block py-2 px-4 text-gray-600 hover:text-teal-500">Information</a>
+                        <a href="#" class="bg-white inline-block py-2 px-4 text-gray-600 hover:text-teal-500">Activity</a>
                     </li>
                 </ul>
             </div>
