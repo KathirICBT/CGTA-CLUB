@@ -15,7 +15,7 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
-        'eventCategory',
+        'event_category_id',
         'start_date',
         'start_time',
         'end_date',
@@ -36,4 +36,10 @@ class Event extends Model
     protected $casts = [
         'visibility' => EventVisibility::class,
     ];
+
+    // Define relationship with EventCategories
+    public function category()
+    {
+        return $this->belongsTo(EventCategory::class, 'event_category_id');
+    }
 }

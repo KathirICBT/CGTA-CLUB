@@ -57,6 +57,7 @@ class Events extends Component
                 $event['photo_url'] = isset($event['photo']) && $event['photo']
                     ? (str_contains($event['photo'], 'http') ? $event['photo'] : url('storage/' . $event['photo']))
                     : null;
+                $event['category_name'] = $event->category ? $event->category->name : 'N/A';
                 return $event;
             });
 

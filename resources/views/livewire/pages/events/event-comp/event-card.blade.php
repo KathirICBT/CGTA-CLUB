@@ -51,7 +51,8 @@
                 <h2 class="text-lg font-bold text-gray-900 mb-1">{{ $event['title'] }}</h2>
 
                 <!-- Venue -->
-                <p class="text-sm text-gray-600 mb-4">{{ $event['description'] }}</p>
+                <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $event['description'] }}</p>
+                <p class="text-lg text-gray-600 mb-4">Allowed: {{ $event['visibility'] }}</p>
 
                 <!-- Tags -->
                 <div class="flex space-x-2 text-xs text-gray-500">

@@ -4,6 +4,7 @@ namespace App\Livewire\Pages\Events;
 
 use App\Enums\EventVisibility;
 use App\Models\Event;
+use App\Models\EventCategory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
@@ -37,7 +38,7 @@ class EventForm extends Component
     public $banner;
     public $bannerStyle;
     // Validation rules
-
+    public $categories = [];
 
     public function mount($id = null)
     {
@@ -51,6 +52,8 @@ class EventForm extends Component
         if ($id) {
             $this->show($id);
         }
+
+        $this->getEventCategory();
     }
 
     public function submitForm()
@@ -58,7 +61,7 @@ class EventForm extends Component
         $this-> rules = [
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:500',
-            'eventCategory' => 'required|string|max:100',
+            'eventCategory' => 'required|exists:event_categories,id',
             'start_date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_date' => 'required|date',
@@ -89,7 +92,7 @@ class EventForm extends Component
             $data = [
                 'title' => $this->title,
                 'description' => $this->description,
-                'eventCategory' => $this->eventCategory,
+                'event_category_id' => $this->eventCategory,
                 'start_date' => $this->start_date,
                 'start_time' => $this->start_time,
                 'end_date' => $this->end_date,
@@ -147,7 +150,7 @@ class EventForm extends Component
             // Map the event data to component fields
             $this->title = $event->title ?? '';
             $this->description = $event->description ?? '';
-            $this->eventCategory = $event->eventCategory ?? '';
+            $this->eventCategory = $event->event_category_id ?? '';
             $this->start_date = $event->start_date ?? null;
             $this->start_time = Carbon::parse($event->start_time)->format('H:i'); // Ensure time format
             $this->end_date = $event->end_date ?? null;
@@ -180,6 +183,29 @@ class EventForm extends Component
         } catch (\Exception $e) {
             session()->flash('error', 'Error fetching event: ' . $e->getMessage());
             error_log('Error fetching event: ' . $e->getMessage());
+        }
+    }
+
+    public function getEventCategory()
+    {
+        error_log('categories.php getEventCategory() is triggered');
+
+        try {
+
+            error_log('Type of $categorys: ' . gettype($this->categories));
+
+            // Fetch and map categories directly
+            $this->categories = EventCategory::all()->map(function ($category) {
+                return $category;
+            });
+
+            // Log the categories as a JSON string to make sure the data is being retrieved correctly
+            error_log('Retrieved categoriess: ' . json_encode($this->categories));
+
+
+        } catch (\Exception $e) {
+            // Log the error message if something goes wrong
+            error_log('Error fetching categories: ' . $e->getMessage());
         }
     }
 

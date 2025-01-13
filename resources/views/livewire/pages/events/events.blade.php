@@ -4,6 +4,9 @@
 
 
 <div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-hidden min-h-screen w-full">
+    <div class="p-4 bg-white shadow rounded-lg mb-4">
+        <h2 class="text-lg font-bold">Event Session</h2>
+    </div>
     <livewire:components.notification.notification :banner="$banner" :bannerStyle="$bannerStyle" wire:key="notification-{{ now() }}" />
     <div class="md:flex md:items-center md:justify-between bg-transparent md:p-4 px-5 rounded-xl">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">

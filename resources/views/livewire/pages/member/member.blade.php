@@ -3,6 +3,9 @@
 {{--</div>--}}
 
 <div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-auto h-screen">
+    <div class="p-4 bg-white shadow rounded-lg mb-4">
+        <h2 class="text-lg font-bold">Member Session</h2>
+    </div>
     <!-- Notification Component -->
     <livewire:components.notification.notification
         :banner="$banner"
