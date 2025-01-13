@@ -541,7 +541,7 @@
     <title>{{ $title ?? 'CGTA Admin' }}</title>
 </head>
 
-{{-- <body class="font-poppins overflow-x-hidden">
+<body class="font-poppins overflow-x-hidden">
     <div x-data="{ isCollapsed: false }" class="flex">
         <!-- Sidebar -->
         <div class="group lg:fixed lg:inset-y-0 lg:z-50 flex flex-col bg-gray-900 transition-all duration-300 ease-in-out" :class="{ 'w-64': isCollapsed, 'w-20': !isCollapsed }" @mouseover="isCollapsed = true" @mouseleave="isCollapsed = false">
@@ -555,12 +555,12 @@
                             <ul role="list" class="space-y-3 py-4 px-4">
 
 
-                                <!-- <li>
+                                {{-- <li>
                                     <a href="{{ route('dashboard') }}" class="group flex items-center gap-x-3 p-2 text-lg font-thin text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
                                         <i class="fas fa-tachometer-alt h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
                                         <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Dashboard</span>
                                     </a>
-                                </li> -->
+                                </li> --}}
 
 
                                 <li>
@@ -674,136 +674,4 @@
     <livewire:alerts-component />
 </body>
 
-</html> --}}
-
-
-
-
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @vite('resources/css/app.css')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon.png') }}">
-    @livewireStyles
-    <title>{{ $title ?? 'CGTA Admin' }}</title>
-</head>
-
-<body class="font-poppins overflow-x-hidden">
-    <div x-data="{ isCollapsed: false }" class="flex h-screen">
-        <!-- Sidebar -->
-        <div class="transition-all duration-300 bg-gray-900"
-             :class="{ 'w-64': isCollapsed, 'w-20': !isCollapsed }"
-             @mouseover="isCollapsed = true"
-             @mouseleave="isCollapsed = false">
-            <div class="flex flex-col h-full">
-                <!-- Logo -->
-                <div class="flex justify-center py-5 bg-gray-900">
-                    <img 
-                        class="h-20 w-auto sm:h-24 md:h-28 lg:h-32 object-contain" 
-                        src="/storage/assets/img.png" 
-                        alt="Connecting GTA Logo">
-                </div>               
-
-                <!-- Navigation -->
-                <nav class="flex flex-col gap-y-5 px-4">
-                    <a href="{{ route('dashboard') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Dashboard</span>
-                    </a>
-                    <a href="{{ route('events') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Events</span>
-                    </a>
-                    <a href="{{ route('member') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-users"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Members</span>
-                    </a>
-                    <a href="{{ route('company') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-building"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Company</span>
-                    </a>
-                    <a href="{{ route('services') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-briefcase"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Services</span>
-                    </a>
-                    <a href="{{ route('regions') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Regions</span>
-                    </a>
-                    <a href="{{ route('packages') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-box"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Packages</span>
-                    </a>
-                    <a href="{{ route('package-service') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-box-open"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Package Service</span>
-                    </a>
-                    <a href="{{ route('settings') }}" class="group flex items-center gap-x-3 p-2 text-gray-400 hover:bg-blue-700 hover:text-white">
-                        <i class="fas fa-cogs"></i>
-                        <span :class="{ 'hidden': !isCollapsed, 'block': isCollapsed }">Settings</span>
-                    </a>
-                </nav>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="flex-grow bg-gray-100">
-            <!-- Topbar -->
-            <header class="flex items-center justify-between p-4 bg-white border-b shadow-sm">
-                <div>
-                    <h1 class="text-lg font-semibold text-gray-700">Connecting GTA</h1>
-                    <small class="text-gray-500">Join the Network</small>
-                </div>
-                <div class="flex items-center gap-x-4">
-                    <button class="text-gray-400 hover:text-gray-500">
-                        <i class="fas fa-bell"></i>
-                    </button>
-                    <div class="relative">
-                        <button type="button" class="flex items-center">
-                            <img class="h-8 w-8 rounded-full bg-gray-50" src="https://via.placeholder.com/64" alt="User Avatar">
-                            <span class="hidden lg:flex lg:items-center">
-                                <span class="ml-4 text-sm font-semibold leading-6 text-gray-900">Tom Cook</span>
-                                <i class="fas fa-chevron-down ml-2 text-gray-400"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Main Content Area -->
-            <main class="p-4">
-                {{ $slot }}
-            </main>
-        </div>
-    </div>
-
-    <!-- Styling for responsive design -->
-    <style>
-        @media (max-width: 768px) {
-            [x-data] {
-                position: fixed;
-                width: 100%;
-                height: auto;
-                z-index: 50;
-            }
-
-            .flex-grow {
-                margin-top: 64px;
-            }
-        }
-    </style>
-
-    @livewireScripts
-    <livewire:alerts-component />
-</body>
-
 </html>
-
