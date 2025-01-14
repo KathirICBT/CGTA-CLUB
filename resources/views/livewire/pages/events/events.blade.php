@@ -3,7 +3,7 @@
 {{--</div>--}}
 
 
-<div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 overflow-hidden min-h-screen w-full">
+<div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 min-h-screen w-full">
     <div class="p-4 bg-white shadow rounded-lg mb-4">
         <h2 class="text-lg font-bold">Event Session</h2>
     </div>
@@ -18,7 +18,7 @@
             />
         </div>
 
-        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none flex justify-center items-center space-x-5">
+        <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none flex justify-end items-center space-x-5">
 
             <div class="flex items-center bg-gray-100 rounded-xl space-x-4 p-2">
 
@@ -37,8 +37,6 @@
                 </div>
 
             </div>
-
-
             <button
                 type="button"
                 class="block rounded-md bg-emerald-600 px-3 py-1 text-center text-md font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
@@ -52,13 +50,11 @@
     <div class="mt-3 overflow-x-auto w-full border rounded-xl ">
         <!-- Card Component -->
         @if($isTableView)
-            <div key="table-view" class="overflow-x-auto bg-white">
-                <livewire:pages.events.event-comp.event-table-component
-                    :events="$events"
-                    :headers="$headers"
-                    routeName="event-form"
-                />
-            </div>
+            <livewire:pages.events.event-comp.event-table-component
+                :events="$events"
+                :headers="$headers"
+                routeName="event-form"
+            />
         @endif
 
         <!-- Card Component -->

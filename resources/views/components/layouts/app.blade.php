@@ -541,15 +541,15 @@
     <title>{{ $title ?? 'CGTA Admin' }}</title>
 </head>
 
-<body class="font-poppins overflow-x-hidden">
-    <div x-data="{ isCollapsed: false }" class="flex">
+<body class="font-poppins overflow-x-auto">
+    <div x-data="{ isSidebarOpen: false, isCollapsed: false }" class="flex">
         <!-- Sidebar -->
-        <div class="group lg:fixed lg:inset-y-0 lg:z-50 flex flex-col bg-gray-900 transition-all duration-300 ease-in-out" :class="{ 'w-64': isCollapsed, 'w-20': !isCollapsed }" @mouseover="isCollapsed = true" @mouseleave="isCollapsed = false">
+        <div class="hidden lg:block group lg:fixed lg:inset-y-0 lg:z-50 flex flex-col bg-gray-900 transition-all duration-300 ease-in-out" :class="{ 'w-64': isCollapsed, 'w-20': !isCollapsed }" @mouseover="isCollapsed = true" @mouseleave="isCollapsed = false">
             <div class="flex flex-col grow gap-y-5 overflow-y-auto pb-4">
                 <div class="flex justify-center pt-10 h-16 shrink-0 items-center">
                     <img class="h-20 w-auto" src="/storage/app/public/assets/img.png" alt="Your Company">
                 </div>
-                <nav class="flex flex-1 flex-col p-3">
+                <nav class="flex flex-1 flex-col p-3 overflow-hidden">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
                         <li>
                             <ul role="list" class="space-y-3 py-4 px-4">
@@ -630,10 +630,97 @@
             </div>
         </div>
 
+        <!-- Mobile Sidebar -->
+        <div
+            class="lg:hidden fixed inset-y-0 z-50 bg-gray-900 transition-all duration-300 ease-in-out"
+            :class="{ 'w-64': isSidebarOpen, 'w-0': !isSidebarOpen }"
+            @mouseover="isSidebarOpen = true" @mouseleave="isSidebarOpen = false"
+        >
+            <div class="flex flex-col gap-y-5 overflow-y-auto pb-4">
+                <div class="flex justify-center pt-10 h-16 shrink-0 items-center">
+                    <img class="h-20 w-auto" src="/storage/app/public/assets/img.png" alt="Your Company">
+                </div>
+                <nav class="flex flex-1 flex-col p-3 overflow-x-hidden">
+                    <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                        <li>
+                            <ul role="list" class="space-y-3 py-4 px-4">
+                                <li>
+                                    <a href="{{ route('dashboard') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-tachometer-alt h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Dashboard</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('events') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-calendar-alt h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Events</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('event-category') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-list h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Event Category</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('member') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-users h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Member</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('company') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-building h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Company</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('services') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-briefcase h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Services</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('regions') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-map-marker-alt h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Regions</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('packages') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-box h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Packages</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('package-service') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-box-open h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Package Service</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('settings') }}" class="group flex items-center gap-x-3 p-2 text-lg font-semibold text-gray-400 hover:bg-blue-700 hover:text-white transition-all duration-300 ease-in-out">
+                                        <i class="fas fa-cogs h-6 w-6 text-gray-400 group-hover:text-white transition-all duration-300 ease-in-out"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
         <!-- Main content -->
-        <div class="main-content flex-grow transition-all duration-300" :class="{ 'ml-64': isCollapsed, 'ml-20': !isCollapsed }">
+        <div class="main-content flex-grow transition-all duration-300" :class="{ 'ml-64': isCollapsed && window.innerWidth >= 1024, 'lg:ml-20': !isCollapsed }">
             <!-- Topbar -->
             <div class="sticky top-0 z-40 flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+                <button
+                    @click="isSidebarOpen = !isSidebarOpen"
+                    class="lg:hidden p-2 text-gray-500 hover:text-gray-900 focus:outline-none"
+                >
+                    <i class="fas fa-bars h-6 w-6"></i>
+                </button>
                 <div class="text-xl font-bold text-gray-700 tracking-wide flex flex-col items-start">
                     <span>Connecting GTA</span>
                     <small class="text-sm font-normal text-gray-500">Join the Network</small>
@@ -663,7 +750,7 @@
                 </div>
             </div>
             <main>
-                <div class="overflow-auto">
+                <div class="overflow-auto ">
                     {{ $slot }}
                 </div>
             </main>

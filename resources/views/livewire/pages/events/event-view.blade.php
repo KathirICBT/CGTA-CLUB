@@ -23,17 +23,17 @@
             </ol>
         </nav>
         <!-- Cover Photo Section -->
-        <div class="relative border bg-gray-50 rounded-xl p-5 flex gap-4 justify-center items-start">
+        <div class="relative border bg-gray-50 rounded-xl p-5 grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <!-- Left side: Image -->
-            <div class="relative border w-2/3">
+            <div class="relative w-full border">
                 <img src="{{ asset($photoUrl) }}" alt="Cover Photo" class="w-full h-full object-cover rounded-lg">
                 <button class="absolute top-2 right-2 px-4 py-2 bg-gray-800 text-white text-sm rounded-lg">Edit Cover</button>
             </div>
 
             <!-- Right side: Description -->
-            <div class="border w-1/3 p-4 rounded-lg shadow-lg bg-white">
+            <div class="border w-full p-4 rounded-lg shadow-lg bg-white">
                 <h2 class="text-2xl font-bold mb-2">Event Description</h2>
-                <p class="text-gray-700 mb-4">
+                <p class="text-gray-700 mb-4 w-full">
                     {{$description}}
                 </p>
 {{--                <button class="px-4 py-2 bg-blue-600 text-white text-sm rounded-lg">Learn More</button>--}}

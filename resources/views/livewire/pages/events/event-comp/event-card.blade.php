@@ -1,70 +1,71 @@
 {{--<div>--}}
 {{--    --}}{{-- Close your eyes. Count to one. That is how long forever feels. --}}
 {{--</div>--}}
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-4 ">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-4 p-5">
     @foreach ($events as $event)
-        <div class="bg-white shadow-md overflow-hidden ">
-            <div class="relative">
+        <div class="bg-white shadow-xl overflow-hidden rounded-xl flex flex-col h-full max-w-sm w-full">
+            <div class="relative p-3">
                 <!-- Image Section -->
-                <div class="relative">
+                <div class="relative overflow-hidden">
                     <!-- Image Section -->
-                    <img class="w-full h-48 object-cover" src="{{ $event['photo_url'] }}" alt="Festival of Happiness">
+                    <img class="w-full h-48 object-cover rounded-xl" src="{{ $event['photo_url'] }}" alt="Festival of Happiness">
 
                     <!-- Smokey Blue Overlay -->
-                    <div class="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-40"></div> <!-- Adjust opacity as needed -->
+                    <div class="absolute top-0 left-0 w-full h-full bg-blue-900 opacity-40 rounded-xl"></div> <!-- Adjust opacity as needed -->
 
                     @if (!$event['photo_url'])
                         <span class="text-gray-500 italic">No Photo</span>
                     @endif
+
+                    <div class="flex flex-col justify-center items-center text-black text-lg p-2 absolute top-2 left-2 bg-white shadow-lg w-14 h-14 rounded-xl">
+                        <span class="block text-2xl -mt-2 font-mono text-center font-bold">{{ \Carbon\Carbon::parse($event['start_date'])->format('j') }}</span>
+                        <span class="block text-lg -mt-1 font-mono text-center">{{ strtoupper(\Carbon\Carbon::parse($event['start_date'])->format('M')) }}</span>
+                    </div>
+                    <div class="flex flex-col justify-center items-center text-black text-lg p-2 absolute top-2 right-2 bg-gray-300 shadow-lg px-2 py-0.5 rounded-lg">
+                        <span>$50</span>
+                    </div>
+                    <!-- Price Tag and Location -->
+                    <div class="absolute bottom-0 w-full px-3 py-1.5 flex justify-between items-center bg-black bg-opacity-40 rounded-xl">
+                        <!-- Location -->
+                        <div class="flex items-center text-white text-sm font-semibold space-x-2">
+                            <i class="fa-solid fa-user"></i>
+                            <span>{{ $event['visibility'] }} only</span>
+                        </div>
+                    </div>
                 </div>
                 {{--                @dd($event['photo_url'])--}}
-                <!-- Price Tag and Location -->
-                <div class="absolute bottom-0 w-full px-3 flex justify-between items-center bg-black bg-opacity-40">
-                    <!-- Location -->
-                    <div class="flex items-center text-white text-sm font-semibold">
-                        <i class="fa-solid fa-location-dot w-4 h-4"></i>
-                        <span>{{ $event['location'] }}</span>
-                    </div>
 
-                    <!-- Price Tag -->
-                    <div class="bg-blue-700 text-white text-sm font-bold px-4 py-0.5 my-1 rounded-full">$50 - $250</div>
-                </div>
-
-                <div class="text-white font-semibold  text-lg mb-2 p-2 absolute top-0 left-0 bg-black bg-opacity-40 w-16 h-16">
-                    <span class="block text-3xl -mt-2 font-mono text-center">{{ \Carbon\Carbon::parse($event['start_date'])->format('j') }}</span>
-                    <span class="block text-xl -mt-3 font-mono text-center">{{ strtoupper(\Carbon\Carbon::parse($event['start_date'])->format('M')) }}</span>
-                </div>
 
             </div>
 
-            <div class="p-4">
-                <!-- Date & Time -->
-{{--                <div class="text-gray-800 font-medium text-sm mb-2">--}}
-{{--                    {{ \Carbon\Carbon::parse($event['start_date'])->format('F jS, Y') }}--}}
-{{--                </div>--}}
-
-                <div class="text-gray-800 font-medium text-sm mb-2">
-                    {{ \Carbon\Carbon::parse($event['start_time'])->format('g:i A') }} to {{ \Carbon\Carbon::parse($event['end_time'])->format('g:i A') }}
+            <div class="px-3 py-1 flex-1">
+                <!-- Tags -->
+                <div class="flex mb-2 text-gray-500">
+{{--                    <span class="bg-black px-2 py-1 rounded-full">{{ $event['eventCategory'] }}</span>--}}
+                    <span class="bg-blue-400 px-4 py-0.5 rounded-lg text-white text-sm font-semibold">Music</span>
                 </div>
-
                 <!-- Title -->
                 <h2 class="text-lg font-bold text-gray-900 mb-1">{{ $event['title'] }}</h2>
 
                 <!-- Venue -->
-                <p class="text-sm text-gray-600 mb-4 line-clamp-3
-                    ">{{ $event['description'] }}</p>
-                <p class="text-lg text-gray-600 mb-4">Allowed: {{ $event['visibility'] }}</p>
-
-                <!-- Tags -->
-                <div class="flex space-x-2 text-xs text-gray-500">
-                    <span class="bg-gray-100 px-2 py-1 rounded-full">{{ $event['eventCategory'] }}</span>
-                    <span class="bg-gray-100 px-2 py-1 rounded-full">Gathering</span>
-                    <span class="bg-gray-100 px-2 py-1 rounded-full">Promotion</span>
-                    <span class="bg-gray-100 px-2 py-1 rounded-full">Conferences</span>
+                <div class="pl-2 flex flex-col space-y-2">
+                    <div class="flex space-x-2 items-center  text-sm ">
+                        <i class="fa-solid fa-location-dot w-4 h-4 text-gray-600"></i>
+                        <span class="text-black">{{ $event['location'] }}</span>
+                    </div>
+                    <div class="flex space-x-2 items-center  text-sm ">
+                        <i class="fa-solid fa-calendar w-4 h-4 text-gray-600"></i>
+                        <span class="text-black">{{ \Carbon\Carbon::parse($event['start_date'])->format('F jS, Y') }}</span>
+                    </div>
+                    <div class="flex space-x-2 items-center  text-sm ">
+                        <i class="fa-solid fa-clock w-4 h-4 text-gray-600"></i>
+                        <span class="text-black">{{ \Carbon\Carbon::parse($event['start_time'])->format('g:i A') }} to {{ \Carbon\Carbon::parse($event['end_time'])->format('g:i A') }}</span>
+                    </div>
+{{--                    <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $event['description'] }}</p>--}}
                 </div>
             </div>
 
-            <div class="flex items-center justify-between p-4 border-t">
+            <div class="flex items-center justify-between p-4 border-t mt-auto">
 
                 <livewire:components.button-comp.button
                     type="edit"
