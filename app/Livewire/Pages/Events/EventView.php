@@ -28,6 +28,7 @@ class EventView extends Component
     public $paid_free;
     public $user_limit_per_registrants;
     public $photoUrl; // For the full URL of the photo
+    public $activeView = 'information';
 
     public $isTableView = true; // Default is table view
 
@@ -48,6 +49,7 @@ class EventView extends Component
         $this->isTableView = $view === 'information'; // Toggle between 'table' and 'card'
         $this->banner = null;
         $this->bannerStyle = null;
+        $this->activeView = $view;
     }
 
     public function show($eventId)
@@ -96,6 +98,7 @@ class EventView extends Component
             error_log('Error fetching event: ' . $e->getMessage());
         }
     }
+
 
     public function render()
     {

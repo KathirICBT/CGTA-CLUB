@@ -547,7 +547,7 @@
         <div class="hidden lg:block group lg:fixed lg:inset-y-0 lg:z-50 flex flex-col bg-gray-900 transition-all duration-300 ease-in-out" :class="{ 'w-64': isCollapsed, 'w-20': !isCollapsed }" @mouseover="isCollapsed = true" @mouseleave="isCollapsed = false">
             <div class="flex flex-col grow gap-y-5 overflow-y-auto pb-4">
                 <div class="flex justify-center pt-10 h-16 shrink-0 items-center">
-                    <img class="h-20 w-auto" src="/storage/app/public/assets/img.png" alt="Your Company">
+                    <img class="h-20 w-auto" src="/assets/event1.jpg" alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col p-3 overflow-hidden">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -634,11 +634,13 @@
         <div
             class="lg:hidden fixed inset-y-0 z-50 bg-gray-900 transition-all duration-300 ease-in-out"
             :class="{ 'w-64': isSidebarOpen, 'w-0': !isSidebarOpen }"
-            @mouseover="isSidebarOpen = true" @mouseleave="isSidebarOpen = false"
         >
             <div class="flex flex-col gap-y-5 overflow-y-auto pb-4">
                 <div class="flex justify-center pt-10 h-16 shrink-0 items-center">
                     <img class="h-20 w-auto" src="/storage/app/public/assets/img.png" alt="Your Company">
+                    <button @click="isSidebarOpen = false" class="absolute top-5 right-4 text-md font-semibold border-gray-200 text-white hover:bg-white hover:text-gray-900 transition-colors duration-300">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 <nav class="flex flex-1 flex-col p-3 overflow-x-hidden">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">

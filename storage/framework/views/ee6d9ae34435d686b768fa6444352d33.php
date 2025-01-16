@@ -1,13 +1,28 @@
-{{--<div>--}}
-{{--    --}}{{-- If your happiness depends on money, you will never b happy with yourself. --}}
-{{--</div>--}}
+
+
+
 
 
 <div class="sm:px-6 lg:py-6 shadow-md bg-gray-100 min-h-screen w-full font-mono">
     <div class="p-4 bg-white shadow rounded-lg mb-4">
         <h2 class="text-lg font-bold">Event Session</h2>
     </div>
-    <livewire:components.notification.notification :banner="$banner" :bannerStyle="$bannerStyle" wire:key="notification-{{ now() }}" />
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('components.notification.notification', ['banner' => $banner,'bannerStyle' => $bannerStyle]);
+
+$__html = app('livewire')->mount($__name, $__params, 'notification-'.e(now()).'', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
     <div class="md:flex md:items-center md:justify-between bg-transparent md:p-4 px-5 rounded-xl">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
             <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
@@ -40,7 +55,7 @@
             <button
                 type="button"
                 class="block rounded-md bg-emerald-600 px-3 py-1 text-center text-md font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
-                <a href="{{ route('event-form') }}">
+                <a href="<?php echo e(route('event-form')); ?>">
                     +
                 </a>
             </button>
@@ -49,25 +64,63 @@
 
     <div class="mt-3 overflow-hidden w-full border rounded-xl hidden md:block">
         <!-- Card Component -->
-        @if($isTableView)
-            <livewire:pages.events.event-comp.event-table-component
-                :events="$events"
-                :headers="$headers"
-                routeName="event-form"
-            />
-        @endif
+        <!--[if BLOCK]><![endif]--><?php if($isTableView): ?>
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages.events.event-comp.event-table-component', ['events' => $events,'headers' => $headers,'routeName' => 'event-form']);
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-160419669-0', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
         <!-- Card Component -->
-        @if(!$isTableView)
-            <livewire:pages.events.event-comp.event-card
-                :events="$events"
-            />
-        @endif
+        <!--[if BLOCK]><![endif]--><?php if(!$isTableView): ?>
+            <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages.events.event-comp.event-card', ['events' => $events]);
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-160419669-1', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
     </div>
     <div class="mt-3 overflow-x-auto w-full border rounded-xl block md:hidden">
-        <livewire:pages.events.event-comp.event-card
-            :events="$events"
-        />
+        <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('pages.events.event-comp.event-card', ['events' => $events]);
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-160419669-2', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
     </div>
 </div>
 
+<?php /**PATH /home/saai/Documents/Projects/CGTA-CLUB/resources/views/livewire/pages/events/events.blade.php ENDPATH**/ ?>
