@@ -27,7 +27,7 @@
             EVENT DETAIL
         </label>
         <div class="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 mt-5">
-            <div class="grid col-span-2 ">
+            <div>
                 <label for="first_name" class="block text-md font-semibold leading-6 text-gray-500">
                     Photo
                 </label>
@@ -48,6 +48,7 @@
                     </label>
                 </div>
             </div>
+            <div></div>
             <div>
                 <!-- Title -->
                 <label for="title" class="block text-md font-semibold leading-6 text-gray-500">

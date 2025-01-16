@@ -65,7 +65,7 @@
 
 
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4 p-5 font-mono">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mt-4 p-5 font-mono">
     <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $datas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class=" flex flex-col h-full max-w-md w-full rounded-lg bg-white p-6 text-center shadow-lg relative transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
             <div class="absolute top-1 right-1 flex flex-col space-y-1">
