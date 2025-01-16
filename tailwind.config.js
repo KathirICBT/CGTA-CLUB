@@ -18,6 +18,9 @@ export default {
         '8xl': ['96px', '106px']
     },
     extend: {
+        clipPath: {
+            'triangle': 'polygon(0 0, 100% 0, 0 100%)',
+        },
         fontFamily:{
             poppins:['Poppins', 'sans-serif'],
             palanquin: ['Palanquin', 'sans-serif'],

@@ -10,7 +10,6 @@ class EventTableComponent extends Component
 {
     // Property to hold data (usually passed from parent)
     public $events = [];
-
     // Property to hold table headers, can be defined based on data
     public array $headers = [];
 
@@ -28,19 +27,12 @@ class EventTableComponent extends Component
     public function mount($events, $headers = []): void
     {
         // Initialize data and headers
-        $this->datas = $events;
+        $this->events = $events;
         $this->headers = $headers;
 
-        $this->events = collect($events)->map(function ($event) {
-            $event['photo_url'] = isset($event['photo']) && $event['photo']
-                ? (str_contains($event['photo'], 'http') ? $event['photo'] : url('storage/' . $event['photo']))
-                : null;
-            return $event;
-        });
-
         // Log the data along with its type
-        foreach ($this->datas as $key => $data) {
-            error_log("Key: $key, Type: " . gettype($data) . ", Value: " . print_r($data, true));
+        foreach ($this->events as $key => $event) {
+            error_log("Key: $key, Type: " . gettype($event) . ", Value: " . print_r($event, true));
         }
     }
 

@@ -19,6 +19,7 @@ class MemberView extends Component
     public string $password;
     public $photo;
     public $photoUrl;
+    public $activeView = 'information';
     public function mount($memberId = null)
     {
         error_log('mount is triggered from MemberView.php');

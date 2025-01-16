@@ -36,7 +36,7 @@ class Events extends Component
         'Paid / Free',
         'User Limit',
         'Registrants Guests',
-        'Actiion'
+//        'Actiion'
     ];
     public function mount(): void
     {
