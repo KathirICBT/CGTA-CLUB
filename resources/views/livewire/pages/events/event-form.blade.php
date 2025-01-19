@@ -176,7 +176,7 @@
                 <div class="mt-1">
                     <input type="url" id="event_url" wire:model="event_url" placeholder="Event URL"
                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6"
-                           @if($isForMembers) disabled @endif/>
+                           @if(!$isForMembers) disabled @endif/>
                     @error('event_url') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>

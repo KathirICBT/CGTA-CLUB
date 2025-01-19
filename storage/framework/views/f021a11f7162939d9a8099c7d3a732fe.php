@@ -254,7 +254,7 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                 <div class="mt-1">
                     <input type="url" id="event_url" wire:model="event_url" placeholder="Event URL"
                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6"
-                           <?php if($isForMembers): ?> disabled <?php endif; ?>/>
+                           <?php if(!$isForMembers): ?> disabled <?php endif; ?>/>
                     <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['event_url'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

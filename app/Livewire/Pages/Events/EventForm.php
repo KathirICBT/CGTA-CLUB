@@ -77,6 +77,8 @@ class EventForm extends Component
             $this->user_limit = 0;
             $this->user_limit_per_registrants = 0;
             $this->location = ''; // Empty string
+        } else { 
+            $this->event_url = '';
         }
     }
 
