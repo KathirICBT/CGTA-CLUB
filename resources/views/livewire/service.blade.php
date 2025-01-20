@@ -50,12 +50,12 @@
             <div class="text-green-600 text-sm mb-4">{{ session('message') }}</div>
         @endif
         <div class="overflow-y-auto h-full">
-            <table class="w-full border rounded-lg overflow-hidden">
-                <thead class="bg-blue-100">
-                    <tr>
-                        <th class="p-3 text-left font-medium text-gray-700">Service Name</th>
-                        <th class="p-3 text-left font-medium text-gray-700">Description</th>
-                        <th class="p-3 text-left font-medium text-gray-700">Actions</th>
+            <table class="w-full divide-y divide-gray-300">
+                <thead class="py-2 pr-4 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">
+                    <tr class="bg-gray-50">
+                        <th >Service Name</th>
+                        <th >Description</th>
+                        <th >Actions</th>
                     </tr>
                 </thead>
                 <tbody>

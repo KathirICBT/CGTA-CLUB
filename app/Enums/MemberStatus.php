@@ -6,5 +6,5 @@ enum MemberStatus: string
 {
     case Active = 'Active';
     case Inactive = 'Inactive';
-    case Waiting = 'Waiting';
+    case Waiting = 'waiting';
 }
