@@ -8,9 +8,11 @@ use App\Livewire\Pages\Member\MemberForm;
 use App\Livewire\Pages\Member\MemberView;
 use App\Livewire\Pages\Settings;
 use App\Livewire\PackageService;
-use App\Livewire\Package;
+// use App\Livewire\Package;
 use App\Livewire\Pages\Company\Company;
 use App\Livewire\Pages\Company\CompanyForm;
+use App\Livewire\Pages\Package\Package;
+use App\Livewire\Pages\Package\PackageForm;
 use App\Livewire\Region;
 use App\Livewire\UserPanel\UserComponent;
 use App\Livewire\UserPanel\LandingPage;
@@ -81,10 +83,13 @@ Route::get('/company/company-form', CompanyForm::class)->name('company-form.crea
 
 Route::get('/company/company-form/{companyId}',CompanyForm::class)->name('company-form.edit');
 
+Route::get('/package', Package::class)->name('packages');
+Route::get('/package/package-form', PackageForm::class)->name('package-form.create');
+Route::get('/package/package-form/{packageId}',PackageForm::class)->name('package-form.edit');
 
 Route::get('/services', Service::class)->name('services');
 Route::get('/regions', Region::class)->name('regions');
-Route::get('/packages', Package::class)->name('packages');
+// Route::get('/packages', Package::class)->name('packages');
 
 
 Route::get('/package-service', PackageService::class)->name('package-service');
