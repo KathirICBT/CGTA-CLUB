@@ -15,7 +15,7 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
-    <section class="xl:padding-1 wide:padding-r padding-b">
+    <section class="padding xl:padding-1 wide:padding-r padding-b">
         <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
@@ -51,7 +51,6 @@ unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
     </section>
-
     <section class="padding">
         <?php
 $__split = function ($name, $params = []) {
@@ -75,7 +74,7 @@ if (isset($__slots)) unset($__slots);
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split('user-panel.programs', []);
+[$__name, $__params] = $__split('user-panel.program-service.program-service', []);
 
 $__html = app('livewire')->mount($__name, $__params, 'lw-3471458350-4', $__slots ?? [], get_defined_vars());
 
@@ -88,12 +87,12 @@ unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
     </section>
-    <section class="bg-pale-blue padding">
+    <section class="padding">
         <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split('user-panel.customer-reviews', []);
+[$__name, $__params] = $__split('user-panel.customer-review.cust-review', []);
 
 $__html = app('livewire')->mount($__name, $__params, 'lw-3471458350-5', $__slots ?? [], get_defined_vars());
 
@@ -124,32 +123,14 @@ unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
     </section>
-    <section class="padding-x sm:py-32 py-16 w-full">
-        <?php
-$__split = function ($name, $params = []) {
-    return [$name, $params];
-};
-[$__name, $__params] = $__split('user-panel.subscribe', []);
-
-$__html = app('livewire')->mount($__name, $__params, 'lw-3471458350-7', $__slots ?? [], get_defined_vars());
-
-echo $__html;
-
-unset($__html);
-unset($__name);
-unset($__params);
-unset($__split);
-if (isset($__slots)) unset($__slots);
-?>
-    </section>
     <section class="bg-black padding-x padding-t pb-8">
         <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split('user-panel.footer', []);
+[$__name, $__params] = $__split('user-panel.footer.footer', []);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-3471458350-8', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-3471458350-7', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 
