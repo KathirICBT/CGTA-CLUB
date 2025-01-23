@@ -4,7 +4,7 @@
       <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="space-y-6 text-center md:flex md:items-center md:justify-around md:space-x-12 md:space-y-0 md:text-left <?php echo e($section['reverse'] ? 'md:flex-row-reverse' : ''); ?>">
           <div class="w-full space-y-4 md:w-1/3">
-            <h3 class="text-3xl font-bold text-gray-800"><?php echo e($section['title']); ?></h3>
+            <h3 class="text-3xl lg:text-4xl font-bold text-gray-800"><?php echo e($section['title']); ?></h3>
             <p class="text-gray-600 leading-relaxed">
               <?php echo e($section['content']); ?>
 

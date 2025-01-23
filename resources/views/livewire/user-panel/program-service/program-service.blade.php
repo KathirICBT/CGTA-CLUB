@@ -4,7 +4,7 @@
       @foreach ($sections as $section)
         <div class="space-y-6 text-center md:flex md:items-center md:justify-around md:space-x-12 md:space-y-0 md:text-left {{ $section['reverse'] ? 'md:flex-row-reverse' : '' }}">
           <div class="w-full space-y-4 md:w-1/3">
-            <h3 class="text-3xl font-bold text-gray-800">{{ $section['title'] }}</h3>
+            <h3 class="text-3xl lg:text-4xl font-bold text-gray-800">{{ $section['title'] }}</h3>
             <p class="text-gray-600 leading-relaxed">
               {{ $section['content'] }}
             </p>

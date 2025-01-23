@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-800 relative z-20 overflow-hidden">
+<div class="bg-white dark:bg-gray-800 relative z-20 overflow-hidden mt-10">
   <!-- Background Image -->
   <div
     class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-45"
