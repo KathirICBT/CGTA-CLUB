@@ -10,12 +10,13 @@
     <livewire:components.notification.notification :banner="$banner" :bannerStyle="$bannerStyle" wire:key="notification-{{ now() }}" />
     <div class="md:flex md:items-center md:justify-between bg-transparent md:p-4 px-5 rounded-xl">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
-            <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
             <input
                 type="text"
                 placeholder="Search..."
                 class="ml-2 flex-grow border-none outline-none text-gray-700 bg-transparent"
+                wire:model="searchQuery"
             />
+            <i wire:click="triggerSearch" class="fas fa-search text-gray-400 cursor-pointer"></i>
         </div>
 
         <div class="flex justify-between md:justify-end items-center space-x-5 w-full md:w-auto">
@@ -54,6 +55,7 @@
                 :events="$events"
                 :headers="$headers"
                 routeName="event-form"
+                :key="'event-table-' . implode('-', array_column($events, 'id'))"
             />
         @endif
 
@@ -61,6 +63,7 @@
         @if(!$isTableView)
             <livewire:pages.events.event-comp.event-card
                 :events="$events"
+                :key="'event-card-' . implode('-', array_column($events, 'id'))"
             />
         @endif
     </div>

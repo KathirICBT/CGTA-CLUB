@@ -28,12 +28,13 @@ if (isset($__slots)) unset($__slots);
     <div class="md:flex md:items-center md:justify-between md:p-4 px-5 space-y-4 md:space-y-0">
         <!-- Search Input -->
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
-            <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
             <input
+                wire:model="searchQuery"
                 type="text"
                 placeholder="Search..."
                 class="ml-2 flex-grow border-none outline-none text-gray-700 bg-transparent"
             />
+            <i wire:click="triggerSearch"  class="fas fa-search text-gray-400"></i>
         </div>
 
         <!-- Action Buttons -->
@@ -140,4 +141,4 @@ if (isset($__slots)) unset($__slots);
 
 
 
-<?php /**PATH /home/saai/Documents/Work/OurOWn/github/CGTA-CLUB/resources/views/livewire/pages/member/member.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/saai/Documents/Work/OurOWn/github/CGTA-CLUB/resources/views/livewire/pages/member/members.blade.php ENDPATH**/ ?>

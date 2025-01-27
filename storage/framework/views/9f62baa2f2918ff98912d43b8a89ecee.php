@@ -25,12 +25,13 @@ if (isset($__slots)) unset($__slots);
 ?>
     <div class="md:flex md:items-center md:justify-between bg-transparent md:p-4 px-5 rounded-xl">
         <div class="flex items-center w-full md:w-1/3 border border-gray-300 rounded-lg px-4 py-1 shadow-sm">
-            <i class="fas fa-search text-gray-400"></i> <!-- Search Icon -->
             <input
                 type="text"
                 placeholder="Search..."
                 class="ml-2 flex-grow border-none outline-none text-gray-700 bg-transparent"
+                wire:model="searchQuery"
             />
+            <i wire:click="triggerSearch" class="fas fa-search text-gray-400 cursor-pointer"></i>
         </div>
 
         <div class="flex justify-between md:justify-end items-center space-x-5 w-full md:w-auto">
@@ -71,7 +72,7 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('pages.events.event-comp.event-table-component', ['events' => $events,'headers' => $headers,'routeName' => 'event-form']);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-4267222149-0', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'event-table-' . implode('-', array_column($events, 'id')), $__slots ?? [], get_defined_vars());
 
 echo $__html;
 
@@ -91,7 +92,7 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('pages.events.event-comp.event-card', ['events' => $events]);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-4267222149-1', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'event-card-' . implode('-', array_column($events, 'id')), $__slots ?? [], get_defined_vars());
 
 echo $__html;
 
@@ -110,7 +111,7 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('pages.events.event-comp.event-card', ['events' => $events]);
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-4267222149-2', $__slots ?? [], get_defined_vars());
+$__html = app('livewire')->mount($__name, $__params, 'lw-4267222149-0', $__slots ?? [], get_defined_vars());
 
 echo $__html;
 

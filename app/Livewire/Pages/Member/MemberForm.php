@@ -56,7 +56,7 @@ class MemberForm extends Component
 //    {
 //        error_log('editMember is triggered from MemberForm.php');
 //        error_log('Received memberId: ' . $data['id']);
-//        $memberId = $data['id']; // Get the ID passed from Member.php
+//        $memberId = $data['id']; // Get the ID passed from Members.php
 //        $this->show($memberId);  // Use the ID to fetch member data
 //        $this->showForm = true;  // Show the modal form
 //    }

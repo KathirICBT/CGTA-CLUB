@@ -8,6 +8,7 @@ use App\Livewire\Pages\Events\EventForm;
 use App\Livewire\Pages\Events\EventView;
 use App\Livewire\Pages\Member\Member;
 use App\Livewire\Pages\Member\MemberForm;
+use App\Livewire\Pages\Member\Members;
 use App\Livewire\Pages\Member\MemberView;
 use App\Livewire\Pages\Settings;
 use App\Livewire\PackageService;
@@ -62,7 +63,7 @@ Route::apiResource('packages', PackageController::class);
 
 
 Route::get('/', Dashboard::class)->name('dashboard');
-Route::get('/member', Member::class)->name('member');
+Route::get('/member', Members::class)->name('member');
 Route::get('/member/member-form/{id?}', MemberForm::class)->name('member-form');
 Route::get('/member/member-view/{memberId}', MemberView::class)->name('member-view');
 

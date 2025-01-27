@@ -245,7 +245,7 @@ endif;
 unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             </div>
-            
+
             <div>
                 <!-- Event URL -->
                 <label for="event_url" class="block text-md font-semibold leading-6 text-gray-500">

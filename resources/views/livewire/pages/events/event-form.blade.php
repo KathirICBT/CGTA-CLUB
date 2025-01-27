@@ -167,7 +167,7 @@
                     @error('event_type') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
-            
+
             <div>
                 <!-- Event URL -->
                 <label for="event_url" class="block text-md font-semibold leading-6 text-gray-500">

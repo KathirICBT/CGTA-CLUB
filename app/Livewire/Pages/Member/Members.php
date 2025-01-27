@@ -3,16 +3,19 @@
 namespace App\Livewire\Pages\Member;
 
 use App\Http\Controllers\MemberController;
+use App\Models\Member;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Member extends Component
+class Members extends Component
 {
     public $members = [];
-    public $filteredMembers = [];
+    public string $searchQuery = '';
+    public $allMembers = [];
+
     public $showForm = false;
     public $isTableView = true; // Default is table view
 
@@ -91,26 +94,42 @@ class Member extends Component
     {
         error_log('mount is triggered');
 
-        // Loop through each member and combine first_name and last_name into full_name
-
         try {
-            // Fetch members directly from the database using Eloquent
-            $controller = new MemberController();
-            $response = $controller->index();
-            // Convert the stdClass object to an array
 
-            $this->members = collect(json_decode(json_encode($response->getData()), true))->map(function ($member) {
-                // Ensure each member has a full photo URL
-                $member['photo_url'] = $member['photo'] ? (str_contains($member['photo'], 'http') ? $member['photo'] : url('storage/' . $member['photo'])) : null;
+            $this->allMembers = Member::all()->map(function ($member) {
+                $member['photo_url'] = isset($member['photo']) && $member['photo']
+                    ? (str_contains($member['photo'], 'http') ? $member['photo'] : url('storage/' . $member['photo']))
+                    : null;
                 return $member;
-            });
+            })->toArray();
 
+            // Initially set events to allMembers
+            $this->members = $this->allMembers;
 
 //            dump($this->members);
             error_log('members successfully fetched from database ');
         } catch (\Exception $e) {
             session()->flash('error', 'Error fetching members: ' . $e->getMessage());
             error_log('Error fetching members: ' . $e->getMessage());
+        }
+    }
+
+    public function triggerSearch()
+    {
+        error_log('Triggering search');
+        $this->members = array_filter($this->allMembers, function ($member) {
+            $query = strtolower($this->searchQuery);
+
+            foreach ($member as $key => $value) {
+                if (is_scalar($value) && str_contains(strtolower((string) $value), $query)) {
+                    return true; // If any attribute matches, include this event
+                }
+            }
+            return false;
+        });
+
+        if (empty($this->searchQuery)) {
+            $this->members = $this->allMembers;
         }
     }
 
@@ -159,7 +178,7 @@ class Member extends Component
 
     public function render()
     {
-        return view('livewire.pages.member.member', [
+        return view('livewire.pages.member.members', [
             'headers' => $this->headers,
         ]);
     }
