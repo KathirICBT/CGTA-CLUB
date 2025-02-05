@@ -22,7 +22,7 @@
                         <span class="block text-lg -mt-1 font-mono text-center">{{ strtoupper(\Carbon\Carbon::parse($event['start_date'])->format('M')) }}</span>
                     </div>
                     <div class="flex flex-col justify-center items-center text-black text-lg p-2 absolute top-2 right-2 bg-gray-300 shadow-lg px-2 py-0.5 rounded-lg">
-                        <span>$50</span>
+                        <span>${{ $event['price'] }}</span>
                     </div>
                     <!-- Price Tag and Location -->
                     <div class="absolute bottom-0 w-full px-3 py-1.5 flex justify-between items-center bg-black bg-opacity-40 rounded-xl">

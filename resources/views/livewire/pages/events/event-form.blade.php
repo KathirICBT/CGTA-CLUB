@@ -138,37 +138,6 @@
                 </div>
             </div>
             <div>
-                <!-- Timezone -->
-                <label for="timezone" class="block text-md font-semibold leading-6 text-gray-500">
-                    Timezone
-                </label>
-                <div class="mt-1">
-                    <input type="text" id="timezone" wire:model="timezone" placeholder="Event Timezone"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
-                    @error('timezone') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
-        </div>
-        <label for="first_name" class="text-xl font-semibold leading-6 text-sky-600 flex justify-start items-start p-1  mt-5">
-            EVENT PARTICIPANTS' DETAILS
-        </label>
-        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 mt-5">
-            <div>
-                <!-- Paid or Free -->
-                <label for="paid_free" class="block text-md font-semibold leading-6 text-gray-500">
-                    Paid/Free
-                </label>
-                <div class="mt-1">
-                    <select id="paid_free" wire:model="paid_free"
-                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6">
-                        <option value="">Select Option</option>
-                        <option value="paid">Paid</option>
-                        <option value="free">Free</option>
-                    </select>
-                    @error('paid_free') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
-            <div>
                 <!-- Visibility -->
                 <label for="visibility" class="block text-md font-semibold leading-6 text-gray-500">
                     Visibility
@@ -184,28 +153,21 @@
                 </div>
             </div>
             <div>
-                <!-- Release Date -->
-                <label for="release_date" class="block text-md font-semibold leading-6 text-gray-500">
-                    Release Date
+                <!-- Visibility -->
+                <label for="event_type" class="block text-md font-semibold leading-6 text-gray-500">
+                    Event Type
                 </label>
                 <div class="mt-1">
-                    <input type="date" id="release_date" wire:model="release_date"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
-                    @error('release_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    <select id="event_type" wire:model="event_type" wire:change="updateEventType"
+                            class="block w-full border-0 px-4 py-2 rounded-lg bg-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6">
+                        <option value="">Select Event Type</option>
+                        <option value="admin">Admin</option>
+                        <option value="customers">For Members</option>
+                    </select>
+                    @error('event_type') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
-
-            <div>
-                <!-- Closing Date -->
-                <label for="closing_date" class="block text-md font-semibold leading-6 text-gray-500">
-                    Closing Date
-                </label>
-                <div class="mt-1">
-                    <input type="date" id="closing_date" wire:model="closing_date"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
-                    @error('closing_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
+            
             <div>
                 <!-- Event URL -->
                 <label for="event_url" class="block text-md font-semibold leading-6 text-gray-500">
@@ -213,46 +175,113 @@
                 </label>
                 <div class="mt-1">
                     <input type="url" id="event_url" wire:model="event_url" placeholder="Event URL"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6"
+                           @if(!$isForMembers) disabled @endif/>
                     @error('event_url') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
                 </div>
             </div>
-
-            <div>
-                <!-- Location -->
-                <label for="location" class="block text-md font-semibold leading-6 text-gray-500">
-                    Location
-                </label>
-                <div class="mt-1">
-                    <input type="text" id="location" wire:model="location" placeholder="Event Location"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
-                    @error('location') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
-
-            <div>
-                <!-- User Limit -->
-                <label for="user_limit" class="block text-md font-semibold leading-6 text-gray-500">
-                    User Limit
-                </label>
-                <div class="mt-1">
-                    <input type="number" id="user_limit" wire:model="user_limit" placeholder="Max Users"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
-                    @error('user_limit') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
-            <div>
-                <!-- User Limit per Registrant -->
-                <label for="user_limit_per_registrants" class="block text-md font-semibold leading-6 text-gray-500">
-                    User Limit Per Registrant
-                </label>
-                <div class="mt-1">
-                    <input type="number" id="user_limit_per_registrants" wire:model="user_limit_per_registrants" placeholder="Limit Per Registrant"
-                           class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
-                    @error('user_limit_per_registrants') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
-                </div>
-            </div>
         </div>
+        @if(!$isForMembers)
+            <label for="first_name" class="text-xl font-semibold leading-6 text-sky-600 flex justify-start items-start p-1  mt-5">
+                EVENT PARTICIPANTS' DETAILS
+            </label>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 mt-5">
+                <div>
+                    <!-- Paid or Free -->
+                    <label for="paid_free" class="block text-md font-semibold leading-6 text-gray-500">
+                        Paid/Free
+                    </label>
+                    <div class="mt-1">
+                        <select id="paid_free" wire:model="paid_free"
+                                class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6">
+                            <option value="">Select Option</option>
+                            <option value="paid">Paid</option>
+                            <option value="free">Free</option>
+                        </select>
+                        @error('paid_free') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <!-- Visibility -->
+                    <label for="price" class="block text-md font-semibold leading-6 text-gray-500">
+                        Event Price
+                    </label>
+                    <div class="mt-1">
+                        <input type="number" step="0.01" id="price" wire:model="price" placeholder="Event Price"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('price') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <!-- User Limit -->
+                    <label for="sponsor_price" class="block text-md font-semibold leading-6 text-gray-500">
+                        Event Sponser Price
+                    </label>
+                    <div class="mt-1">
+                        <input type="number" step="0.01" id="sponsor_price" wire:model="sponsor_price" placeholder="Price willing by Sponsers"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('sponsor_price') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <!-- Release Date -->
+                    <label for="release_date" class="block text-md font-semibold leading-6 text-gray-500">
+                        Release Date
+                    </label>
+                    <div class="mt-1">
+                        <input type="date" id="release_date" wire:model="release_date"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('release_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div>
+                    <!-- Closing Date -->
+                    <label for="closing_date" class="block text-md font-semibold leading-6 text-gray-500">
+                        Closing Date
+                    </label>
+                    <div class="mt-1">
+                        <input type="date" id="closing_date" wire:model="closing_date"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('closing_date') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <!-- Location -->
+                    <label for="location" class="block text-md font-semibold leading-6 text-gray-500">
+                        Location
+                    </label>
+                    <div class="mt-1">
+                        <input type="text" id="location" wire:model="location" placeholder="Event Location"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('location') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div>
+                    <!-- User Limit -->
+                    <label for="user_limit" class="block text-md font-semibold leading-6 text-gray-500">
+                        User Limit
+                    </label>
+                    <div class="mt-1">
+                        <input type="number" id="user_limit" wire:model="user_limit" placeholder="Max Users"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('user_limit') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div>
+                    <!-- User Limit per Registrant -->
+                    <label for="user_limit_per_registrants" class="block text-md font-semibold leading-6 text-gray-500">
+                        User Limit Per Registrant
+                    </label>
+                    <div class="mt-1">
+                        <input type="number" id="user_limit_per_registrants" wire:model="user_limit_per_registrants" placeholder="Limit Per Registrant"
+                            class="block w-full border-0 px-3.5 py-2 rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset sm:text-md sm:leading-6" />
+                        @error('user_limit_per_registrants') <span class="text-red-500 text-md">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <!-- Submit Button -->
         <div class="mt-6 w-full flex justify-end ">

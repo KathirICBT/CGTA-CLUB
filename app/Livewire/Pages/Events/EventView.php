@@ -18,7 +18,9 @@ class EventView extends Component
     public $start_time;
     public $end_date;
     public $end_time;
-    public $timezone;
+    public $event_type;
+    public $price;
+    public $sponsor_price;
     public $visibility;
     public $release_date;
     public $closing_date;
@@ -47,8 +49,7 @@ class EventView extends Component
     public function toggleView($view)
     {
         $this->isTableView = $view === 'information'; // Toggle between 'table' and 'card'
-        $this->banner = null;
-        $this->bannerStyle = null;
+        
         $this->activeView = $view;
     }
 
@@ -75,8 +76,10 @@ class EventView extends Component
             error_log('Start Time Type: ' . gettype($event->start_time)); // Log type of start_time
             error_log('End Time Type: ' . gettype($event->end_time)); // Log type of end_time
 
-
-            $this->timezone = $event->timezone ?? '';
+            
+            $this->price = $event->price ?? null; // New field for price
+            $this->sponsor_price = $event->sponsor_price ?? null; // New field for price
+            $this->event_type = $event->event_type->value ?? ''; // New field for event_type
             $this->visibility = $event->visibility->value ?? '';
 
             // Log the value and type of 'visibility'

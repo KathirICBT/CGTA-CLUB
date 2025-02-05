@@ -1,0 +1,239 @@
+
+
+
+
+
+<div class="border bg-gray-200 min-h-screen font-mono">
+    <!-- Profile Section -->
+    <div class="w-full mx-auto p-6 ">
+        <nav class="flex items-center text-gray-600 text-md mb-4">
+            <ol class="flex items-center space-x-2">
+
+                <li>
+                    <a href="<?php echo e(route('member')); ?>" class="hover:text-sky-500">
+                        Events
+                    </a>
+                </li>
+                <li>
+                    <span class="mx-1 text-gray-400">/</span>
+                </li>
+                <li class="text-gray-500">
+                    View Event
+                </li>
+            </ol>
+        </nav>
+        <!-- Cover Photo Section -->
+        <div class="relative border bg-gray-50 rounded-xl p-5 grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <!-- Left side: Image -->
+            <div class="relative w-full border">
+                <img src="<?php echo e(asset($photoUrl)); ?>" alt="Cover Photo" class="w-full h-full object-cover rounded-lg">
+                <button class="absolute top-2 right-2 px-4 py-2 bg-gray-800 text-white text-sm rounded-lg">Edit Cover</button>
+            </div>
+
+            <!-- Right side: Description -->
+            <div class="border w-full p-4 rounded-lg shadow-lg bg-white">
+                <h2 class="text-2xl font-bold mb-2">Event Description</h2>
+                <p class="text-gray-700 mb-4 w-full">
+                    <?php echo e($description); ?>
+
+                </p>
+
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mt-6 flex justify-center items-center ">
+            <button class="-mb-px mr-1" wire:click="toggleView('information')">
+                <span  class="bg-white inline-block py-2 px-4  hover:text-blue-500 hover:border-blue-300 border rounded-lg
+                 <?php echo e($activeView === 'information' ? 'font-semibold text-blue-700' : 'text-gray-600'); ?>">Information</span>
+            </button>
+            <button class="mr-1" wire:click="toggleView('activity')">
+                <span class="bg-white inline-block py-2 px-4  hover:text-blue-500 hover:border-blue-300 border rounded-lg
+                <?php echo e($activeView === 'activity' ? 'font-semibold text-blue-700 border-blue-500' : 'text-gray-600'); ?>">Activity</span>
+            </button>
+        </div>
+
+        <!-- Information Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <!-- Contact Card -->
+            <!--[if BLOCK]><![endif]--><?php if($isTableView): ?>
+                <div class="bg-white px-6 py-8 rounded-lg shadow- xl">
+                    <h2 class="text-2xl font-bold ">Event Details</h2>
+                    <div class="flex flex-col space-y-7 mt-5">
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Title:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($title); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Category: </label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($eventCategory); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Period:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($start_date); ?> - <?php echo e($end_date); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Time Periods:</label>
+                            <dd class="text-black font-semibold">
+
+                                <?php echo e(\Carbon\Carbon::createFromFormat('H:i', $start_time)->format('h:i A')); ?> -
+                                <?php echo e(\Carbon\Carbon::createFromFormat('H:i', $end_time)->format('h:i A')); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Website:</label>
+                            <dd class="text-black font-semibold">
+                                <a href="#" class="text-teal-500"><?php echo e($event_url); ?></a>
+                            </dd>
+                        </div>
+                    </div>
+                </div>
+                <!-- Information Card -->
+                <div class="bg-white px-6 py-8   rounded-lg shadow-xl">
+                    <h2 class="text-2xl font-bold ">Event Registration Details</h2>
+                    <div class="flex flex-col space-y-7 mt-5">
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Registration Opening:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($release_date); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Registration Closing:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($closing_date); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Joined Date:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($paid_free); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Event Price:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($user_limit_per_registrants); ?>
+
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Event Visible to:</label>
+                            <dd class="text-black font-semibold">
+                                <?php echo e($visibility); ?>
+
+                            </dd>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><?php if(!$isTableView): ?>
+                <div class="bg-white px-6 py-8 rounded-lg shadow- xl">
+                    <h2 class="text-2xl font-bold ">Event Details</h2>
+                    <div class="flex flex-col space-y-7 mt-5">
+                        <!-- Total Attendance -->
+                        <!-- Total Attendance -->
+                        <div class="flex justify-between items-center">
+                            <label class="font-semibold text-gray-700">Total Attendance:</label>
+                            <dd class="text-black font-semibold">
+                                1200 people
+                            </dd>
+                        </div>
+
+                        <!-- Tickets Sold -->
+                        <div class="flex justify-between items-center">
+                            <label class="font-semibold text-gray-700">Tickets Sold:</label>
+                            <dd class="text-black font-semibold">
+                                900 / 1000 (90%)
+                            </dd>
+                        </div>
+
+                        <!-- Revenue -->
+                        <div class="flex justify-between items-center">
+                            <label class="font-semibold text-gray-700">Total Revenue:</label>
+                            <dd class="text-black font-semibold">
+                                $45,000.00
+                            </dd>
+                        </div>
+
+                        <!-- Donations -->
+                        <div class="flex justify-between items-center">
+                            <label class="font-semibold text-gray-700">Donations Collected:</label>
+                            <dd class="text-black font-semibold">
+                                $5,000.00
+                            </dd>
+                        </div>
+
+                        <!-- Feedback Score -->
+                        <div class="flex justify-between items-center">
+                            <label class="font-semibold text-gray-700">Average Feedback Score:</label>
+                            <dd class="text-black font-semibold">
+                                4.8 / 5
+                            </dd>
+                        </div>
+
+                        <!-- Sponsors -->
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Event Sponsors:</label>
+                            <ul class="list-disc pl-5 text-black font-semibold">
+                                <li>Sponsor A</li>
+                                <li>Sponsor B</li>
+                                <li>Sponsor C</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Information Card -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        </div>
+    </div>
+</div>
+<?php /**PATH D:\Akshino\Client\CGTA\Project\CGTAProject\CGTA-CLUB\resources\views/livewire/pages/events/event-view.blade.php ENDPATH**/ ?>

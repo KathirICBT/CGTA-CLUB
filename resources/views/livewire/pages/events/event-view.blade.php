@@ -116,7 +116,13 @@
                             </dd>
                         </div>
                         <div class="flex flex-col">
-                            <label class="font-semibold text-gray-700">Event Price:</label>
+                            <label class="font-semibold text-gray-700">Event Price</label>
+                            <dd class="text-black font-semibold">
+                                {{$price}} $
+                            </dd>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="font-semibold text-gray-700">Event Audience Limit </label>
                             <dd class="text-black font-semibold">
                                 {{$user_limit_per_registrants}}
                             </dd>

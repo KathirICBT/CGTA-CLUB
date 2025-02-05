@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="mt-3 overflow-hidden w-full border rounded-xl hidden md:block">
+    <div class="mt-3 overflow-hidden w-full border rounded-xl hidden lg:block">
         <!-- Card Component -->
         @if($isTableView)
             <livewire:pages.events.event-comp.event-table-component
@@ -64,7 +64,7 @@
             />
         @endif
     </div>
-    <div class="mt-3 overflow-x-auto w-full border rounded-xl block md:hidden">
+    <div class="mt-3 overflow-x-auto w-full border rounded-xl block lg:hidden">
         <livewire:pages.events.event-comp.event-card
             :events="$events"
         />

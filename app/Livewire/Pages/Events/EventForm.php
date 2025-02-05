@@ -25,7 +25,9 @@ class EventForm extends Component
     public $start_time;
     public $end_date;
     public $end_time;
-    public $timezone;
+    public $event_type = 'hello';
+    public $price;
+    public $sponsor_price;
     public $visibility;
     public $release_date;
     public $closing_date;
@@ -39,6 +41,7 @@ class EventForm extends Component
     public $bannerStyle;
     // Validation rules
     public $categories = [];
+    public $isForMembers = false;
 
     public function mount($id = null)
     {
@@ -56,6 +59,29 @@ class EventForm extends Component
         $this->getEventCategory();
     }
 
+    // This method will be called when the dropdown changes
+    public function updateEventType()
+    {
+        // You can manually update or log the event_type here for debugging
+        error_log('Event Type Updated: ' .  $this->event_type);
+
+         // Set the flag to true if 'customers' is selected
+         $this->isForMembers = $this->event_type === 'customers';
+         if ($this->isForMembers) {
+            // Reset attributes to their default values
+            $this->price = 0;
+            $this->sponsor_price = 0;
+            $this->paid_free = 'free';
+            $this->release_date = null; // Use null to represent "no date"
+            $this->closing_date = null;
+            $this->user_limit = 0;
+            $this->user_limit_per_registrants = 0;
+            $this->location = ''; // Empty string
+        } else { 
+            $this->event_url = '';
+        }
+    }
+
     public function submitForm()
     {
         $this-> rules = [
@@ -66,19 +92,26 @@ class EventForm extends Component
             'start_time' => 'required|date_format:H:i',
             'end_date' => 'required|date',
             'end_time' => 'required|date_format:H:i',
-            'timezone' => 'required|string|max:50',
+            'price' => 'nullable|numeric|min:0',
+            'sponsor_price' => 'nullable|numeric|min:0',
             'visibility' => 'required|in:members,allUsers', // Convert enum to string
-            'release_date' => 'required|date',
-            'closing_date' => 'required|date',
+            'release_date' => 'nullable|date',
+            'closing_date' => 'nullable|date',
             'event_url' => 'nullable|url|max:255',
             'location' => 'nullable|string|max:255',
             'user_limit' => 'nullable|integer',
             'paid_free' => 'required|in:paid,free',
             'user_limit_per_registrants' => 'nullable|integer',
             'photo' => 'nullable|image|max:10240', // Example, if handling photo upload
+            'event_type' => 'required|in:customers,admin',
         ];
 
         error_log('submitForm event is triggered');
+
+        error_log('Event Type: ' . json_encode($this->event_type));
+
+
+
         $this->validate();
         error_log('event data are validated: ' );
         try {
@@ -97,7 +130,9 @@ class EventForm extends Component
                 'start_time' => $this->start_time,
                 'end_date' => $this->end_date,
                 'end_time' => $this->end_time,
-                'timezone' => $this->timezone,
+                'price' => $this->price, 
+                'sponsor_price' => $this->sponsor_price, 
+                'event_type' => $this->event_type, 
                 'visibility' => $this->visibility,
                 'release_date' => $this->release_date,
                 'closing_date' => $this->closing_date,
@@ -146,7 +181,6 @@ class EventForm extends Component
         try {
             // Fetch the event directly from the database using Eloquent
             $event = Event::findOrFail($eventId);
-
             // Map the event data to component fields
             $this->title = $event->title ?? '';
             $this->description = $event->description ?? '';
@@ -155,21 +189,10 @@ class EventForm extends Component
             $this->start_time = Carbon::parse($event->start_time)->format('H:i'); // Ensure time format
             $this->end_date = $event->end_date ?? null;
             $this->end_time = Carbon::parse($event->end_time)->format('H:i'); // Ensure time format
-            // Log start_time and end_time values and their types
-            error_log('Start Time: ' . $event->start_time); // Log value of start_time
-            error_log('End Time: ' . $event->end_time); // Log value of end_time
-            error_log('Start Time Type: ' . gettype($event->start_time)); // Log type of start_time
-            error_log('End Time Type: ' . gettype($event->end_time)); // Log type of end_time
-
-
-            $this->timezone = $event->timezone ?? '';
+            $this->price = $event->price ?? null; // New field for price
+            $this->sponsor_price = $event->sponsor_price ?? null; // New field for price
+            $this->event_type = $event->event_type->value ?? ''; // New field for event_type
             $this->visibility = $event->visibility->value ?? '';
-
-            // Log the value and type of 'visibility'
-            error_log('Visibility value: ' . $this->visibility); // Check the value
-            error_log('Visibility type: ' . gettype($this->visibility)); // Check the type
-
-
             $this->release_date = $event->release_date ?? null;
             $this->closing_date = $event->closing_date ?? null;
             $this->event_url = $event->event_url ?? '';
@@ -178,6 +201,9 @@ class EventForm extends Component
             $this->paid_free = $event->paid_free ?? '';
             $this->user_limit_per_registrants = $event->user_limit_per_registrants ?? null;
             $this->photoUrl = $event->photo ? asset('storage/' . $event->photo) : null;
+
+             // Set the flag to true if 'customers' is selected
+            $this->isForMembers =$event->event_type->value === 'customers';
 
             error_log('Event successfully fetched from database');
         } catch (\Exception $e) {

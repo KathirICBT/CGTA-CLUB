@@ -1,4 +1,5 @@
 {{-- <div>
+<<<<<<< HEAD
     <section id="home" class="w-full flex xl:flex-row flex-col justify-center 
         min-h-screen gab-10 max-container">
 
@@ -44,9 +45,37 @@
                 class="w-[610px] h-[500px] object-contain relative z-10" />
         </div>
 
+=======
+    <section
+        id="home"
+        class="w-full flex xl:flex-row flex-col justify-center
+        min-h-screen gab-10 max-container"
+    >
+
+    <div
+        class="relative xl:w-2/5 flex flex-col justify-center
+        items-start w-full max-xl:padding-x pt-28"
+    >
+        <p>We are a Dynamic Network</p>
+        <h1>
+            <span>Connecting</span>
+            Business
+            <br />
+            <span>Communities, and Individuals</span>
+        </h1>
+        <p>Across the Greater Toronto Area</p>
+
+        <livewire:user-panel.component.button
+            label="Register Today"
+            iconURL="register-icon.png"
+            url="/register"
+            color="#4CAF50"
+        />
+>>>>>>> da3649ef4020016eb91e4d454d48e50a3a2fa25f
 
     </section>
 </div> --}}
+<<<<<<< HEAD
 
 
 {{-- ================================================================================================= --}}
@@ -186,3 +215,5 @@
         </div>
     </div>
 </section>
+=======
+>>>>>>> da3649ef4020016eb91e4d454d48e50a3a2fa25f
