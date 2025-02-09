@@ -1,6 +1,4 @@
-{{--<div>--}}
-{{--    --}}{{-- Close your eyes. Count to one. That is how long forever feels. --}}
-{{--</div>--}}
+
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-4 p-5 font-mono">
     @foreach ($events as $event)
         <div class="bg-white shadow-xl overflow-hidden rounded-xl flex flex-col h-full max-w-md w-full hover:scale-105 transform transition duration-300">

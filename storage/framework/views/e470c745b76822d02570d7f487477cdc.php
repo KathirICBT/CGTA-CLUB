@@ -1,6 +1,4 @@
 
-
-
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-4 p-5 font-mono">
     <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="bg-white shadow-xl overflow-hidden rounded-xl flex flex-col h-full max-w-md w-full hover:scale-105 transform transition duration-300">

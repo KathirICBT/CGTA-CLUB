@@ -29,7 +29,7 @@ class Event extends Model
         'paid_free',
         'user_limit',
         'user_limit_per_registrants',
-        'photo',
+        'photo',    
         'price', 
         'sponsor_price',
         'event_type',
